@@ -1,0 +1,2591 @@
+{
+  "userGuide": {
+    "title": "User Guide",
+    "navLabel": "User Guide",
+    "heading": "Learn Cradlen",
+    "subtitle": "Everything you need to set up and run your clinic on Cradlen — from your first login to a paid visit.",
+    "overview": "Overview",
+    "onThisPage": "On this page",
+    "whatsNew": {
+      "title": "What's new",
+      "subtitle": "New features and improvements, newest first."
+    },
+    "helpCta": {
+      "heading": "Still need a hand?",
+      "body": "The Help Center answers the most common questions.",
+      "link": "Visit the Help Center"
+    },
+    "sections": {
+      "getting-started": {
+        "title": "Getting started",
+        "description": "Set up your clinic and reach your first paid visit."
+      },
+      "features": {
+        "title": "Features",
+        "description": "How each part of the workspace works, page by page."
+      },
+      "patient-portal": {
+        "title": "Patient portal",
+        "description": "The patient-facing app for following care."
+      },
+      "roles": {
+        "title": "Roles & access",
+        "description": "Who can see and do what across the clinic."
+      }
+    },
+    "articles": {
+      "getting-started": {
+        "title": "Getting started",
+        "description": "The full clinic setup flow, step by step."
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "description": "Your role-aware home screen and clinic overview."
+      },
+      "calendar": {
+        "title": "Calendar",
+        "description": "Scheduling, events, and event privacy."
+      },
+      "visits": {
+        "title": "Visits",
+        "description": "Booking, examinations, and charges."
+      },
+      "patients": {
+        "title": "Patients",
+        "description": "The patient directory and clinical workspace."
+      },
+      "staff": {
+        "title": "Staff",
+        "description": "Build your team, set roles and schedules, and manage invitations."
+      },
+      "medicine": {
+        "title": "Medicines",
+        "description": "Your clinic's medication catalog, used when prescribing."
+      },
+      "financial": {
+        "title": "Financial & billing",
+        "description": "Services, price lists, invoices, and payments."
+      },
+      "settings": {
+        "title": "Settings & subscription",
+        "description": "Profile, organization, branches, and your plan and add-ons."
+      },
+      "patient-portal": {
+        "title": "Overview",
+        "description": "Signing in and a tour of every patient page."
+      },
+      "roles-and-permissions": {
+        "title": "Roles & permissions",
+        "description": "Roles, job functions, and what each persona can do."
+      }
+    }
+  },
+  "helpCenter": {
+    "title": "Help Center",
+    "subtitle": "Answers to common questions about setting up and using Cradlen — for clinic teams and for patients. Can't find what you need? Reach out and we'll help.",
+    "contact": {
+      "heading": "Still need help?",
+      "body": "If you couldn't find an answer here, email our support team and we'll get back to you."
+    },
+    "categories": {
+      "getting-started": {
+        "title": "Getting started",
+        "items": [
+          {
+            "q": "How do I create my clinic on Cradlen?",
+            "a": "Sign up and follow the onboarding steps to register your organization. You'll set your clinic's name and details, then create your first branch and add the team members who need access."
+          },
+          {
+            "q": "How do I add branches?",
+            "a": "Owners can add and manage branches from Settings. Each branch has its own staff, schedule, and visits, while sharing the organization's patient records."
+          },
+          {
+            "q": "How do I invite staff?",
+            "a": "From the staff area, send an invitation by email and choose the person's role and job function. They'll receive a link to set a password and join your organization."
+          },
+          {
+            "q": "Which browsers are supported?",
+            "a": "Cradlen works best on the latest versions of Chrome, Edge, Safari, and Firefox on desktop, tablet, or mobile."
+          }
+        ]
+      },
+      "accounts-roles": {
+        "title": "Accounts & roles",
+        "items": [
+          {
+            "q": "What's the difference between a role and a job function?",
+            "a": "A role (owner, branch manager, or staff) sets what someone is allowed to manage. A job function (doctor, receptionist, or accountant) reflects what they actually do day to day and tailors the screens they see."
+          },
+          {
+            "q": "How do permissions work?",
+            "a": "Each person only sees and can do what their role and job function allow. For example, clinical screens are available to doctors, while billing screens are available to accountants and owners."
+          },
+          {
+            "q": "How do I switch between branches?",
+            "a": "If you have access to more than one branch, use the organization/branch switcher in the navigation to change the branch you're working in."
+          },
+          {
+            "q": "How do I update my profile?",
+            "a": "Open your profile from the account menu to update your name, photo, and contact details."
+          }
+        ]
+      },
+      "visits-patients": {
+        "title": "Visits & patients",
+        "items": [
+          {
+            "q": "How do I book a visit?",
+            "a": "Reception books a visit by choosing the specialty, sub-specialty, and doctor, then selecting or adding the patient. The right examination template loads automatically based on what was booked."
+          },
+          {
+            "q": "How do I find or add a patient?",
+            "a": "Search by name or national ID. If the patient doesn't exist yet, you can add them during booking and fill in their details."
+          },
+          {
+            "q": "Where are a patient's records and history?",
+            "a": "Open the patient to see their unified medical record — past visits, examinations, medications, investigations, and attachments — gathered in one place."
+          },
+          {
+            "q": "How do attachments and results get added?",
+            "a": "Upload files such as scans or lab results to the relevant visit or investigation; they're then available on the patient's record and, where shared, in their portal."
+          }
+        ]
+      },
+      "billing-subscriptions": {
+        "title": "Billing & subscriptions",
+        "items": [
+          {
+            "q": "How does subscription billing work?",
+            "a": "Your organization subscribes to a plan that renews automatically each period. You can see your plan and invoices in the billing area."
+          },
+          {
+            "q": "How do I record a patient payment?",
+            "a": "Charges are added to a patient's open invoice for a case, and you can record payments and installments against it as they're made."
+          },
+          {
+            "q": "Who can see billing and financial screens?",
+            "a": "Financial screens are available to owners and to staff with the accountant job function. Reads are open to authorized staff, while changes are restricted."
+          }
+        ]
+      },
+      "patient-portal": {
+        "title": "Patient portal",
+        "items": [
+          {
+            "q": "How do I sign in to the patient portal?",
+            "a": "Use the patient sign-in page with the credentials you created. If you've forgotten your password, use the forgot-password link to reset it."
+          },
+          {
+            "q": "Can I book my own appointments in the portal?",
+            "a": "No. Appointments are scheduled by your clinic's reception team. The portal is where you view your information, not where you book visits."
+          },
+          {
+            "q": "What can I see in the portal?",
+            "a": "You can view your visit history, investigation results, medications, and other parts of your medical record that your clinic shares with you."
+          },
+          {
+            "q": "How do I update my details?",
+            "a": "You can update your profile details from the portal. Some clinical information is maintained by your clinic and may need to be changed by them."
+          }
+        ]
+      },
+      "account-troubleshooting": {
+        "title": "Account & troubleshooting",
+        "items": [
+          {
+            "q": "I forgot my password — how do I reset it?",
+            "a": "Use the forgot-password link on the sign-in page. We'll email you a secure link to set a new password."
+          },
+          {
+            "q": "I'm not receiving emails from Cradlen.",
+            "a": "Check your spam or junk folder and confirm your email address is correct. If it still doesn't arrive, contact support and we'll help."
+          },
+          {
+            "q": "Who owns the data in Cradlen?",
+            "a": "Patients own their personal medical history, while the records created during a visit belong to the clinic that authored them. See our Privacy Policy for details on how data is handled."
+          }
+        ]
+      }
+    }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: 24 June 2026",
+    "intro": "This Privacy Policy explains what data Cradlen collects, how we use and protect it, and the choices you have. It applies to the Cradlen platform, websites, and applications (together, the \"Platform\"). Cradlen provides the Platform to clinics and hospitals (each an \"Organization\") and processes data on their behalf. If you are a patient, the Organization providing your care is the controller of your health records, and Cradlen acts as its processor.",
+    "tocLabel": "On this page",
+    "sections": {
+      "introduction": {
+        "heading": "1. Our commitment to privacy",
+        "body": [
+          "Protecting health information is central to what we do. This policy describes our practices for the personal data we handle when Organizations and their staff use the Platform, and when patient information is recorded in it.",
+          "Roles: For data an Organization enters about its patients and operations, the Organization is the data controller and Cradlen is the data processor acting on its instructions. For account and billing data about the Organization itself, Cradlen is the controller. This policy covers both."
+        ]
+      },
+      "data-we-collect": {
+        "heading": "2. What data we collect",
+        "body": [
+          "We collect the following categories of data:"
+        ],
+        "bullets": [
+          "Account and organization data: names, work email addresses, phone numbers, role and job function, and clinic/branch details for the staff who use the Platform.",
+          "Patient health data: demographics, contact details, and clinical information your team records — visits, examinations, procedures, diagnoses, medications, investigations, attachments, and care journeys.",
+          "Billing data: subscription plan, invoices, and payment status (we do not store full card numbers).",
+          "Communications: messages you send to support and the email addresses used for transactional mail (verification, password reset, notifications), delivered via Resend.",
+          "Usage and device data: log data such as IP address, browser/device type, pages viewed, and timestamps, used to operate and secure the Platform."
+        ]
+      },
+      "how-we-use": {
+        "heading": "3. How we use data",
+        "body": [
+          "We use data to provide and operate the Platform, including maintaining clinical and operational records on behalf of Organizations, processing subscriptions and billing, and sending transactional email such as verification, password-reset, and notification messages.",
+          "We also use data to secure the Platform and prevent abuse, to provide customer support, to improve reliability and performance, and to comply with legal obligations. We do not use patient health data for advertising, and we do not sell personal data."
+        ]
+      },
+      "data-storage": {
+        "heading": "4. Where data is stored",
+        "body": [
+          "The Platform runs on established cloud infrastructure. The web application is hosted on Vercel; the backend API is hosted on Railway; the primary database is a managed PostgreSQL database on Neon; and uploaded files and attachments are stored in Cloudflare object storage. Cloudflare also provides our domain, DNS, and content-delivery network.",
+          "Data is stored in the regions configured for these services [data-residency region to be confirmed]. Each provider maintains its own security and compliance certifications."
+        ]
+      },
+      "international-transfers": {
+        "heading": "5. International data transfers",
+        "body": [
+          "Because we rely on the cloud providers named above, your data may be processed in countries other than your own. Where data is transferred across borders, we rely on the safeguards offered by those providers, such as standard contractual clauses and their regional data-processing commitments [specific regions and safeguards to be confirmed]."
+        ]
+      },
+      "data-sharing": {
+        "heading": "6. Data sharing",
+        "body": [
+          "We do not sell personal data. We share data only as needed to run the Platform and as described here:"
+        ],
+        "bullets": [
+          "Sub-processors: Vercel (web hosting and analytics), Railway (backend hosting), Neon (database), Cloudflare (DNS, CDN, and file storage), and Resend (transactional email). Each processes data only to provide its service to us.",
+          "Within your Organization: authorized staff can access the data their role and permissions allow.",
+          "Legal and safety: we may disclose data where required by law, to enforce our agreements, or to protect the rights, safety, and security of patients, users, or the public.",
+          "Business transfers: if Cradlen is involved in a merger, acquisition, or asset sale, data may transfer as part of that transaction, subject to this policy."
+        ]
+      },
+      "security": {
+        "heading": "7. Security",
+        "body": [
+          "We apply technical and organizational measures to protect data. Connections are encrypted in transit using HTTPS/TLS, and data is encrypted at rest by our infrastructure providers. Access is restricted by role-based permissions, and authentication tokens are held in HttpOnly cookies that are not readable by browser scripts.",
+          "We monitor for unauthorized access and apply the principle of least privilege. No system is perfectly secure, but we work to protect your data and to respond promptly to any incident."
+        ]
+      },
+      "data-retention": {
+        "heading": "8. Data retention",
+        "body": [
+          "We retain data for as long as the Organization's account is active and as needed to provide the Platform. Clinical and billing records may be retained for longer where medical-records, tax, or other laws require it.",
+          "When data is no longer required, we delete or anonymize it in line with our retention practices. On account termination, we make data available for export for a reasonable period before deletion, as described in our agreement with the Organization."
+        ]
+      },
+      "your-rights": {
+        "heading": "9. Your rights",
+        "body": [
+          "Depending on where you live, you may have rights over your personal data, including to access it, correct it, delete it, restrict or object to its processing, receive it in a portable format, and withdraw consent. You may also have the right to complain to a data-protection authority.",
+          "Patients own their personal medical history and can request access to it or have it provided in a portable form so it can move with them across providers. To exercise any right, contact your Organization (the controller of your health records) or contact us using the details below and we will assist the relevant controller."
+        ]
+      },
+      "cookies": {
+        "heading": "10. Cookies and similar technologies",
+        "body": [
+          "We keep our use of cookies minimal:"
+        ],
+        "bullets": [
+          "Strictly necessary cookies: HttpOnly session cookies that keep you signed in (for example cradlen-auth-token and cradlen-refresh-token, plus short-lived cookies for sign-up and password-reset flows, and the equivalents for the patient portal). The Platform cannot function without these.",
+          "Preference cookies: a cookie that remembers your chosen language.",
+          "Analytics: we use Vercel Analytics and Vercel Speed Insights to measure aggregate, anonymous usage and performance. These are privacy-friendly and do not use cookies to track you across sites."
+        ]
+      },
+      "childrens-data": {
+        "heading": "11. Children's data",
+        "body": [
+          "The Platform is intended for use by healthcare organizations and their staff, not by children directly. Where a patient is a minor, their health information is recorded and processed by the treating Organization under its care relationship and with the consent of a parent or guardian as required by law. Cradlen processes such data only on the Organization's behalf."
+        ]
+      },
+      "changes": {
+        "heading": "12. Changes to this policy",
+        "body": [
+          "We may update this Privacy Policy from time to time. When we make material changes, we will provide reasonable notice — for example by posting the updated policy with a new \"last updated\" date or by notifying you through the Platform. Your continued use of the Platform after the changes take effect constitutes acceptance of the updated policy."
+        ]
+      },
+      "contact": {
+        "heading": "13. Contact us",
+        "body": [
+          "If you have questions about this Privacy Policy or how your data is handled, please contact us at cradlen.app@gmail.com. If you are a patient, you can also contact the clinic or hospital providing your care."
+        ]
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: 24 June 2026",
+    "intro": "These Terms of Service (the \"Terms\") govern your access to and use of the Cradlen platform, websites, applications, and related services (together, the \"Platform\"). By creating an account, subscribing, or otherwise using the Platform, you agree to be bound by these Terms. If you are using the Platform on behalf of a clinic, hospital, or other organization, you accept these Terms on its behalf.",
+    "tocLabel": "On this page",
+    "sections": {
+      "introduction": {
+        "heading": "1. What is Cradlen?",
+        "body": [
+          "Cradlen is a software-as-a-service platform for women's health and OB-GYN clinics. It provides tools for managing appointments, clinical visits, examinations, patient medical records, care journeys, billing, and team collaboration.",
+          "In these Terms: \"Platform\" means the Cradlen software and services; \"Organization\" or \"Client\" means the clinic, hospital, or business that subscribes to the Platform; \"User\" means any staff member or person who accesses the Platform under an Organization's account; and \"Patient\" means an individual whose health information is recorded on the Platform. Cradlen provides the technology only and does not provide medical care or clinical advice."
+        ]
+      },
+      "acceptance": {
+        "heading": "2. Acceptance of these Terms",
+        "body": [
+          "By accessing or using the Platform you confirm that you have read, understood, and agree to these Terms and to our Privacy Policy. If you do not agree, you must not use the Platform.",
+          "If you accept these Terms on behalf of an Organization, you represent that you are authorized to bind that Organization, and \"you\" refers to both you and the Organization."
+        ]
+      },
+      "eligibility": {
+        "heading": "3. Accounts, eligibility, and rules of use",
+        "body": [
+          "You must be at least 18 years old and legally able to enter into a contract to use the Platform. Accounts are issued to a named Organization, which is responsible for the Users it invites and for the actions taken under its account.",
+          "You are responsible for keeping login credentials confidential, for all activity that occurs under your account, and for notifying us promptly of any unauthorized access. You agree to provide accurate account information and to keep it up to date. We may suspend or restrict access where reasonably necessary to protect the Platform, its users, or patient safety."
+        ]
+      },
+      "data-ownership": {
+        "heading": "4. Who owns the data",
+        "body": [
+          "The Platform records two different kinds of information, and ownership differs between them.",
+          "Patient medical history. A Patient owns their personal medical history — the longitudinal health record that follows them over time. This data belongs to the Patient, not to the clinic. An Organization and its clinicians access a Patient's history only under the care relationship and with the appropriate basis to do so, and the Patient retains rights in that history, including the ability to carry it across providers.",
+          "Clinical visit records. The clinical records produced during a specific visit — encounter notes, examinations, procedures, diagnoses, and the clinician's documentation of that encounter — belong to the Organization and the clinician who authored them, in line with applicable medical-records law.",
+          "Cradlen's role. Cradlen acts as the platform and data processor that stores and secures this information on behalf of Patients and Organizations. Cradlen does not own clinical content and will only use the data as needed to provide and support the Platform, or as permitted by these Terms and applicable law."
+        ]
+      },
+      "responsibilities": {
+        "heading": "5. Client and organization responsibilities",
+        "body": [
+          "As the Organization, you are responsible for using the Platform lawfully and for the conduct of your Users. This includes:",
+          "Obtaining any patient consent required by law before recording or processing health information; ensuring the accuracy of the records your team enters; maintaining the confidentiality of credentials and managing your Users' access and permissions appropriately; complying with all medical, privacy, and data-protection laws that apply to you; and exercising independent clinical judgment — the Platform supports your work but does not make clinical decisions for you."
+        ]
+      },
+      "prohibited": {
+        "heading": "6. Prohibited uses",
+        "body": [
+          "You agree not to, and not to permit any User or third party to:"
+        ],
+        "bullets": [
+          "Use the Platform for any unlawful purpose or in violation of any applicable law or regulation;",
+          "Access, store, or process patient data without a lawful basis or required consent;",
+          "Attempt to gain unauthorized access to the Platform, other accounts, or any system or network connected to it;",
+          "Reverse engineer, decompile, copy, resell, or create derivative works from the Platform except as permitted by law;",
+          "Upload malicious code, interfere with the Platform's operation, or place an unreasonable load on its infrastructure;",
+          "Use the Platform to harass, harm, or violate the rights or privacy of any patient or person;",
+          "Misrepresent your identity or authority, or share an account with unauthorized individuals."
+        ]
+      },
+      "subscriptions": {
+        "heading": "7. Subscriptions, billing, and payments",
+        "body": [
+          "Access to the Platform is provided on a subscription basis according to the plan you select. Fees, billing frequency, and included features are described at the point of purchase or in your order.",
+          "Unless stated otherwise, subscriptions renew automatically for successive periods until cancelled, and fees are charged in advance for each period. Fees are exclusive of taxes, which you are responsible for where applicable. Except where required by law, payments are non-refundable. We may change pricing on prior notice, with changes taking effect at your next renewal. Non-payment may result in suspension or termination of access."
+        ]
+      },
+      "intellectual-property": {
+        "heading": "8. Intellectual property",
+        "body": [
+          "The Platform, including its software, design, trademarks, and content provided by Cradlen, is owned by Cradlen or its licensors and is protected by intellectual-property laws. These Terms grant you a limited, non-exclusive, non-transferable right to use the Platform during your subscription, and no other rights.",
+          "This section does not affect ownership of the data you and your Patients put into the Platform, which is governed by the \"Who owns the data\" section above."
+        ]
+      },
+      "confidentiality": {
+        "heading": "9. Confidentiality and data protection",
+        "body": [
+          "We treat the data stored on the Platform as confidential and apply technical and organizational measures designed to protect it against unauthorized access, loss, or disclosure. Our handling of personal and health data is described in more detail in our Privacy Policy.",
+          "Each party will protect the other's confidential information and use it only as needed to perform under these Terms or as required by law."
+        ]
+      },
+      "disclaimers": {
+        "heading": "10. Disclaimers",
+        "body": [
+          "The Platform is provided \"as is\" and \"as available\" without warranties of any kind, whether express or implied, including any implied warranties of merchantability, fitness for a particular purpose, or non-infringement, to the maximum extent permitted by law.",
+          "Cradlen is a software tool and is not a medical device or a provider of medical care. It does not replace professional clinical judgment, diagnosis, or treatment. Decisions about patient care remain the sole responsibility of qualified healthcare professionals."
+        ]
+      },
+      "liability": {
+        "heading": "11. Limitation of liability",
+        "body": [
+          "To the maximum extent permitted by law, Cradlen will not be liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of profits, revenue, data, or goodwill, arising out of or related to your use of the Platform.",
+          "To the maximum extent permitted by law, Cradlen's total aggregate liability arising out of or related to these Terms will not exceed the amounts you paid to Cradlen for the Platform in the twelve months before the event giving rise to the claim. Nothing in these Terms excludes liability that cannot be excluded under applicable law."
+        ]
+      },
+      "termination": {
+        "heading": "12. Suspension and termination",
+        "body": [
+          "You may stop using the Platform and cancel your subscription at any time in accordance with your plan. We may suspend or terminate access if you breach these Terms, fail to pay fees, or where reasonably necessary to protect the Platform, its users, or patient safety.",
+          "On termination, your right to use the Platform ends. We will make the data associated with your account available for export for a reasonable period as described in our Privacy Policy, after which it may be deleted in line with our retention practices and applicable law."
+        ]
+      },
+      "changes": {
+        "heading": "13. Changes to these Terms",
+        "body": [
+          "We may update these Terms from time to time. When we make material changes, we will provide reasonable notice, for example by posting the updated Terms with a new \"last updated\" date or by notifying you through the Platform. Your continued use of the Platform after the changes take effect constitutes acceptance of the updated Terms."
+        ]
+      },
+      "governing-law": {
+        "heading": "14. Governing law and disputes",
+        "body": [
+          "These Terms are governed by the laws of the jurisdiction in which Cradlen is established, without regard to conflict-of-laws rules. The courts of that jurisdiction will have exclusive jurisdiction over any dispute arising out of or relating to these Terms, unless mandatory local law provides otherwise."
+        ]
+      },
+      "contact": {
+        "heading": "15. Contact us",
+        "body": [
+          "If you have questions about these Terms or the Platform, please contact us at cradlen.app@gmail.com."
+        ]
+      }
+    }
+  },
+  "subscriptions": {
+    "title": "Subscription",
+    "description": "Manage your plan, renew, or upgrade.",
+    "currentPlan": "Current plan",
+    "viewPayments": "Payments",
+    "loadError": "Couldn't load your subscription",
+    "loadErrorDesc": "Please try again in a moment.",
+    "fields": {
+      "status": "Status",
+      "renews": "Renews on",
+      "trialEnds": "Trial ends",
+      "limits": "Limits"
+    },
+    "status": {
+      "TRIAL": "Trial",
+      "ACTIVE": "Active",
+      "EXPIRED": "Expired",
+      "CANCELLED": "Cancelled"
+    },
+    "paymentStatus": {
+      "PENDING": "Pending",
+      "AWAITING_VERIFICATION": "Awaiting verification",
+      "VERIFIED": "Verified",
+      "REJECTED": "Rejected",
+      "CANCELLED": "Cancelled"
+    },
+    "purpose": {
+      "PLAN": "Plan",
+      "ADD_ON": "Add-on",
+      "COMBINED": "Plan + add-ons"
+    },
+    "planNames": {
+      "free_trial": "Free Trial",
+      "individual": "Individual Clinic",
+      "center": "Center",
+      "network": "Network of Centers"
+    },
+    "plans": {
+      "title": "Choose a plan",
+      "perYear": "year",
+      "current": "Current",
+      "upgrade": "Upgrade",
+      "renew": "Renew",
+      "limitsInline": "{branches} branches · {staff} staff",
+      "limits": {
+        "branches": "Up to {count} branches",
+        "staff": "Up to {count} staff",
+        "organizations": "Up to {count} organizations"
+      }
+    },
+    "addOns": {
+      "title": "Add-ons",
+      "description": "Extra branches and user seats on top of your plan.",
+      "empty": "No add-ons available for your plan.",
+      "buy": "Add",
+      "owned": "Your add-ons",
+      "ownedQuantity": "×{count}",
+      "prorated": "Charged pro-rata to your remaining term.",
+      "requiresActive": "Activate a paid plan to purchase add-ons.",
+      "perYearFull": "{amount} / year",
+      "kinds": {
+        "BRANCH_BUNDLE": "Extra branch",
+        "EXTRA_USER": "Extra user"
+      },
+      "grants": {
+        "branchesAndUsers": "+{branches} branch · +{users} users",
+        "usersOnly": "+{users} user"
+      },
+      "quantity": "Quantity"
+    },
+    "createDialog": {
+      "title": "Subscribe to {plan}",
+      "addOnTitle": "Add {addOn}",
+      "addOnDescription": "{amount} per year, charged pro-rata to your remaining term.",
+      "description": "You'll be charged {amount} for one year.",
+      "descriptionNoPrice": "Choose how you'd like to pay.",
+      "provider": "Payment method",
+      "providers": {
+        "INSTAPAY": "InstaPay",
+        "WALLET": "Mobile wallet"
+      },
+      "cancel": "Cancel",
+      "submit": "Continue to payment",
+      "error": "Couldn't start the payment. Please try again."
+    },
+    "planLimit": {
+      "title": "{plan} doesn't fit your usage yet",
+      "overview": "Cover the gap with add-ons, free up staff, or choose a larger plan.",
+      "resource": {
+        "staff": "Staff",
+        "branches": "Branches"
+      },
+      "branchesNote": "Branches can't be removed here. Keep them by adding branch bundles, or pick a larger plan.",
+      "freeUp": "Free up {count} more {count, plural, one {seat} other {seats}}",
+      "deactivate": "Deactivate",
+      "remove": "Remove",
+      "keepEverything": "Keep everything",
+      "addBranches": "+{count} {count, plural, one {branch} other {branches}}",
+      "addSeats": "+{count} {count, plural, one {seat} other {seats}}",
+      "continueToPayment": "Continue without add-ons",
+      "pickLargerPlan": "Pick a larger plan"
+    },
+    "payments": {
+      "title": "Payments",
+      "description": "Your subscription payments and their status.",
+      "back": "Back to settings",
+      "empty": "No payments yet",
+      "emptyDesc": "When you subscribe or renew, your payments appear here.",
+      "loadError": "Couldn't load payments"
+    },
+    "detail": {
+      "title": "Payment",
+      "back": "Back to payments",
+      "loadError": "Couldn't load this payment",
+      "instructions": "Payment instructions",
+      "instructionsFallback": "Complete your transfer, then upload the receipt below. Reference: {reference}",
+      "lineItems": "What you're paying for",
+      "itemPlan": "Plan (1 year)",
+      "itemSeats": "{count} extra {count, plural, one {seat} other {seats}}",
+      "payTo": "Pay to",
+      "amount": "Amount",
+      "reference": "Reference",
+      "proofs": "Proof of payment",
+      "viewProof": "View file",
+      "noProofs": "No proof uploaded yet.",
+      "cancel": "Cancel payment",
+      "cancelConfirm": "Cancel this payment?",
+      "keep": "Keep",
+      "cancelled": "Payment cancelled",
+      "cancelError": "Couldn't cancel the payment"
+    },
+    "proof": {
+      "add": "Upload proof",
+      "remove": "Remove",
+      "removed": "Proof removed",
+      "uploaded": "Proof uploaded",
+      "typeError": "Only PDF or image files are allowed",
+      "tooLarge": "File is too large",
+      "error": "Upload failed. Please try again."
+    },
+    "banner": {
+      "expired": "Your subscription has expired. Renew to continue using Cradlen.",
+      "trialEnding": "Your trial ends in {days} days.",
+      "renew": "Renew now",
+      "contactAdmin": "Contact your administrator to renew."
+    }
+  },
+  "builder": {
+    "sections": {
+      "lastUpdatedAt": "last update:"
+    },
+    "validation": {
+      "required": "{label} is required",
+      "forbidden": "{label} is not allowed here",
+      "minLength": "{label} must be at least {min} characters",
+      "maxLength": "{label} must be at most {max} characters",
+      "invalidFormat": "{label} has an invalid format",
+      "invalidDate": "{label} is not a valid date",
+      "futureDate": "{label} must not be in the future",
+      "maxAge": "{label} exceeds the maximum allowed age of {maxAge} years",
+      "min": "{label} must be at least {min}",
+      "max": "{label} must be at most {max}"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "back": "Back"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "We could not load this page. Try again and we will attempt to recover it.",
+    "retry": "Try again"
+  },
+  "home": {
+    "header": {
+      "features": "Features",
+      "howItWorks": "How it works",
+      "pricing": "Pricing",
+      "docs": "Docs",
+      "signIn": "Sign in",
+      "startFree": "Start free",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
+    },
+    "hero": {
+      "eyebrow": "Built for OB-GYN & women's health clinics",
+      "titlePre": "Care is a",
+      "titleHighlight": "journey",
+      "titlePost": ", not a list of visits.",
+      "description": "Cradlen turns women's health care into one continuous journey — every visit, examination and prescription on a single, unified medical record. From the first antenatal visit to delivery, open a patient and pick up exactly where you left off.",
+      "ctaPrimary": "Start free",
+      "ctaSecondary": "See how a journey works",
+      "trust1": "Free for 14 days",
+      "trust2": "No credit card",
+      "trust3": "Live in an afternoon",
+      "mediaAlt": "Cradlen visit workspace showing a patient's antenatal care journey",
+      "mediaNextLabel": "Next on the journey",
+      "mediaNextValue": "Antenatal · 32 weeks",
+      "patientName": "Sara Ahmed",
+      "patientMeta": "32 yrs · 2nd pregnancy",
+      "statusActive": "Active",
+      "tri1Title": "First trimester",
+      "tri1Meta": "Booking & dating scan done",
+      "tri2Title": "Second trimester",
+      "tri2Meta": "Anomaly scan today",
+      "tri3Title": "Third trimester"
+    },
+    "strip": {
+      "item1": "Solo clinics to multi-branch networks",
+      "item2": "Bilingual · Arabic & English, RTL-ready",
+      "item3": "Role-based access for every staff member"
+    },
+    "whyJourneys": {
+      "sectionNo": "02",
+      "eyebrow": "Why journeys",
+      "headingPre": "It's 6 PM. The front desk has a paper file, two browser tabs and a WhatsApp thread open — and ",
+      "headingHighlight": "still can't say",
+      "headingPost": " what happened at Sara's last visit.",
+      "lead": "That's what software built around <b>visits</b> does — every appointment starts from zero. Cradlen is built around <j>journeys</j>, so the story is never lost.",
+      "oldWayLabel": "The visit-based way",
+      "oldWay": [
+        "A new blank chart for every appointment",
+        "Hunting through paper to find last time",
+        "Cash that never reconciles at close",
+        "All-or-nothing access for the whole team"
+      ],
+      "newWayLabel": "The Cradlen journey",
+      "newWay": [
+        "One journey that remembers every visit",
+        "The whole care path, readable at a glance",
+        "Cash sessions, invoices & reports built in",
+        "Permissions per role, per module"
+      ]
+    },
+    "whatsInside": {
+      "sectionNo": "03",
+      "eyebrow": "What's inside",
+      "heading": "One unified record, connected to the journey.",
+      "journeys": {
+        "title": "Patient journeys & care paths",
+        "description": "A journey groups every visit, examination, prescription and payment into one connected episode of care — built on care-path templates with ordered episodes. Open a patient and follow their whole path, instead of starting from scratch each time.",
+        "tag1": "Care paths",
+        "tag2": "Episodes",
+        "tag3": "Spans every visit",
+        "mockTitle": "Antenatal care · Sara Ahmed",
+        "mockEpisode": "Episode 2 / 5",
+        "step1": "Booking",
+        "step2": "1st tri",
+        "step3": "2nd tri",
+        "step4": "3rd tri",
+        "step5": "Delivery",
+        "mockNote": "3 visits recorded this episode · last 18 Dec"
+      },
+      "calendar": {
+        "title": "Calendar & live queue",
+        "description": "Day, week and queue views with no-show flags and reminders — the front desk always knows who's next.",
+        "row1Time": "09:00",
+        "row1Text": "Mariam K. · Follow-up",
+        "row2Time": "10:30",
+        "row2Text": "Sara A. · In room"
+      },
+      "prescriptions": {
+        "title": "Prescriptions & medicines",
+        "description": "A managed formulary with default doses and usage notes — prescribe in seconds, print a clean script.",
+        "mockTag": "Rx",
+        "mockName": "Amoxicillin 500 mg",
+        "mockDose": "1 tab / 8h · 7 days"
+      },
+      "medicalHistory": {
+        "title": "Unified medical history",
+        "description": "One record per patient that follows her across every visit, doctor and branch. Examinations, prescriptions, lab tests, imaging and notes all live in a single, searchable history — no duplicate files, no gaps, no starting over.",
+        "tag1": "One file per patient",
+        "tag2": "Across branches",
+        "tag3": "Fully searchable",
+        "patientName": "Sara Ahmed",
+        "patientMeta": "ID •••• 2841 · 32y · one unified record",
+        "allBranches": "All branches",
+        "row1Label": "Examination · 18 Dec",
+        "row1Branch": "Maadi branch",
+        "row2Label": "Prescription · Iron + Vit C",
+        "row2Branch": "Maadi branch",
+        "row3Label": "Lab · CBC result ready",
+        "row3Branch": "Nasr City branch"
+      },
+      "cash": {
+        "title": "Cash sessions & finance",
+        "description": "Open and close cash sessions, issue invoices and read reports — the day closes balanced, on its own.",
+        "mockLabel": "Today's cash session",
+        "mockAmount": "EGP 12,400",
+        "mockStatus": "Reconciled"
+      },
+      "exams": {
+        "title": "Examinations & templates",
+        "description": "Structured exam templates per specialty keep clinical work consistent — and every entry lands on the journey.",
+        "tag1": "Antenatal",
+        "tag2": "Postnatal",
+        "tag3": "Gynecology"
+      }
+    },
+    "testimonial": {
+      "quote": "I stopped flipping through old files. I open the patient's journey and the whole story is right there — what we tried, what worked, and what's next.",
+      "name": "Dr. Ibrahem Abo Deif",
+      "role": "OB-GYN · Cairo",
+      "dropPhoto": "Drop a doctor's photo",
+      "browse": "or browse files"
+    },
+    "patientPortal": {
+      "sectionNo": "04",
+      "eyebrow": "Patient portal",
+      "heading": "Patients follow their own journey.",
+      "description": "The same care path, from the patient's side. They sign in with their national ID and see every upcoming visit, manage their prescriptions, and follow lab tests and imaging — no app to install.",
+      "features": [
+        {
+          "title": "Sign in with national ID",
+          "description": "A 14-digit national ID and password — no new account to create."
+        },
+        {
+          "title": "Manage prescriptions",
+          "description": "Current medications, doses and schedules — always up to date."
+        },
+        {
+          "title": "View lab tests & imaging",
+          "description": "Follow results as they're ready, and upload outside reports to the journey."
+        }
+      ],
+      "phone": {
+        "welcomeBack": "Welcome back",
+        "patientName": "Sara Ahmed",
+        "careTitle": "Antenatal care",
+        "episode": "Ep 2 / 5",
+        "next": "Next: ANC follow-up · 24 Dec, 10:30",
+        "rxLabel": "Prescriptions",
+        "rx1": "Folic acid 5 mg",
+        "rx1Note": "1 tab daily · ongoing",
+        "rx2": "Iron + Vit C",
+        "rx2Note": "1 tab daily · 30 days",
+        "labsLabel": "Lab tests",
+        "lab1": "CBC · Complete blood count",
+        "lab1Note": "18 Dec · result ready",
+        "view": "View",
+        "tabHome": "Home",
+        "tabVisits": "Visits",
+        "tabMeds": "Meds",
+        "tabTests": "Tests",
+        "tabProfile": "Profile"
+      }
+    },
+    "howItWorks": {
+      "sectionNo": "05",
+      "eyebrow": "How it works",
+      "heading": "Live in an afternoon — not a quarter.",
+      "subheading": "No installs, no servers. Open Cradlen in the browser and start the first journey today.",
+      "steps": [
+        {
+          "title": "Create your clinic",
+          "description": "Set up your organization and branches in a few fields."
+        },
+        {
+          "title": "Invite your team",
+          "description": "Add doctors, reception and managers with the right roles."
+        },
+        {
+          "title": "Start the journey",
+          "description": "Book a visit, run the exam, prescribe — all on one path."
+        },
+        {
+          "title": "Track & grow",
+          "description": "Watch finances and outcomes on live dashboards."
+        }
+      ],
+      "docs": {
+        "eyebrow": "Documentation",
+        "heading": "A guide for every role, step by step.",
+        "description": "Onboarding walkthroughs and role playbooks — so reception, doctors and managers each learn just their part of the journey.",
+        "readDocs": "Read the docs"
+      }
+    },
+    "pricing": {
+      "eyebrow": "Pricing",
+      "heading": "From one clinic to a whole network.",
+      "subheadingPre": "Start free for 14 days. ",
+      "subheadingBold": "All plans billed yearly, no credit card.",
+      "popular": "Most popular",
+      "tiers": [
+        {
+          "name": "Free Trial",
+          "price": "Free",
+          "period": "",
+          "note": "14 days, no card",
+          "cta": "Start free",
+          "features": [
+            "1 clinic, 1 branch",
+            "Up to 5 staff",
+            "Full patient journeys"
+          ]
+        },
+        {
+          "name": "Individual Clinic",
+          "price": "8,000 EGP",
+          "period": "/year",
+          "note": "For solo doctors",
+          "cta": "Choose plan",
+          "features": [
+            "1 branch",
+            "Up to 2 staff",
+            "All clinical features",
+            "Cash sessions & invoices"
+          ]
+        },
+        {
+          "name": "Center",
+          "price": "22,000 EGP",
+          "period": "/year",
+          "note": "For growing centers",
+          "cta": "Choose Center",
+          "features": [
+            "1 branch, extra branches as add-ons",
+            "Up to 10 staff",
+            "Analytics dashboards",
+            "Medical Rep CRM"
+          ]
+        },
+        {
+          "name": "Network of Centers",
+          "price": "50,000 EGP",
+          "period": "/year",
+          "note": "For multi-site groups",
+          "cta": "Choose plan",
+          "features": [
+            "Up to 3 branches",
+            "Up to 25 staff",
+            "Priority support & SLA",
+            "Consolidated reporting"
+          ]
+        }
+      ]
+    },
+    "finalCta": {
+      "heading": "Give every patient a journey worth remembering.",
+      "description": "Set up your clinic, invite your team, and start your first patient journey on Cradlen this afternoon.",
+      "cta": "Start free",
+      "ctaSecondary": "Talk to us"
+    },
+    "footer": {
+      "tagline": "One continuous journey for every patient — from the first visit to the last. The calm operating system for your clinic.",
+      "productLabel": "Product",
+      "companyLabel": "Company",
+      "legalLabel": "Legal",
+      "product": {
+        "features": "Features",
+        "pricing": "Pricing",
+        "howItWorks": "How it works",
+        "documentation": "Documentation"
+      },
+      "company": {
+        "about": "About",
+        "helpCenter": "Help Center",
+        "whyJourneys": "Why journeys"
+      },
+      "legal": {
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
+      },
+      "copyright": "© 2026 Cradlen. All rights reserved."
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "visits": "Visits",
+    "calendar": "Calendar",
+    "patients": "Patients",
+    "medicine": "Medicine",
+    "medicalRep": "Medical Rep",
+    "analytics": "Analytics",
+    "settings": "Settings",
+    "logout": "Logout",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "profileSwitcher": "Switch profile",
+    "switchBranch": "Switch branch",
+    "switchWorkspace": "Switch workspace",
+    "createOrganization": "Create organization",
+    "switchBranchError": "Failed to switch branch",
+    "branchLabel": "{city} branch",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "more": "More",
+    "account": "Account",
+    "organization": "Organization",
+    "language": "Language"
+  },
+  "patients": {
+    "title": "Patients",
+    "allPatients": "All",
+    "filtersLabel": "Patient filters",
+    "search": "Search patients...",
+    "loadError": "Failed to load patients",
+    "noPatients": "No patients found",
+    "noBranch": "No branch selected. Please select a branch to view patients.",
+    "noResults": "No patients match the current filter.",
+    "showResults": "show {count} of {total} results",
+    "scope": {
+      "branch": "This branch",
+      "org": "All patients"
+    },
+    "workspace": {
+      "title": "Patient",
+      "back": "Patients",
+      "edit": "Edit profile",
+      "loadError": "Failed to load patient",
+      "notAuthorized": "You don't have permission to view patient details.",
+      "tabsAria": "Patient sections",
+      "tabs": {
+        "overview": "Overview",
+        "history": "History"
+      }
+    },
+    "profile": {
+      "title": "Edit patient",
+      "description": "Update the patient's identity and contact details.",
+      "fullName": "Full name",
+      "fullNameRequired": "Full name is required.",
+      "nationalId": "National ID",
+      "nationalIdReadonly": "Locked. Only correct it if it was entered wrong.",
+      "nationalIdEdit": "Correct ID",
+      "nationalIdEditWarning": "Changing the National ID permanently updates this patient's identity. Only do this to fix a wrong entry.",
+      "nationalIdEditConfirm": "Unlock",
+      "nationalIdEditCancel": "Keep locked",
+      "nationalIdInvalid": "National ID must be 8 to 20 digits.",
+      "dateOfBirth": "Date of birth",
+      "phoneNumber": "Phone number",
+      "address": "Address",
+      "save": "Save",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "success": "Patient updated.",
+      "error": "Failed to update patient."
+    },
+    "pagination": {
+      "prev": "Previous page",
+      "next": "Next page",
+      "pageOf": "Page {page} of {total}"
+    },
+    "columns": {
+      "name": "Name",
+      "phone": "Phone",
+      "address": "Address",
+      "lastVisit": "Last Visit",
+      "nextVisit": "Next Visit",
+      "journey": "Journey",
+      "journeyStatus": "Status"
+    },
+    "journeyStatus": {
+      "ACTIVE": "Active",
+      "COMPLETED": "Completed",
+      "PAUSED": "Paused",
+      "CANCELLED": "Cancelled"
+    },
+    "journeyType": {
+      "PREGNANCY": "Pregnancy",
+      "GENERAL_GYN": "General GYN",
+      "SURGICAL": "Surgical",
+      "CHRONIC_CONDITION": "Chronic Condition"
+    },
+    "stats": {
+      "total": "Total Patients",
+      "newThisMonth": "New This Month",
+      "vsLastMonth": "vs last month",
+      "noPrior": "—",
+      "new": "+{count} new"
+    }
+  },
+  "patientNav": {
+    "home": "Home",
+    "medicines": "Medicines",
+    "tests": "Tests",
+    "calendar": "Calendar",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "settings": {
+    "eyebrow": "Settings",
+    "title": "Organization settings",
+    "description": "Manage your organization, clinic profile, branches, and sensitive actions.",
+    "loading": "Loading settings...",
+    "loadError": "Failed to load settings. Please try again.",
+    "navLabel": "Settings sections",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "softDeleteConfirm": "Delete",
+    "typedConfirmHint": "Type \"{name}\" to confirm.",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "roles": {
+      "OWNER": "Owner",
+      "BRANCH_MANAGER": "Branch Manager",
+      "STAFF": "Staff",
+      "owner": "Owner",
+      "branch_manager": "Branch Manager",
+      "doctor": "Doctor",
+      "reception": "Reception",
+      "accountant": "Accountant",
+      "patient": "Patient",
+      "unknown": "Unknown"
+    },
+    "orgStatus": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "SUSPENDED": "Suspended"
+    },
+    "executiveTitles": {
+      "NONE": "None",
+      "CEO": "CEO",
+      "COO": "COO",
+      "CFO": "CFO",
+      "CMO": "CMO"
+    },
+    "engagementTypes": {
+      "FULL_TIME": "Full-time",
+      "PART_TIME": "Part-time",
+      "ON_DEMAND": "On demand",
+      "EXTERNAL_CONSULTANT": "External consultant"
+    },
+    "tabs": {
+      "profile": "Profile",
+      "account": "Account",
+      "organization": "Organization",
+      "branches": "Branches",
+      "subscription": "Subscription",
+      "danger": "Danger Zone"
+    },
+    "fields": {
+      "role": "Role",
+      "status": "Status",
+      "name": "Name",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "jobTitle": "Job title",
+      "verifiedAt": "Verified at",
+      "phone": "Phone",
+      "dateOfBirth": "Date of birth",
+      "dateOfBirthPlaceholder": "Select your date of birth",
+      "organization": "Organization",
+      "organizationName": "Organization name",
+      "specialties": "Specialties",
+      "specialtiesPlaceholder": "Select specialties",
+      "currentBranch": "Current branch",
+      "country": "Country",
+      "city": "City",
+      "governorate": "Governorate",
+      "address": "Address",
+      "executiveTitle": "Executive title",
+      "professionalTitle": "Professional title",
+      "professionalTitlePlaceholder": "e.g. استشاري النساء والتوليد",
+      "professionalTitleHint": "Free text shown on your profile — display only.",
+      "engagementType": "Engagement type",
+      "jobFunctions": "Job functions",
+      "jobFunctionsPlaceholder": "Select job functions",
+      "removeOption": "Remove {label}",
+      "mainBranch": "Main branch"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Review your personal account details and prepare profile edits.",
+      "edit": "Edit profile",
+      "drawerDescription": "Update the personal details attached to your current staff profile.",
+      "save": "Save profile",
+      "updateSuccess": "Profile updated.",
+      "updateError": "Failed to update profile. Please try again.",
+      "updateInvalid": "Some values were rejected by the server. Please review and try again.",
+      "sharedAcrossOrgs": "Your name and phone are shared across all your organizations.",
+      "addPhoto": "Add photo",
+      "changePhoto": "Change photo",
+      "removePhoto": "Remove",
+      "imageTypeError": "Choose a PNG, JPG, or WEBP image.",
+      "imageTooLarge": "Image must be 5 MB or smaller.",
+      "imageUpdated": "Profile photo updated.",
+      "imageRemoved": "Profile photo removed."
+    },
+    "account": {
+      "title": "Account",
+      "description": "Email and password tied to your sign-in.",
+      "password": "Password",
+      "passwordHint": "Changing your password signs you out of every device.",
+      "changePassword": "Change password"
+    },
+    "organization": {
+      "title": "Organization",
+      "description": "Review the current clinic organization and manage its details.",
+      "editDrawerDescription": "Update the organization details that identify this clinic.",
+      "add": "Add organization",
+      "edit": "Edit organization",
+      "save": "Save organization",
+      "delete": "Delete organization",
+      "deleteTitle": "Delete organization?",
+      "deleteDescription": "This will soft-delete the organization, all of its branches, all staff profiles, and sign you out. This cannot be undone from the app.",
+      "updateSuccess": "Organization updated.",
+      "updateError": "Failed to update organization. Please try again.",
+      "deleteSuccess": "Organization deleted.",
+      "deleteError": "Failed to delete organization. Please try again.",
+      "deleteForbidden": "Only the organization owner can delete the organization.",
+      "logo": "Organization logo",
+      "addLogo": "Add logo",
+      "changeLogo": "Change logo",
+      "removeLogo": "Remove logo",
+      "logoUpdated": "Organization logo updated.",
+      "logoRemoved": "Organization logo removed."
+    },
+    "branches": {
+      "title": "Branches",
+      "description": "Review the active branch and prepare another clinic location.",
+      "drawerDescription": "Add another clinic location under the current organization. Staff are not assigned automatically — assign them after creation.",
+      "editDrawerDescription": "Update the address and main-branch status for this branch.",
+      "add": "Add branch",
+      "edit": "Edit branch",
+      "save": "Save branch",
+      "delete": "Delete branch",
+      "deleteTitle": "Delete branch?",
+      "deleteDescription": "This branch will be disabled and no longer accessible.",
+      "deleteMainDescription": "This is the main branch. \"{name}\" will be promoted to main automatically.",
+      "deleteLastTitle": "Delete your only branch?",
+      "deleteLastDescription": "This is your last branch. Deleting it will soft-delete the entire organization, all staff, and sign you out.",
+      "demoteWarning": "Saving with this branch as main will demote \"{name}\".",
+      "onlyMainHint": "This is your only main branch. Promote another branch first if you want to demote it.",
+      "cannotDemoteOnlyMain": "At least one branch must remain main. Promote a different branch first.",
+      "createSuccess": "Branch created.",
+      "createError": "Failed to create branch. Please try again.",
+      "updateSuccess": "Branch updated.",
+      "updateError": "Failed to update branch. Please try again.",
+      "deleteSuccess": "Branch deleted.",
+      "deleteError": "Failed to delete branch. Please try again.",
+      "deleteForbidden": "You don't have permission to delete branches. Only the organization owner can do this."
+    },
+    "danger": {
+      "title": "Danger Zone",
+      "description": "Sensitive organization actions stay behind confirmation.",
+      "deleteTitle": "Delete organization",
+      "deleteDescription": "Soft-deletes the organization, all branches, and all staff profiles. You will be signed out and cannot recover this from the app."
+    },
+    "empty": {
+      "missing": "Not available",
+      "profileTitle": "No staff profile found",
+      "profileDescription": "This account does not have an owner or doctor profile attached yet.",
+      "organizationTitle": "No organization linked",
+      "organizationDescription": "Create an organization once clinic setup is connected.",
+      "branchTitle": "No branch linked",
+      "branchDescription": "Create a branch once branch setup is connected."
+    },
+    "validation": {
+      "required": "Please complete all required fields."
+    },
+    "subscription": {
+      "branchLimitReached": "You've reached your plan's branch limit ({current}/{limit}). Upgrade your subscription to add more branches.",
+      "organizationLimitReached": "You've reached your plan's organization limit ({current}/{limit}). Upgrade your subscription to add more organizations."
+    },
+    "billing": "Billing",
+    "billingNav": {
+      "services": "Services",
+      "priceLists": "Price Lists",
+      "myPrices": "My Prices"
+    }
+  },
+  "patientDashboard": {
+    "welcome": "Welcome back"
+  },
+  "auth": {
+    "signUp": {
+      "title": "Join our community",
+      "alreadyHaveAccount": "Already have an account?",
+      "copyright": "2026 CRADLEN. All rights reserved.",
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy",
+      "helpCenter": "Help Center",
+      "step1Label": "Personal information",
+      "step2Label": "Verification",
+      "step3Label": "Organization",
+      "loading": "Checking your registration...",
+      "nextButton": "Next",
+      "backButton": "Back",
+      "submitButton": "Start free trial",
+      "firstNameLabel": "First name",
+      "firstNamePlaceholder": "John",
+      "lastNameLabel": "Last name",
+      "lastNamePlaceholder": "Doe",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "+1 555 000 0000",
+      "dateOfBirthLabel": "Date of birth (optional)",
+      "dateOfBirthPlaceholder": "Select your date of birth",
+      "emailLabel": "Email",
+      "emailPlaceholder": "john@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Enter your password again",
+      "showPassword": "Show",
+      "hidePassword": "Hide",
+      "verificationTitle": "Check your inbox",
+      "verificationDescription": "We sent a verification code to {email}. Please enter it below.",
+      "verificationCodeLabel": "Verification code",
+      "verificationCodePlaceholder": "123456",
+      "resendCode": "Resend code",
+      "resendIn": "Resend in {seconds}s",
+      "organizationNameLabel": "Organization name",
+      "organizationNamePlaceholder": "Cradlen Clinic",
+      "specialtiesLabel": "Specialties",
+      "specialtiesPlaceholder": "e.g. Pediatrics, Cardiology",
+      "organizationSpecialtiesLabel": "Clinic specialties",
+      "organizationSpecialtiesPlaceholder": "e.g. Pediatrics, Cardiology",
+      "organizationSpecialtiesHint": "The services your clinic offers.",
+      "executiveTitleLabel": "Executive title",
+      "executiveTitles": {
+        "CEO": "CEO",
+        "COO": "COO",
+        "CFO": "CFO",
+        "CMO": "CMO"
+      },
+      "jobRoleLabel": "Job function",
+      "jobRoles": {
+        "DOCTOR": "Doctor",
+        "RECEPTIONIST": "Receptionist",
+        "ACCOUNTANT": "Accountant",
+        "NONE": "None / administration"
+      },
+      "doctorSpecialtyLabel": "Your specialty",
+      "doctorSpecialtyPlaceholder": "Select your specialty",
+      "doctorSubspecialtyLabel": "Your subspecialties",
+      "doctorSubspecialtyPlaceholder": "Select your subspecialties",
+      "professionalTitleLabel": "Title on your profile",
+      "professionalTitlePlaceholder": "e.g. استشاري النساء والتوليد",
+      "professionalTitleHint": "Free text shown on your profile — display only.",
+      "mainBranchHeading": "Main branch",
+      "branchNameLabel": "Branch name",
+      "branchNamePlaceholder": "e.g. Main Branch",
+      "cityLabel": "City",
+      "cityPlaceholder": "Cairo",
+      "addressLabel": "Address",
+      "addressPlaceholder": "123 Medical Street",
+      "governorateLabel": "Governorate",
+      "governoratePlaceholder": "Giza",
+      "countryLabel": "Country",
+      "countryPlaceholder": "Egypt",
+      "errors": {
+        "serverError": "Something went wrong. Please try again.",
+        "emailTaken": "An account with this email already exists.",
+        "emailAlreadyRegistered": "This email is already registered. Please sign in instead.",
+        "invalidCode": "Invalid or expired verification code.",
+        "sessionExpired": "Your registration session has expired.",
+        "sessionExpiredDetail": "Please start your registration again to get a new verification code.",
+        "startOver": "Start registration again",
+        "tryAgainLater": "Try again later.",
+        "resendSuccess": "A new code has been sent to your email.",
+        "phoneTaken": "A phone number matching this account already exists.",
+        "otpExpired": "This code has expired. Request a new one below.",
+        "otpLocked": "Too many incorrect attempts. Please request a new code.",
+        "resendLocked": "You've requested too many codes. Try again in an hour.",
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "invalidPhone": "Enter a valid phone number",
+        "dateOfBirthInvalid": "Enter a valid date of birth",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Enter a valid email address",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordLowercase": "Password must contain at least one lowercase letter",
+        "passwordUppercase": "Password must contain at least one uppercase letter",
+        "passwordNumber": "Password must contain at least one number",
+        "passwordSymbol": "Password must contain at least one symbol",
+        "confirmPasswordRequired": "Please confirm your password",
+        "passwordMismatch": "Passwords do not match",
+        "codeLength": "Code must be exactly 6 digits",
+        "codeDigits": "Code must contain only digits",
+        "accountNameRequired": "Organization name is required",
+        "specialtiesRequired": "Please enter at least one specialty",
+        "doctorSpecialtyRequired": "Please select your specialty",
+        "professionalTitleTooLong": "Title must be 120 characters or fewer",
+        "branchNameRequired": "Branch name is required",
+        "cityRequired": "City is required",
+        "addressRequired": "Address is required",
+        "governorateRequired": "Governorate is required"
+      },
+      "toasts": {
+        "resumingRegistration": "Email already registered — resuming your incomplete registration.",
+        "alreadyRegistered": "You already have an account. Signing you in..."
+      }
+    },
+    "forgotPassword": {
+      "title": "Forgot Password",
+      "description": "Enter your email and we'll send you a reset code.",
+      "loading": "Loading...",
+      "emailLabel": "Email",
+      "emailPlaceholder": "john@example.com",
+      "startSuccess": "If this email exists, a code was sent.",
+      "verificationTitle": "Check your email",
+      "verificationDescription": "Enter the 6-digit code sent to {email}",
+      "verificationCodeLabel": "Reset Code",
+      "verificationCodePlaceholder": "000000",
+      "resendCode": "Resend code",
+      "resendIn": "Resend in {seconds}s",
+      "resendSuccess": "Code sent.",
+      "resetTitle": "Reset password",
+      "resetDescription": "Choose a new password for your account.",
+      "newPasswordLabel": "New Password",
+      "newPasswordPlaceholder": "Min. 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat new password",
+      "showPassword": "Show",
+      "hidePassword": "Hide",
+      "submitButton": "Send Code",
+      "sendingButton": "Sending...",
+      "verifyButton": "Verify",
+      "verifyingButton": "Verifying...",
+      "resetButton": "Reset Password",
+      "resettingButton": "Resetting...",
+      "resendingButton": "Sending...",
+      "backButton": "Back",
+      "backToSignIn": "Back to Sign In",
+      "sessionExpired": "Your reset session expired. Please request a new code to continue.",
+      "startOverButton": "Request a new code",
+      "resetSuccess": "Your password has been reset. Redirecting to sign in...",
+      "errors": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Enter a valid email address",
+        "emailNotFound": "No account found with this email.",
+        "invalidCode": "Invalid or expired code.",
+        "codeLength": "Code must be exactly 6 digits.",
+        "codeDigits": "Code must contain only digits.",
+        "passwordMinLength": "Password must be at least 8 characters.",
+        "passwordMaxLength": "Password must be at most 128 characters.",
+        "passwordUppercase": "Password must contain at least one uppercase letter.",
+        "passwordLowercase": "Password must contain at least one lowercase letter.",
+        "passwordDigit": "Password must contain at least one number.",
+        "passwordSpecial": "Password must contain at least one special character.",
+        "confirmPasswordRequired": "Please confirm your password.",
+        "passwordMismatch": "Passwords do not match.",
+        "invalidToken": "This reset link has expired. Please request a new code.",
+        "tryAgainLater": "Try again later.",
+        "serverError": "Something went wrong. Please try again.",
+        "resendSuccess": "A new code has been sent to your email."
+      }
+    },
+    "signIn": {
+      "title": "Sign in",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "showPassword": "Show",
+      "hidePassword": "Hide",
+      "submitButton": "Sign in",
+      "noticeAccountExists": "You already have an account. Please sign in below.",
+      "noticeResumeOnboarding": "Your registration session expired. Please sign in to finish setting up your organization.",
+      "forgotPassword": "Forgot your password?",
+      "orDivider": "or",
+      "patientSignIn": {
+        "cta": "Sign in as a patient"
+      },
+      "newToCommunity": "New to our community ?",
+      "copyright": "2026 CRADLEN. All rights reserved.",
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy",
+      "helpCenter": "Help Center",
+      "errors": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Enter a valid email address",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "invalidCredentials": "Invalid email or password",
+        "accountSuspended": "This account is currently suspended. Please contact your clinic administrator.",
+        "tooManyAttempts": "Too many sign-in attempts. Please wait a few minutes and try again.",
+        "serverError": "Something went wrong. Please try again.",
+        "noProfiles": "No profiles are available for this sign-in.",
+        "inactiveOrganization": "Your organization is no longer active. You have been signed out."
+      },
+      "toasts": {
+        "resumingRegistration": "Your registration is incomplete — redirecting to continue sign-up."
+      }
+    },
+    "patientSignIn": {
+      "title": "Patient sign in",
+      "nationalIdLabel": "National ID",
+      "passwordLabel": "Password",
+      "showPassword": "Show",
+      "hidePassword": "Hide",
+      "submitButton": "Sign in",
+      "newToCommunity": "New to our community ?",
+      "errors": {
+        "nationalIdRequired": "National ID is required",
+        "nationalIdInvalid": "Enter a valid 14-digit National ID",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordLowercase": "Password must contain a lowercase letter",
+        "passwordUppercase": "Password must contain an uppercase letter",
+        "passwordNumber": "Password must contain a number",
+        "passwordSymbol": "Password must contain a symbol",
+        "invalidCredentials": "Invalid National ID or password",
+        "serverError": "Something went wrong. Please try again."
+      },
+      "forgotPassword": "Forgot password?"
+    },
+    "patientSignUp": {
+      "alreadyHaveAccount": "Already have an account?",
+      "step1Label": "Your details",
+      "step2Label": "Password",
+      "nationalIdLabel": "National ID",
+      "nationalIdPlaceholder": "14-digit National ID",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "+20 100 000 0000",
+      "dateOfBirthLabel": "Date of birth",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Enter your password again",
+      "showPassword": "Show",
+      "hidePassword": "Hide",
+      "nextButton": "Next",
+      "backButton": "Back",
+      "submitButton": "Create account",
+      "errors": {
+        "nationalIdRequired": "National ID is required",
+        "nationalIdInvalid": "Enter a valid 14-digit National ID",
+        "phoneRequired": "Phone number is required",
+        "invalidPhone": "Enter a valid phone number",
+        "dateOfBirthRequired": "Date of birth is required",
+        "dateOfBirthInvalid": "Enter a valid date of birth",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordLowercase": "Password must contain a lowercase letter",
+        "passwordUppercase": "Password must contain an uppercase letter",
+        "passwordNumber": "Password must contain a number",
+        "passwordSymbol": "Password must contain a symbol",
+        "confirmPasswordRequired": "Please confirm your password",
+        "passwordMismatch": "Passwords do not match",
+        "signupStartFailed": "We couldn't find a patient record matching these details.",
+        "serverError": "Something went wrong. Please try again.",
+        "securityQuestionRequired": "Please choose a security question",
+        "securityAnswerRequired": "Answer must be at least 2 characters"
+      },
+      "securityQuestionLabel": "Security question",
+      "securityQuestionPlaceholder": "Choose a question",
+      "securityAnswerLabel": "Answer",
+      "securityAnswerPlaceholder": "Your answer"
+    },
+    "selectProfile": {
+      "title": "Select profile",
+      "subtitle": "Choose the clinic context you want to use.",
+      "branch": "Branch",
+      "branchCount": "{count, plural, one {# branch} other {# branches}}",
+      "continue": "Continue",
+      "loading": "Continuing...",
+      "empty": "No profiles are available for this sign-in.",
+      "backToSignIn": "Back to sign in",
+      "unknownAccount": "Clinic",
+      "unknownRole": "Unknown role",
+      "mainBranch": "Main Branch",
+      "noBranches": "This profile does not have any branches. Please contact your clinic administrator.",
+      "invalidSession": "Your profile selection session expired. Please sign in again.",
+      "missingContext": "This profile is missing organization context.",
+      "profileUnavailable": "This profile or branch is no longer available. Please pick another.",
+      "error": "Could not select this profile. Please try again.",
+      "signingIn": "Signing you in...",
+      "selectBranch": "Select your branch",
+      "selectBranchSubtitle": "Choose the branch you want to work in.",
+      "createOrganization": "Create new organization"
+    },
+    "securityQuestions": {
+      "MOTHERS_MAIDEN_NAME": "What is your mother’s maiden name?",
+      "BIRTH_CITY": "In which city were you born?",
+      "FIRST_SCHOOL": "What was the name of your first school?",
+      "CHILDHOOD_NICKNAME": "What was your childhood nickname?",
+      "FAVORITE_TEACHER": "Who was your favorite teacher?"
+    },
+    "patientForgotPassword": {
+      "title": "Reset your password",
+      "subtitle": "Verify your identity to set a new password.",
+      "backToSignIn": "Back to sign in",
+      "nationalIdLabel": "National ID",
+      "nationalIdPlaceholder": "14-digit National ID",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "+20 100 000 0000",
+      "dateOfBirthLabel": "Date of birth",
+      "securityQuestionLabel": "Security question",
+      "securityAnswerLabel": "Answer",
+      "securityAnswerPlaceholder": "Your answer",
+      "passwordLabel": "New password",
+      "passwordPlaceholder": "Enter a new password",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Enter your password again",
+      "showPassword": "Show",
+      "hidePassword": "Hide",
+      "continueButton": "Continue",
+      "resetButton": "Reset password",
+      "successMessage": "Password reset. Please sign in with your new password.",
+      "errors": {
+        "nationalIdRequired": "National ID is required",
+        "nationalIdInvalid": "Enter a valid 14-digit National ID",
+        "phoneRequired": "Phone number is required",
+        "invalidPhone": "Enter a valid phone number",
+        "dateOfBirthRequired": "Date of birth is required",
+        "dateOfBirthInvalid": "Enter a valid date of birth",
+        "securityAnswerRequired": "Answer must be at least 2 characters",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordLowercase": "Password must contain a lowercase letter",
+        "passwordUppercase": "Password must contain an uppercase letter",
+        "passwordNumber": "Password must contain a number",
+        "passwordSymbol": "Password must contain a symbol",
+        "confirmPasswordRequired": "Please confirm your password",
+        "passwordMismatch": "Passwords do not match",
+        "identityFailed": "We couldn’t find a patient record matching these details.",
+        "invalidAnswer": "That answer is incorrect.",
+        "serverError": "Something went wrong. Please try again."
+      }
+    }
+  },
+  "createOrganization": {
+    "title": "Add new organization",
+    "subtitle": "Set up a new clinic with its first branch and your role.",
+    "backToProfiles": "Back to profiles",
+    "groupOrganization": "Organization details",
+    "groupRole": "Your role",
+    "groupBranch": "Main branch",
+    "createSuccess": "Organization created. Please select your new profile.",
+    "createError": "Failed to create organization. Please try again.",
+    "organizationLimitReached": "You've reached your plan's organization limit ({current}/{limit}). Upgrade your subscription to add more organizations.",
+    "validationError": "Please complete all required fields.",
+    "selectProfileFirst": "You need to select an existing profile first. Once authenticated, you'll be brought back here to finish.",
+    "selectProfile": "Select a profile",
+    "submit": "Create organization",
+    "fields": {
+      "organizationName": "Organization name",
+      "specialties": "Specialties",
+      "specialtiesPlaceholder": "e.g. Pediatrics, Cardiology",
+      "branchName": "Branch name",
+      "city": "City",
+      "governorate": "Governorate",
+      "address": "Address",
+      "country": "Country"
+    }
+  },
+  "investigationReview": {
+    "title": "Investigations",
+    "close": "Close",
+    "notes": "Notes",
+    "notesPlaceholder": "Add your review notes…",
+    "save": "Save",
+    "saving": "Saving…",
+    "saved": "Review saved",
+    "noResult": "No result uploaded yet",
+    "fields": {
+      "patient": "Patient",
+      "visitId": "Visit ID",
+      "status": "Status",
+      "updatedAt": "updated at",
+      "type": "Type",
+      "testName": "Test Name",
+      "reason": "Reason"
+    },
+    "status": {
+      "ORDERED": "Ordered",
+      "RESULTED": "Pending",
+      "REVIEWED": "Reviewed",
+      "CANCELLED": "Cancelled"
+    }
+  },
+  "patientAttachments": {
+    "title": "Attachments & results",
+    "status": {
+      "ORDERED": "Ordered",
+      "RESULTED": "Pending",
+      "REVIEWED": "Reviewed",
+      "CANCELLED": "Cancelled"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "unreadCount": "{count} unread",
+    "viewAll": "View all notifications",
+    "allCaughtUp": "You're all caught up",
+    "allCaughtUpSub": "No new notifications right now. Check back later.",
+    "showing": "Showing {from}–{to} of {total} notifications",
+    "categories": {
+      "all": "All",
+      "appointment": "Appointments",
+      "staff": "Staff",
+      "medicine": "Medicine",
+      "patient": "Patients",
+      "report": "Reports",
+      "billing": "Billing",
+      "system": "System"
+    }
+  },
+  "dashboardHome": {
+    "title": "Dashboard",
+    "titleWithName": "Welcome back, {name}",
+    "todayBadge": "{date}",
+    "stats": {
+      "totalVisits": "Total visits",
+      "visits": "Visits",
+      "followUps": "Follow-ups",
+      "medicalReps": "Medical reps"
+    },
+    "upNext": {
+      "title": "Up next",
+      "empty": "Nothing in the queue right now.",
+      "viewAll": "View all"
+    },
+    "schedule": {
+      "title": "Today's Schedule",
+      "empty": "No events today.",
+      "loadError": "Failed to load schedule",
+      "patientLabel": "Patient",
+      "assignedLabel": "Assigned"
+    },
+    "calendar": {
+      "title": "Calendar"
+    },
+    "overview": {
+      "thisMonth": "This month",
+      "vsLastMonth": "vs last month",
+      "noPrior": "no prior data",
+      "new": "+{count} new",
+      "newRevenue": "new this month",
+      "viewFullReports": "View full reports",
+      "empty": "No data yet",
+      "scope": {
+        "branch": "This branch",
+        "org": "All branches"
+      },
+      "kpi": {
+        "visits": "Visits",
+        "followUps": "Follow-ups",
+        "patients": "Patients",
+        "collected": "Collected"
+      },
+      "sections": {
+        "visitTrend": "Visit throughput",
+        "financial": "Financial overview",
+        "patientGrowth": "Patient growth",
+        "staff": "Staff",
+        "topDoctors": "Top doctors",
+        "topServices": "Top services"
+      },
+      "financial": {
+        "invoiced": "Invoiced",
+        "collected": "Collected",
+        "outstanding": "Outstanding",
+        "collectionRate": "Collection rate"
+      },
+      "chart": {
+        "visits": "Visits",
+        "followUps": "Follow-ups"
+      }
+    }
+  },
+  "calendar": {
+    "title": "Calendar",
+    "newEvent": "+ New Event",
+    "scope": {
+      "label": "Calendar scope",
+      "mine": "My calendar",
+      "branch": "Branch"
+    },
+    "allBranches": "All branches",
+    "overview": "Overview",
+    "close": "Close",
+    "todaysSchedule": "Today's Schedule",
+    "empty": "No events scheduled",
+    "todaysCalendar": "Today's Calendar",
+    "allDay": "All day",
+    "more": "more",
+    "patientLabel": "Patient",
+    "createdBy": "Created by",
+    "notes": "Notes",
+    "types": {
+      "DAY_OFF": "Day off",
+      "PROCEDURE": "Procedure",
+      "MEETING": "Meeting",
+      "GENERIC": "Other"
+    },
+    "visibility": {
+      "PRIVATE": "Private",
+      "ORGANIZATION": "Organization"
+    },
+    "audience": {
+      "title": "Who can see this event?",
+      "PRIVATE": "Private",
+      "PRIVATE_hint": "Only you can see this event",
+      "BRANCH": "This branch",
+      "BRANCH_hint": "Visible to your branch peers",
+      "ORG": "Organization-wide",
+      "ORG_hint": "Visible to everyone in the organization"
+    },
+    "form": {
+      "title": "Calendar / New event",
+      "editTitle": "Edit event",
+      "chooseType": "Choose event type",
+      "eventType": "Event Type",
+      "startsAt": "Start",
+      "endsAt": "End",
+      "allDay": "All day",
+      "name": "Name",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional notes...",
+      "branch": "Branch",
+      "procedure": "Procedure",
+      "procedurePlaceholder": "Search by name or code...",
+      "procedureNotFound": "No procedure found.",
+      "patient": "Patient (optional)",
+      "patientPlaceholder": "Search by name, national ID or phone...",
+      "patientNotFound": "No patient found.",
+      "assistants": "Assistants",
+      "noAssistants": "No assistants added.",
+      "addAssistant": "Add assistant",
+      "removeAssistant": "Remove assistant",
+      "selectDoctor": "Select doctor",
+      "save": "Save",
+      "saving": "Saving...",
+      "update": "Update",
+      "updating": "Updating...",
+      "updateSuccess": "Event updated.",
+      "next": "Next",
+      "back": "Back",
+      "close": "Close event form",
+      "success": "Event created.",
+      "error": "Failed to save event. Please try again."
+    },
+    "edit": {
+      "action": "Edit event"
+    },
+    "delete": {
+      "action": "Delete event",
+      "confirm": "Delete this event?",
+      "success": "Event deleted.",
+      "error": "Failed to delete event."
+    }
+  },
+  "visits": {
+    "pageTitle": "Visits",
+    "breadcrumb": "Dashboard / Visits",
+    "billing": {
+      "chargeAddedToast": "A doctor added a service — collect the balance for this patient."
+    },
+    "overviewTitle": "Overview",
+    "currentVisit": {
+      "title": "Current Visit",
+      "empty": "No visit in progress.",
+      "startVisit": "Start Visit",
+      "openVisit": "Open visit",
+      "elapsed": "{value} elapsed",
+      "queueNumber": "#{value}",
+      "startedToast": "Visit started.",
+      "startedError": "Could not start the visit. Please try again.",
+      "columns": {
+        "id": "ID",
+        "name": "Name",
+        "type": "Type",
+        "priority": "Priority",
+        "status": "Status"
+      }
+    },
+    "inProgress": {
+      "title": "Currently with Doctors",
+      "empty": "No visits in progress right now.",
+      "count": "{count} active",
+      "startedAt": "Started",
+      "action": "Action",
+      "active": "Active",
+      "markComplete": "Complete",
+      "openVisit": "Open visit"
+    },
+    "editVisit": {
+      "title": "Edit Visit",
+      "description": "Update visit details and reassignment.",
+      "submit": "Save changes",
+      "cancel": "Cancel",
+      "savedToast": "Visit updated."
+    },
+    "workspace": {
+      "tabsAria": "Visit sections",
+      "tabs": {
+        "overview": "Overview",
+        "history": "History",
+        "examination": "Examination"
+      },
+      "header": {
+        "title": "Visits",
+        "breadcrumbAria": "Visit breadcrumb",
+        "crumbPatients": "Patients",
+        "crumbVisitCurrent": "Visit",
+        "backToVisits": "Back to visits",
+        "crumbVisit": {
+          "VISIT": "new visit",
+          "FOLLOW_UP": "follow-up",
+          "MEDICAL_REP": "medical rep"
+        },
+        "complete": "Mark complete",
+        "cancelVisit": "Cancel visit",
+        "invoice": "Invoice",
+        "addService": "Add Service"
+      },
+      "patient": {
+        "unknown": "Unknown patient",
+        "age": "Age",
+        "ageValue": "{value} years",
+        "phoneNumber": "Phone Number",
+        "address": "Address",
+        "maritalStatus": "Marital Status",
+        "bloodGroup": "Blood group / RH",
+        "maritalStatusValue": {
+          "SINGLE": "single",
+          "MARRIED": "married",
+          "DIVORCED": "divorced",
+          "WIDOWED": "widowed",
+          "SEPARATED": "separated",
+          "ENGAGED": "engaged",
+          "UNKNOWN": "—"
+        }
+      },
+      "history": {
+        "title": "Visits History",
+        "loadMore": "Load more",
+        "loading": "Loading...",
+        "empty": "No previous visits found.",
+        "visitDetails": "Visit Details",
+        "detailsTitle": "Visit Details",
+        "examinationTab": "Examination",
+        "diagnosis": "Diagnosis",
+        "medications": "Medications",
+        "investigations": "Investigations",
+        "statusNormal": "Normal",
+        "statusAbnormal": "Abnormal",
+        "journeyStarted": "Started {date}",
+        "episodeStarted": "Started {date}",
+        "ongoing": "Ongoing",
+        "completedOn": "Completed {date}",
+        "episodesCount": "{count, plural, one {# episode} other {# episodes}}",
+        "visitsCount": "{count, plural, one {# visit} other {# visits}}",
+        "episode": "Episode {order}",
+        "noEpisodes": "No episodes recorded yet.",
+        "noVisitsInEpisode": "No completed visits in this episode yet.",
+        "status": {
+          "ACTIVE": "Active",
+          "COMPLETED": "Completed",
+          "CANCELLED": "Cancelled"
+        },
+        "typeLabel": {
+          "VISIT": "Visit",
+          "FOLLOW_UP": "Follow-up"
+        }
+      },
+      "obgynSummary": {
+        "title": "OB/GYN History Summary",
+        "noHistory": "No history recorded yet.",
+        "allergies": "Allergies",
+        "noAllergies": "None on record",
+        "medications": "Current Medications",
+        "noMedications": "None on record",
+        "obstetric": "Obstetric Summary",
+        "gynecological": "Gynecological Baseline",
+        "menarche": "Menarche age",
+        "cycleRegularity": "Cycle",
+        "dysmenorrhea": "Dysmenorrhea",
+        "yes": "Yes",
+        "no": "No",
+        "chronicIllnesses": "Chronic Illnesses",
+        "familyHistory": "Family History",
+        "socialHistory": "Social History",
+        "smoking": "Smoking",
+        "alcohol": "Alcohol",
+        "screening": "Screening",
+        "papSmear": "Pap smear",
+        "mammography": "Mammography",
+        "notDone": "Not done"
+      },
+      "currentJourney": {
+        "title": "Current Journey",
+        "statusActive": "Active",
+        "statusEnded": "Ended",
+        "ga": "GA",
+        "edd": "EDD",
+        "risk": "Risk",
+        "fetuses": "Fetuses",
+        "bloodGroup": "Blood group",
+        "complaint": "Chief complaint",
+        "provisional": "Provisional",
+        "outcome": "Outcome"
+      },
+      "pregnancyTimeline": {
+        "lmp": "LMP",
+        "edd": "EDD",
+        "trimester1": "Trimester 1",
+        "trimester2": "Trimester 2",
+        "trimester3": "Trimester 3",
+        "weekOf": "Week {week} of {total}",
+        "weeksToGo": "{count, plural, one {# week to go} other {# weeks to go}}",
+        "twins": "expecting twins",
+        "triplets": "expecting triplets",
+        "multiples": "expecting multiples"
+      },
+      "rail": {
+        "redFlags": {
+          "title": "Red Flags",
+          "empty": "No red flags yet for this patient.",
+          "error": "Failed to load red flags."
+        },
+        "alerts": {
+          "title": "Alerts",
+          "empty": "No active alerts."
+        },
+        "compliments": {
+          "title": "Repeated Compliments",
+          "empty": "No repeated findings recorded yet."
+        },
+        "comments": {
+          "title": "Comments",
+          "empty": "No comments on this visit yet."
+        }
+      },
+      "charts": {
+        "title": "Charts",
+        "bp": {
+          "title": "Blood Pressure Trend",
+          "empty": "No blood pressure readings recorded yet."
+        },
+        "bmi": {
+          "title": "Weight / BMI Trend",
+          "empty": "No weight readings recorded yet."
+        },
+        "loading": "Loading charts...",
+        "error": "Failed to load chart data."
+      },
+      "comingSoon": {
+        "history": {
+          "title": "History form coming soon",
+          "body": "The patient history form will load here from your specialty template once it's published."
+        },
+        "examination": {
+          "title": "Examination form coming soon",
+          "body": "The encounter examination form will load here from your specialty template once it's published."
+        }
+      }
+    },
+    "detail": {
+      "back": "Back to visits",
+      "loadError": "Could not load this visit.",
+      "unknownPatient": "Unknown patient",
+      "timeline": "Timeline",
+      "scheduledAt": "Scheduled",
+      "startedAt": "Started",
+      "completedAt": "Completed",
+      "createdAt": "Created",
+      "doctor": "Doctor",
+      "unassigned": "Unassigned",
+      "notes": "Notes",
+      "noNotes": "No notes recorded.",
+      "chiefComplaint": "Main complaint",
+      "noChiefComplaint": "No main complaint recorded.",
+      "vitals": "Vitals",
+      "vitalsBp": "Blood pressure",
+      "vitalsPulse": "Pulse",
+      "vitalsTemperature": "Temperature",
+      "vitalsSpo2": "SpO₂",
+      "vitalsRespiratoryRate": "Respiratory rate",
+      "vitalsWeight": "Weight",
+      "vitalsHeight": "Height",
+      "vitalsBmi": "BMI",
+      "complete": "Mark complete",
+      "cancelVisit": "Cancel visit",
+      "completedToast": "Visit completed.",
+      "cancelledToast": "Visit cancelled.",
+      "actionError": "Could not update the visit."
+    },
+    "prescription": {
+      "title": "Prescription sent",
+      "sentTo": "The prescription was sent to {patient}.",
+      "sentGeneric": "The prescription was sent to the patient.",
+      "print": "Print",
+      "close": "Close",
+      "loading": "Loading prescription…",
+      "empty": "No medications were prescribed for this visit.",
+      "error": "Could not load the prescription.",
+      "retry": "Retry",
+      "license": "License",
+      "date": "Date",
+      "patient": "Patient",
+      "age": "Age",
+      "years": "{count} yrs",
+      "phone": "Phone",
+      "complaint": "Main complaint",
+      "diagnosis": "Diagnosis",
+      "medications": "Medications",
+      "noMedications": "No medications.",
+      "notes": "Notes",
+      "signature": "Signature"
+    },
+    "waitingList": {
+      "title": "Waiting List",
+      "searchPlaceholder": "Search patient....",
+      "newVisit": "New Visit",
+      "empty": "No visits match the current filters.",
+      "loadError": "Failed to load the waiting list.",
+      "filters": {
+        "all": "All Visits",
+        "visit": "Visit",
+        "followUp": "Follow up",
+        "medicalRep": "Medical rep",
+        "emergency": "Emergency"
+      },
+      "columns": {
+        "queue": "Queue #",
+        "patient": "Name",
+        "doctor": "Doctor",
+        "notes": "Notes",
+        "chiefComplaint": "Main complaint",
+        "type": "Type",
+        "priority": "Priority",
+        "waitTime": "Wait",
+        "status": "Status"
+      }
+    },
+    "filter": {
+      "all": "All Visits"
+    },
+    "type": {
+      "visit": "Visit",
+      "followUp": "Follow-up",
+      "medicalRep": "Medical rep"
+    },
+    "status": {
+      "pending": "Pending",
+      "waiting": "Waiting",
+      "inProgress": "In Queue",
+      "inConsultation": "In Consultation",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "scheduled": "Scheduled",
+      "checkedIn": "Checked In",
+      "noShow": "No Show",
+      "SCHEDULED": "Scheduled",
+      "CHECKED_IN": "Checked In",
+      "IN_PROGRESS": "In Queue",
+      "IN_CONSULTATION": "In Consultation",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled",
+      "NO_SHOW": "No Show"
+    },
+    "priority": {
+      "normal": "Normal",
+      "emergency": "Emergency"
+    },
+    "create": {
+      "title": "New Visit",
+      "description": "Book a new visit for an existing or new patient.",
+      "close": "Close",
+      "branchLabel": "Branch: {branch}",
+      "missingBranch": "No branch is linked to this session.",
+      "patientSection": "Patient",
+      "existingPatient": "Existing patient",
+      "newPatient": "New patient",
+      "patientId": "Patient ID",
+      "patientIdPlaceholder": "Enter or paste a patient ID",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "phone": "Phone",
+      "code": "Patient code",
+      "detailsSection": "Visit details",
+      "type": "Type",
+      "priority": "Priority",
+      "assignedDoctor": "Assigned doctor",
+      "noDoctor": "Unassigned",
+      "complaint": "Complaint",
+      "complaintPlaceholder": "Brief reason for the visit",
+      "scheduledAt": "Scheduled time (optional)",
+      "submit": "Add to waiting list",
+      "submitting": "Adding…",
+      "success": "Visit added to the waiting list.",
+      "error": "Failed to create the visit. Please try again.",
+      "cancelConfirmTitle": "Cancel this visit?",
+      "cancelConfirmDescription": "{patient} will be marked as cancelled. This cannot be undone.",
+      "cancelConfirmCta": "Yes, cancel",
+      "sectionVisitMeta": "Visit Meta",
+      "sectionPersonalInfo": "Personal Information",
+      "sectionNotes": "Notes",
+      "searchPlaceholder": "Search patient by name, national ID or phone…",
+      "patientNotFound": "Not found — enter details below to register a new patient.",
+      "errorNoBranch": "No branch is linked to this session.",
+      "successMessage": "Visit booked successfully.",
+      "errorDuplicatePatient": "Patient already registered with this national ID.",
+      "errorPatientHasOpenVisit": "This patient already has an open visit in today's waiting list. Check them in or cancel the existing visit first.",
+      "errorGeneric": "Failed to book the visit.",
+      "errorNoSpecialty": "This organization has no specialty configured. Please contact your administrator.",
+      "cancelButton": "Cancel",
+      "submitButton": "Add to waiting list",
+      "fields": {
+        "doctor": "Doctor",
+        "selectDoctor": "Select doctor",
+        "scheduledAt": "Scheduled At",
+        "visitType": "Visit Type",
+        "visitPriority": "Visit Priority",
+        "name": "Name",
+        "namePlaceholder": "Full name",
+        "phone": "Phone",
+        "company": "Company",
+        "companyPlaceholder": "Company name",
+        "nationalId": "National ID",
+        "dateOfBirth": "Date of Birth",
+        "address": "Address",
+        "addressPlaceholder": "City, district",
+        "married": "Married",
+        "notes": "Notes (optional)",
+        "notesPlaceholder": "Optional notes about the visit"
+      },
+      "errors": {
+        "invalidPhone": "Enter a valid phone number",
+        "invalidNationalId": "Enter a valid 14-digit Egyptian National ID",
+        "phoneRequired": "Phone is required",
+        "nationalIdRequired": "National ID is required",
+        "fullNameRequired": "Name is required",
+        "dobRequired": "Date of birth is required",
+        "patientRequired": "Select a patient",
+        "doctorRequired": "Select a doctor",
+        "notesTooLong": "Notes must be 500 characters or fewer",
+        "invalidVital": "Value is out of range.",
+        "nationalIdExists": "A patient with this national ID already exists.",
+        "useExistingPatient": "Use existing patient",
+        "searchPatientsHint": "Search for the patient above and select them to continue."
+      },
+      "intake": {
+        "title": "Clinical intake (optional)",
+        "chiefComplaint": {
+          "title": "Main complaint",
+          "categoriesLabel": "Categories",
+          "narrativeLabel": "Description",
+          "narrativePlaceholder": "Describe the patient's main concern…",
+          "onset": "Onset",
+          "duration": "Duration",
+          "severityLabel": "Severity",
+          "severity": {
+            "mild": "Mild",
+            "moderate": "Moderate",
+            "severe": "Severe"
+          }
+        },
+        "categories": {
+          "PREGNANCY": "Pregnancy",
+          "BLEEDING": "Bleeding",
+          "PAIN": "Pain",
+          "INFECTION": "Infection",
+          "CONTRACEPTION": "Contraception",
+          "INFERTILITY": "Infertility",
+          "MENSTRUAL": "Menstrual",
+          "POSTPARTUM": "Postpartum",
+          "ROUTINE_CHECK": "Routine check",
+          "OTHER": "Other"
+        },
+        "vitals": {
+          "title": "Vitals",
+          "bloodPressure": "Blood pressure",
+          "systolic": "Systolic BP",
+          "diastolic": "Diastolic BP",
+          "systolicShort": "Sys",
+          "diastolicShort": "Dia",
+          "pulse": "Pulse",
+          "temperature": "Temperature",
+          "respiratoryRate": "Respiratory rate",
+          "spo2": "SpO₂",
+          "weight": "Weight",
+          "height": "Height",
+          "bmi": "BMI {value}"
+        }
+      }
+    },
+    "actions": {
+      "start": "Start",
+      "cancel": "Cancel",
+      "changeStatus": "Change status",
+      "retry": "Retry",
+      "close": "Close",
+      "cancelVisitTitle": "Cancel this visit?",
+      "confirmCancel": "Yes, cancel",
+      "completeRequiresChiefComplaint": {
+        "title": "Complete visit",
+        "description": "A main complaint and a provisional diagnosis are required before a visit can be completed.",
+        "label": "Main complaint",
+        "placeholder": "Describe the patient's main concern…",
+        "diagnosisLabel": "Provisional diagnosis",
+        "diagnosisPlaceholder": "Enter the provisional diagnosis…",
+        "loading": "Loading…",
+        "submit": "Save & complete",
+        "cancel": "Cancel",
+        "required": "Main complaint is required.",
+        "diagnosisRequired": "Provisional diagnosis is required.",
+        "tooLong": "Main complaint must be 5000 characters or fewer.",
+        "successToast": "Visit completed.",
+        "genericError": "Could not complete the visit."
+      }
+    }
+  },
+  "patient_history": {
+    "workspace": {
+      "save": "Save",
+      "saved": "History saved.",
+      "saveError": "Could not save history.",
+      "staleVersion": "Someone else updated this history. Reloading the latest version.",
+      "loading": "Loading history…",
+      "loadError": "Could not load history.",
+      "showSection": "Show section group",
+      "hideSection": "Hide section group",
+      "versionLabel": "v{version}",
+      "addRow": "+ Add row",
+      "removeRow": "Remove",
+      "notes": {
+        "button": "Notes",
+        "empty": "No notes yet",
+        "placeholder": "Write a note for this section…",
+        "save": "Save note",
+        "delete": "Delete",
+        "savedToast": "Note saved.",
+        "deletedToast": "Note deleted.",
+        "errorToast": "Could not save the note.",
+        "addNote": "Add New Note ....",
+        "cancel": "Cancel",
+        "redactedHint": "{count} notes from other clinics (hidden)",
+        "visibility": {
+          "private": "Private",
+          "shared": "Share globally"
+        }
+      }
+    },
+    "empty": {
+      "noSpecialtyTitle": "No specialty for this visit",
+      "noSpecialtyBody": "A specialty must be selected at booking before a patient history form can be shown.",
+      "noTemplateTitle": "No history form configured",
+      "noTemplateBody": "No patient-history form is published for the {specialty} specialty yet."
+    }
+  },
+  "pregnancy": {
+    "activateTitle": "This visit indicates a pregnancy case",
+    "activatePrompt": "Would you like to create a pregnancy profile for this patient?",
+    "create": "Create",
+    "notNow": "Not Now",
+    "created": "Pregnancy profile created",
+    "createError": "Failed to create the pregnancy profile",
+    "recordDelivery": "Record delivery",
+    "closeTitle": "Record outcome & close pregnancy",
+    "closeDescription": "Completing the pregnancy ends the journey. This can't be undone from here.",
+    "modeOfDelivery": "Mode of delivery",
+    "modeVaginal": "Vaginal",
+    "modeCesarean": "Cesarean",
+    "modeAssisted": "Assisted",
+    "deliveryDate": "Delivery date",
+    "notes": "Notes",
+    "cancel": "Cancel",
+    "closePregnancy": "Close pregnancy",
+    "closed": "Pregnancy closed",
+    "closeError": "Failed to close the pregnancy",
+    "statusLabel": "Status",
+    "statusActive": "Active",
+    "statusClosed": "Closed",
+    "outcomeType": "Outcome",
+    "outcomeDate": "Outcome date",
+    "outcome_LIVE_BIRTH": "Live birth",
+    "outcome_MISCARRIAGE": "Miscarriage",
+    "outcome_STILLBIRTH": "Stillbirth",
+    "outcome_ECTOPIC": "Ectopic",
+    "outcome_TERMINATION": "Termination",
+    "outcome_TRANSFERRED": "Transferred care",
+    "outcome_LOST_TO_FOLLOWUP": "Lost to follow-up",
+    "outcome_OTHER": "Other"
+  },
+  "surgical": {
+    "activateTitle": "Surgical care path",
+    "activatePrompt": "Would you like to create a surgical profile for this patient?",
+    "pregnancyActiveTitle": "This patient has an active pregnancy",
+    "pregnancyActivePrompt": "Opening a surgical journey will close the active pregnancy as a Cesarean delivery. Continue?",
+    "create": "Create",
+    "closeAndCreate": "Close pregnancy & create",
+    "notNow": "Not Now",
+    "created": "Surgical profile created",
+    "createError": "Failed to create the surgical profile",
+    "closeTitle": "Record outcome & close surgery",
+    "closeDescription": "Completing the surgery ends the journey. This can't be undone from here.",
+    "outcomeType": "Outcome",
+    "outcomeDate": "Outcome date",
+    "notes": "Notes",
+    "cancel": "Cancel",
+    "closeSurgical": "Close surgery",
+    "closed": "Surgical journey closed",
+    "closeError": "Failed to close the surgical journey",
+    "statusActive": "Active",
+    "statusClosed": "Closed",
+    "outcome_COMPLETED": "Completed",
+    "outcome_ABORTED": "Aborted",
+    "outcome_CONVERTED": "Converted",
+    "outcome_TRANSFERRED": "Transferred care",
+    "outcome_DECEASED": "Deceased",
+    "outcome_OTHER": "Other"
+  },
+  "examination": {
+    "workspace": {
+      "save": "Save",
+      "saved": "Examination saved.",
+      "saveError": "Could not save examination.",
+      "loading": "Loading examination…",
+      "loadError": "Could not load examination.",
+      "unsupportedSpecialty": "This organization doesn't support documenting this specialty yet.",
+      "showSection": "Show section group",
+      "hideSection": "Hide section group",
+      "versionLabel": "v{version}",
+      "addRow": "+ Add row",
+      "removeRow": "Remove",
+      "completeVisit": "Complete Visit",
+      "investigationsTitle": "Investigations",
+      "invNone": "No investigations ordered.",
+      "invUnnamed": "Unnamed test",
+      "invResult": "Result",
+      "invNoResult": "No result yet",
+      "invNotes": "Notes",
+      "invLab": "Lab",
+      "invFilesLabel": "Files",
+      "invFiles": "{count} file(s)",
+      "invStatus": {
+        "ORDERED": "Ordered",
+        "RESULTED": "Resulted",
+        "REVIEWED": "Reviewed",
+        "CANCELLED": "Cancelled"
+      }
+    }
+  },
+  "medications": {
+    "title": "Medicines",
+    "subtitle": "Manage your organization's medication catalog",
+    "addButton": "New Medicine",
+    "searchPlaceholder": "Search by name, code…",
+    "filters": {
+      "category": "Category",
+      "form": "Form",
+      "all": "All"
+    },
+    "sort": {
+      "label": "Sort by",
+      "nameAsc": "Name (A–Z)",
+      "nameDesc": "Name (Z–A)",
+      "usage": "Most prescribed"
+    },
+    "showResults": "show {count} of {total} results",
+    "pagination": {
+      "prev": "Previous page",
+      "next": "Next page",
+      "pageOf": "Page {page} of {total}"
+    },
+    "table": {
+      "columns": {
+        "name": "Name",
+        "form": "Form",
+        "strength": "Strength",
+        "category": "Category",
+        "defaultDose": "Default Dose",
+        "usage": "Usage",
+        "notes": "Notes"
+      },
+      "empty": "No medications found",
+      "showing": "Showing {from}–{to} of {total} medications"
+    },
+    "actions": {
+      "edit": "Edit medication",
+      "delete": "Delete medication"
+    },
+    "drawer": {
+      "addTitle": "New Medicine",
+      "editTitle": "Edit Medicine",
+      "breadcrumb": "Medicines",
+      "fields": {
+        "medicine": "Medicine",
+        "medicinePlaceholder": "e.g. AMX-500",
+        "name": "Name",
+        "namePlaceholder": "e.g. Amoxicillin",
+        "genericName": "Generic Name",
+        "genericNamePlaceholder": "e.g. Amoxicillin Trihydrate",
+        "category": "Category",
+        "form": "Form",
+        "formPlaceholder": "e.g. Tablet",
+        "strength": "Strength",
+        "strengthPlaceholder": "e.g. 500mg",
+        "defaultDose": "Default Dose",
+        "defaultDoseAmount": "Amount",
+        "defaultDoseUnit": "Unit",
+        "defaultDoseFrequency": "Frequency",
+        "defaultDoseRoute": "Route",
+        "medicalRep": "Medical Rep",
+        "medicalRepPlaceholder": "None",
+        "company": "Company",
+        "notes": "Notes",
+        "addOption": "Add \"{value}\"",
+        "comingSoon": "Coming soon",
+        "optional": "optional"
+      },
+      "saveButton": "Save",
+      "cancel": "Cancel"
+    },
+    "delete": {
+      "title": "Delete {name}?",
+      "description": "This will remove {name} from your catalog. This action cannot be undone.",
+      "delete": "Delete",
+      "deleting": "Deleting…",
+      "cancel": "Cancel"
+    }
+  },
+  "medicalRep": {
+    "title": "Medical Rep",
+    "search": "Search ....",
+    "showResults": "show {count} of {total} results",
+    "pagination": {
+      "prev": "Previous page",
+      "next": "Next page",
+      "pageOf": "Page {page} of {total}"
+    },
+    "table": {
+      "name": "Name",
+      "phone": "Phone",
+      "products": "Products",
+      "lastVisit": "Last Visit",
+      "visits": "Visits",
+      "empty": "No medical reps found",
+      "showing": "show {from}–{to} of {total} results"
+    },
+    "drawer": {
+      "breadcrumb": "Medical Rep",
+      "title": "Rep Details",
+      "phone": "Phone",
+      "nationalId": "National ID",
+      "company": "Company",
+      "specialtyFocus": "Specialty focus",
+      "lastVisit": "Last Visit",
+      "totalVisits": "Total Visits",
+      "products": "Products",
+      "visits": "Visits",
+      "visitsLoading": "Loading visits…",
+      "noVisits": "No visits yet",
+      "visitStatus": {
+        "SCHEDULED": "Scheduled",
+        "CHECKED_IN": "Checked in",
+        "IN_PROGRESS": "In progress",
+        "COMPLETED": "Completed",
+        "CANCELLED": "Cancelled",
+        "NO_SHOW": "No show"
+      },
+      "blockButton": "Block Rep",
+      "unblockButton": "Unblock Rep",
+      "cancel": "Cancel"
+    },
+    "blockDialog": {
+      "blockTitle": "Block Medical Rep",
+      "unblockTitle": "Unblock Medical Rep",
+      "blockDescription": "Block {name}? They will no longer be able to book visits.",
+      "unblockDescription": "Unblock {name}? They will be able to book visits again.",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    },
+    "toast": {
+      "blocked": "Rep blocked",
+      "unblocked": "Rep unblocked",
+      "error": "Something went wrong"
+    },
+    "visit": {
+      "title": "Visit",
+      "back": "Medical Rep",
+      "breadcrumbAria": "Visit breadcrumb",
+      "crumbMedicalReps": "Medical reps",
+      "crumbVisitCurrent": "Visit",
+      "backToVisits": "Back to visits",
+      "loading": "Loading…",
+      "loadError": "Could not load this visit.",
+      "complete": "Complete Visit",
+      "completedToast": "Visit completed",
+      "completeError": "Could not complete the visit",
+      "tabsAria": "Medical rep visit sections",
+      "tabs": {
+        "overview": "Overview",
+        "visit": "Visit"
+      },
+      "overview": {
+        "title": "Overview",
+        "name": "Name",
+        "company": "Company",
+        "phone": "Phone number",
+        "specialtyFocus": "Specialty focus",
+        "lastVisit": "Last Visit",
+        "promoted": "Medicines promoted"
+      },
+      "history": {
+        "title": "Visits History",
+        "empty": "No previous visits",
+        "loading": "Loading…",
+        "loadMore": "Load more",
+        "visitDetails": "Visit Details",
+        "detailsTitle": "Visit details",
+        "purpose": "Purpose",
+        "outcome": "Outcome",
+        "products": "Products discussed",
+        "samples": "Samples & follow-up",
+        "samplesYes": "Samples received",
+        "samplesNo": "No samples received",
+        "followUp": "Follow-up",
+        "notes": "Notes",
+        "purposeValue": {
+          "PRODUCT_DETAILING": "Product detailing",
+          "SAMPLE_DROP": "Sample drop",
+          "CONFERENCE_INVITE": "Conference invite",
+          "PRICE_UPDATE": "Price update",
+          "FOLLOW_UP": "Follow-up",
+          "COURTESY": "Courtesy",
+          "OTHER": "Other"
+        },
+        "outcomeValue": {
+          "NONE": "None",
+          "SCHEDULE_FOLLOWUP": "Schedule follow-up",
+          "SHARE_MATERIALS": "Share materials",
+          "NOT_INTERESTED": "Not interested"
+        }
+      },
+      "products": {
+        "label": "Products discussed",
+        "searchPlaceholder": "Search or add a medicine…",
+        "empty": "No products selected",
+        "addNew": "Add \"{name}\"",
+        "remove": "Remove",
+        "newDialog": {
+          "title": "Add a new medicine",
+          "name": "Name",
+          "genericName": "Generic name",
+          "strength": "Strength",
+          "form": "Form",
+          "company": "Company",
+          "route": "Route",
+          "doseAmount": "Dose amount",
+          "doseUnit": "Dose unit",
+          "doseFrequency": "Frequency",
+          "add": "Add medicine",
+          "cancel": "Cancel"
+        }
+      },
+      "status": {
+        "COMPLETED": "Completed",
+        "CANCELLED": "Cancelled",
+        "NO_SHOW": "No show"
+      }
+    }
+  }
+}
