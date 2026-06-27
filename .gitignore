@@ -34,6 +34,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but the template ships with the repo so clones have the keys to fill in.
+!.env.example
 
 # vercel
 .vercel

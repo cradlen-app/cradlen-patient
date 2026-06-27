@@ -9,6 +9,15 @@ and domain. Both apps talk to the same backend, `cradlen-api`. Patient auth is
 fully separate from staff auth (its own `HttpOnly` cookies and proxy), so the two
 apps share no session.
 
+## Deployments
+
+- **Production** (`main`): https://cradlen-patient.cradlen.com
+- **Staging** (`development`): https://cradlen-patient-staging.cradlen.com
+
+Hosted on Vercel. `NEXT_PUBLIC_API_URL` / `API_BASE_URL` are set per-environment in
+the Vercel project (not committed). Patient cookies are scoped to the app's own
+host, so there is no cross-subdomain leakage with the clinic app.
+
 ## Stack
 
 - Next.js 16 (App Router) · React 19 · TypeScript
