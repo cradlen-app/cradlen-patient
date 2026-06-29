@@ -2,8 +2,9 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
-import { Link } from "@/i18n/navigation";
 import LanguageSelect from "./LanguageSelect";
+
+const MARKETING_BASE = "https://www.cradlen.com";
 
 export default function Footer() {
   const locale = useLocale();
@@ -15,30 +16,30 @@ export default function Footer() {
       <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-gray-500">© {t("copyright")}</p>
         <nav className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <Link
-            href="/terms-of-service"
+          <a
+            href={`${MARKETING_BASE}/${locale}/terms-of-service`}
             className="text-sm text-gray-500 transition-colors hover:text-brand-primary"
           >
             {t("termsOfService")}
-          </Link>
-          <Link
-            href="/privacy-policy"
+          </a>
+          <a
+            href={`${MARKETING_BASE}/${locale}/privacy-policy`}
             className="text-sm text-gray-500 transition-colors hover:text-brand-primary"
           >
             {t("privacyPolicy")}
-          </Link>
-          <Link
-            href="/guide"
+          </a>
+          <a
+            href={`${MARKETING_BASE}/${locale}/guide`}
             className="text-sm text-gray-500 transition-colors hover:text-brand-primary"
           >
             {tg("navLabel")}
-          </Link>
-          <Link
-            href="/help-center"
+          </a>
+          <a
+            href={`${MARKETING_BASE}/${locale}/help-center`}
             className="text-sm text-gray-500 transition-colors hover:text-brand-primary"
           >
             {t("helpCenter")}
-          </Link>
+          </a>
           <LanguageSelect currentLocale={locale as Locale} />
         </nav>
       </div>
