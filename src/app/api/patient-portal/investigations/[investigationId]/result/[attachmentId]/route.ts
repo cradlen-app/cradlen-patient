@@ -12,6 +12,6 @@ export async function DELETE(
   const { investigationId, attachmentId } = await params;
   return proxyAuthenticatedPatientRequest(
     request,
-    `/patient-portal/investigations/${investigationId}/result/${attachmentId}`,
+    `/patient-portal/investigations/${encodeURIComponent(investigationId)}/result/${encodeURIComponent(attachmentId)}`,
   );
 }

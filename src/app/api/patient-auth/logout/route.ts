@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { PATIENT_AUTH_REFRESH_TOKEN_COOKIE } from "@/features/auth/lib/auth.constants";
+import { PATIENT_AUTH_REFRESH_TOKEN_COOKIE } from "@/infrastructure/auth-transport/constants";
 import { backendFetch } from "@/infrastructure/auth-transport/backend";
 import { clearPatientAuthCookies } from "@/infrastructure/auth-transport/patient-auth";
 
