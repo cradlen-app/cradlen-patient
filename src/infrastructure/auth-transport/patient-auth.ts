@@ -1,20 +1,21 @@
 import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
 import {
-  AUTH_REFRESH_TOKEN_MAX_AGE,
   PATIENT_AUTH_REFRESH_TOKEN_COOKIE,
+  PATIENT_AUTH_REFRESH_TOKEN_MAX_AGE,
   PATIENT_AUTH_TOKEN_COOKIE,
   PATIENT_RESET_TOKEN_COOKIE,
   PATIENT_RESET_TOKEN_MAX_AGE,
   PATIENT_SIGNUP_TOKEN_COOKIE,
   PATIENT_SIGNUP_TOKEN_MAX_AGE,
-} from "@/features/auth/lib/auth.constants";
-import type { AuthTokens } from "@/features/auth/types/sign-in.types";
+} from "./constants";
+import type { AuthTokens } from "./types";
 import {
   backendFetch,
   extractTokens,
   isExpiredJwt,
   readBackendJson,
+  sanitizeBackendError,
 } from "./backend";
 
 const AUTH_COOKIE_OPTIONS = {
@@ -33,7 +34,7 @@ export function setPatientAuthCookies(response: NextResponse, tokens: AuthTokens
   });
   response.cookies.set(PATIENT_AUTH_REFRESH_TOKEN_COOKIE, tokens.refresh_token, {
     ...AUTH_COOKIE_OPTIONS,
-    maxAge: AUTH_REFRESH_TOKEN_MAX_AGE,
+    maxAge: PATIENT_AUTH_REFRESH_TOKEN_MAX_AGE,
   });
 }
 
@@ -67,16 +68,11 @@ export function clearPatientSignupTokenCookie(response: NextResponse) {
   });
 }
 
-export async function getPatientSignupTokenFromRequest(
-  body?: Record<string, unknown>,
-) {
+export async function getPatientSignupTokenFromRequest() {
   const cookieStore = await cookies();
-  const cookieToken = cookieStore.get(PATIENT_SIGNUP_TOKEN_COOKIE)?.value;
-  const bodyToken = body?.patient_signup_token;
-  const requestToken =
-    typeof bodyToken === "string" && bodyToken.trim() ? bodyToken : null;
-
-  return requestToken ?? cookieToken ?? null;
+  // Read the signup token from the HttpOnly cookie only. The start handler
+  // never returns it to client JS, so there is no legitimate body source.
+  return cookieStore.get(PATIENT_SIGNUP_TOKEN_COOKIE)?.value ?? null;
 }
 
 export function setPatientResetTokenCookie(
@@ -97,16 +93,11 @@ export function clearPatientResetTokenCookie(response: NextResponse) {
   });
 }
 
-export async function getPatientResetTokenFromRequest(
-  body?: Record<string, unknown>,
-) {
+export async function getPatientResetTokenFromRequest() {
   const cookieStore = await cookies();
-  const cookieToken = cookieStore.get(PATIENT_RESET_TOKEN_COOKIE)?.value;
-  const bodyToken = body?.reset_token;
-  const requestToken =
-    typeof bodyToken === "string" && bodyToken.trim() ? bodyToken : null;
-
-  return requestToken ?? cookieToken ?? null;
+  // Read the reset token from the HttpOnly cookie only. The start handler
+  // never returns it to client JS, so there is no legitimate body source.
+  return cookieStore.get(PATIENT_RESET_TOKEN_COOKIE)?.value ?? null;
 }
 
 // --- Refresh -------------------------------------------------------------------
@@ -213,12 +204,25 @@ export async function proxyAuthenticatedPatientRequest(
     body,
   });
 
-  const res =
-    backendResponse.status === 204
-      ? new NextResponse(null, { status: 204 })
-      : NextResponse.json(await readBackendJson(backendResponse), {
-          status: backendResponse.status,
-        });
+  let res: NextResponse;
+  if (backendResponse.status === 204) {
+    res = new NextResponse(null, { status: 204 });
+  } else {
+    const backendBody = await readBackendJson(backendResponse);
+    if (!backendResponse.ok && backendResponse.status >= 500) {
+      console.error(
+        "[patient-portal] backend error",
+        backendResponse.status,
+        backendPath,
+      );
+    }
+    res = NextResponse.json(
+      backendResponse.ok
+        ? backendBody
+        : sanitizeBackendError(backendBody, backendResponse.status),
+      { status: backendResponse.status },
+    );
+  }
 
   if (refreshedTokens) setPatientAuthCookies(res, refreshedTokens);
   if (backendResponse.status === 401) clearPatientAuthCookies(res);
@@ -228,7 +232,11 @@ export async function proxyAuthenticatedPatientRequest(
 // --- Token-issuing response helpers -------------------------------------------
 
 function passthroughError(body: unknown, response: Response) {
-  return NextResponse.json(body ?? { message: response.statusText }, {
+  if (response.status >= 500) {
+    // Keep the full backend error server-side; never forward it to the browser.
+    console.error("[patient-auth] backend error", response.status, body);
+  }
+  return NextResponse.json(sanitizeBackendError(body, response.status), {
     status: response.status,
   });
 }
@@ -290,7 +298,7 @@ export async function patientSignupCompleteResponse(request: Request) {
     string,
     unknown
   >;
-  const signupToken = await getPatientSignupTokenFromRequest(body);
+  const signupToken = await getPatientSignupTokenFromRequest();
 
   if (!signupToken) {
     return NextResponse.json(
@@ -370,7 +378,7 @@ export async function patientForgotPasswordCompleteResponse(request: Request) {
     string,
     unknown
   >;
-  const resetToken = await getPatientResetTokenFromRequest(body);
+  const resetToken = await getPatientResetTokenFromRequest();
 
   if (!resetToken) {
     return NextResponse.json(

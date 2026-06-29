@@ -4,7 +4,7 @@ import { routing } from "./i18n/routing";
 import {
   PATIENT_AUTH_REFRESH_TOKEN_COOKIE,
   PATIENT_AUTH_TOKEN_COOKIE,
-} from "./features/auth/lib/auth.constants";
+} from "./infrastructure/auth-transport/constants";
 import { isExpiredJwt } from "./infrastructure/auth-transport/jwt";
 
 const intlMiddleware = createMiddleware(routing);

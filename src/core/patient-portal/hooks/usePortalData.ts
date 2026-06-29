@@ -1,6 +1,6 @@
 "use client";
 
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { skipToken, useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 import {
   fetchAppointments,
@@ -184,8 +184,9 @@ export function useInvestigations(
 /**
  * Minimal read of the patient identity (`patient_id`, `accessible_patient_ids`)
  * the `PatientNavbar` already loads via `usePatientMe()`. Subscribes to the same
- * query cache entry (`enabled: false`, no queryFn) so core never imports
- * `features/auth`.
+ * query cache entry without ever fetching it itself (`skipToken`) so core never
+ * imports `features/auth`. `skipToken` both disables the fetch and satisfies the
+ * v5 "a query needs a queryFn" contract, so no dev warning is logged.
  */
 type PatientIdentityRead = {
   patient_id: string | null;
@@ -195,7 +196,7 @@ type PatientIdentityRead = {
 function usePatientIdentity() {
   return useQuery<PatientIdentityRead>({
     queryKey: patientPortalQueryKeys.me(),
-    enabled: false,
+    queryFn: skipToken,
   });
 }
 
@@ -282,6 +283,12 @@ export interface HomeSummary {
  * many of the three rows are non-empty, matching the "N need attention" header.
  */
 export function useHomeSummary(): HomeSummary {
+  // The three queries below are *disabled* (not "loading") until the patient id
+  // resolves from `me()`, so without this the card flashes its zeroed "all
+  // clear" state during the cold-start identity load. `isPending` reads the
+  // shared `me()` status: true while resolving, false once it has data OR errors
+  // (so a failed identity doesn't leave an eternal skeleton).
+  const identity = usePatientIdentity();
   const meds = useMedications();
   const tests = useInvestigations();
   const visits = useUpcomingVisits();
@@ -299,7 +306,11 @@ export function useHomeSummary(): HomeSummary {
     tests: pendingTests,
     nextVisit,
     needAttention,
-    isLoading: meds.isLoading || tests.isLoading || visits.isLoading,
+    isLoading:
+      identity.isPending ||
+      meds.isLoading ||
+      tests.isLoading ||
+      visits.isLoading,
   };
 }
 

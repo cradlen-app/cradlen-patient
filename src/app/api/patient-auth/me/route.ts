@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { backendFetch, readBackendJson } from "@/infrastructure/auth-transport/backend";
+import {
+  backendFetch,
+  readBackendJson,
+  sanitizeBackendError,
+} from "@/infrastructure/auth-transport/backend";
 import {
   clearPatientAuthCookies,
   getValidPatientAccessToken,
@@ -24,7 +28,16 @@ export async function GET() {
   });
   const body = await readBackendJson(backendResponse);
 
-  const response = NextResponse.json(body, { status: backendResponse.status });
+  if (!backendResponse.ok && backendResponse.status >= 500) {
+    console.error("[patient-auth] /me backend error", backendResponse.status);
+  }
+
+  const response = NextResponse.json(
+    backendResponse.ok
+      ? body
+      : sanitizeBackendError(body, backendResponse.status),
+    { status: backendResponse.status },
+  );
 
   if (refreshedTokens) {
     setPatientAuthCookies(response, refreshedTokens);
