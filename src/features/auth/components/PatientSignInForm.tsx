@@ -110,7 +110,7 @@ export function PatientSignInForm() {
         )}
         <Link
           href="/patient/forgot-password"
-          className="text-end text-xs text-brand-secondary transition-opacity hover:opacity-80"
+          className="text-end text-sm text-brand-secondary transition-opacity hover:opacity-80"
         >
           {t("forgotPassword")}
         </Link>
