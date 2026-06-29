@@ -1,0 +1,27 @@
+name: Release
+
+# Maintains a standing "Release PR" from conventional commits on main. Merging
+# that PR bumps package.json, updates CHANGELOG.md, tags vX.Y.Z, and cuts a
+# GitHub Release. It does NOT deploy — Vercel's Git integration deploys the bump
+# commit on main automatically, so the tag maps 1:1 to the production deployment.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-please-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

@@ -1,4 +1,10 @@
 {
+  "appUpdate": {
+    "title": "يتوفر إصدار جديد",
+    "description": "أعد التحميل للحصول على آخر تحديث.",
+    "refresh": "إعادة التحميل",
+    "versionLabel": "الإصدار"
+  },
   "userGuide": {
     "title": "دليل المستخدم",
     "navLabel": "دليل المستخدم",
