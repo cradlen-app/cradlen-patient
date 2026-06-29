@@ -68,8 +68,17 @@ export function ageFromDob(
   iso: string | undefined,
 ): number | undefined {
   if (!iso) return undefined;
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return undefined;
-  const diff = Date.now() - d.getTime();
-  return Math.floor(diff / (365.25 * 24 * 3600 * 1000));
+  const dob = new Date(iso);
+  if (Number.isNaN(dob.getTime())) return undefined;
+
+  // Calendar-based age: full years elapsed, minus one if this year's birthday
+  // hasn't happened yet. Avoids the 365.25-day approximation that read one year
+  // short exactly on the birthday.
+  const now = new Date();
+  let age = now.getFullYear() - dob.getFullYear();
+  const beforeBirthday =
+    now.getMonth() < dob.getMonth() ||
+    (now.getMonth() === dob.getMonth() && now.getDate() < dob.getDate());
+  if (beforeBirthday) age -= 1;
+  return age;
 }

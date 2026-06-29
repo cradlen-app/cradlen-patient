@@ -92,13 +92,24 @@ describe("ageFromDob", () => {
     expect(ageFromDob("nope")).toBeUndefined();
   });
 
-  it("computes a whole-year age (mid-year, away from the birthday boundary)", () => {
+  it("computes a whole-year age mid-year", () => {
     vi.useFakeTimers();
     vi.setSystemTime(NOW);
-    // Born ~30.5 years before NOW — comfortably past the 30th birthday so the
-    // 365.25-day approximation can't tip it to 29. (On the EXACT birthday this
-    // helper can read one year short — see review notes.)
-    const dob = new Date("1996-01-01T00:00:00.000Z").toISOString();
+    const dob = new Date("1996-01-01T12:00:00.000Z").toISOString();
     expect(ageFromDob(dob)).toBe(30);
+  });
+
+  it("counts the current year on the exact birthday", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(NOW); // 2026-06-29
+    const dob = new Date("1996-06-29T12:00:00.000Z").toISOString();
+    expect(ageFromDob(dob)).toBe(30);
+  });
+
+  it("does not count the current year before the birthday", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(NOW); // 2026-06-29
+    const dob = new Date("1996-06-30T12:00:00.000Z").toISOString();
+    expect(ageFromDob(dob)).toBe(29);
   });
 });

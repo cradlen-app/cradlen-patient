@@ -54,6 +54,18 @@ describe("VisitTimeline", () => {
     expect(screen.getByText("Visit")).toBeInTheDocument();
   });
 
+  it("falls back to the generic 'Visit' label for an unknown visit type", () => {
+    renderWithProviders(
+      <VisitTimeline
+        {...baseProps}
+        entries={[visit({ type: "MYSTERY_TYPE" as PortalVisit["type"] })]}
+      />,
+    );
+    // The raw i18n key must never leak into the UI.
+    expect(screen.queryByText(/record\.typeLabel/)).not.toBeInTheDocument();
+    expect(screen.getByText("Visit")).toBeInTheDocument();
+  });
+
   it("shows a 'Normal' pill for normal priority and 'Abnormal' for emergency", () => {
     const { rerender } = renderWithProviders(
       <VisitTimeline {...baseProps} entries={[visit({ priority: "normal" })]} />,
