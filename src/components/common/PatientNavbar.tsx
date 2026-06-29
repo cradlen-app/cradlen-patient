@@ -8,7 +8,7 @@ import Image from "next/image";
 import Logo from "@/public/Logo.png";
 import { Link, useRouter } from "@/i18n/navigation";
 import { usePatientMe } from "@/features/auth/hooks/usePatientAuth";
-import { PatientNotificationBell } from "@/core/patient-portal";
+import { PatientNotificationBell } from "@/features/patient-portal";
 import { PatientProfileSwitcher } from "./PatientProfileSwitcher";
 
 // Only used by the (currently hidden) Messages icon. Restore alongside it.

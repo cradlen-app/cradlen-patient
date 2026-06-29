@@ -1,47 +1,34 @@
 "use client";
 
-import { skipToken, useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 import {
-  fetchAppointments,
-  fetchDocuments,
-  fetchHealthRecord,
-  fetchLabOrders,
   fetchInvestigations,
   fetchMedications,
   fetchObgynHistory,
   fetchPatientJourney,
   fetchPatientJourneyTimeline,
-  fetchReminders,
   fetchUpcomingVisits,
   fetchVisitHistory,
 } from "../data/patient-portal.api";
 import { patientPortalQueryKeys } from "../queryKeys";
-import { useActivePatientId } from "./usePatientProfiles";
+import { useActivePatientId, usePatientProfiles } from "./usePatientProfiles";
 
 /**
  * Read hooks for the active patient profile. Each is keyed by the active
  * profile id so switching profiles fetches/caches independently.
  */
 
-export function useHealthRecord() {
-  const patientId = useActivePatientId();
-  return useQuery({
-    queryKey: patientPortalQueryKeys.healthRecord(patientId),
-    queryFn: () => fetchHealthRecord(patientId),
-  });
-}
-
 /**
  * Paginated visit history for the patient currently in view (newest first), as
  * an infinite query against the live endpoint. Scoped by the real backend
- * patient id (see `useResolvedPatientId`) and gated until that id resolves, so
+ * patient id (the active profile) and gated until it resolves, so
  * the request never targets a stale fixture id.
  */
 export function useVisitHistory() {
-  const patientId = useResolvedPatientId();
+  const patientId = useActivePatientId();
   const query = useInfiniteQuery({
-    queryKey: patientPortalQueryKeys.visitHistory(patientId ?? "none"),
+    queryKey: patientPortalQueryKeys.visitHistory(patientId || "none"),
     queryFn: ({ pageParam }) =>
       fetchVisitHistory({
         patientId: patientId as string,
@@ -70,13 +57,13 @@ export function useVisitHistory() {
 /**
  * Paginated upcoming recommended follow-ups for the patient currently in view
  * (soonest first), as an infinite query against the live endpoint. Scoped by
- * the real backend patient id (see `useResolvedPatientId`) and gated until that
- * id resolves, mirroring `useVisitHistory`.
+ * the real backend patient id (the active profile) and gated until it
+ * resolves, mirroring `useVisitHistory`.
  */
 export function useUpcomingVisits() {
-  const patientId = useResolvedPatientId();
+  const patientId = useActivePatientId();
   const query = useInfiniteQuery({
-    queryKey: patientPortalQueryKeys.upcomingVisits(patientId ?? "none"),
+    queryKey: patientPortalQueryKeys.upcomingVisits(patientId || "none"),
     queryFn: ({ pageParam }) =>
       fetchUpcomingVisits({
         patientId: patientId as string,
@@ -105,14 +92,13 @@ export function useUpcomingVisits() {
 /**
  * Paginated Journey → Episode → Visit timeline for the patient currently in view
  * (journeys newest first), as an infinite query against the live endpoint.
- * Paginated by journey (5 per page). Scoped by the real backend patient id (see
- * `useResolvedPatientId`) and gated until that id resolves, mirroring
- * `useVisitHistory`.
+ * Paginated by journey (5 per page). Scoped by the real backend patient id
+ * (the active profile) and gated until it resolves, mirroring `useVisitHistory`.
  */
 export function usePatientJourneyTimeline() {
-  const patientId = useResolvedPatientId();
+  const patientId = useActivePatientId();
   const query = useInfiniteQuery({
-    queryKey: patientPortalQueryKeys.journeyTimeline(patientId ?? "none"),
+    queryKey: patientPortalQueryKeys.journeyTimeline(patientId || "none"),
     queryFn: ({ pageParam }) =>
       fetchPatientJourneyTimeline({
         patientId: patientId as string,
@@ -141,16 +127,16 @@ export function usePatientJourneyTimeline() {
 /**
  * Paginated investigations (lab tests & imaging) for the patient currently in
  * view (newest first), as an infinite query against the live endpoint. Scoped
- * by the real backend patient id (see `useResolvedPatientId`) and gated until
- * that id resolves, so the request never targets a stale fixture id.
+ * by the real backend patient id (the active profile) and gated until it
+ * resolves, so the request never targets a stale fixture id.
  */
 export function useInvestigations(
   filters: { status?: string; type?: string } = {},
 ) {
-  const patientId = useResolvedPatientId();
+  const patientId = useActivePatientId();
   const query = useInfiniteQuery({
     queryKey: patientPortalQueryKeys.investigations(
-      patientId ?? "none",
+      patientId || "none",
       filters.status,
       filters.type,
     ),
@@ -182,51 +168,14 @@ export function useInvestigations(
 }
 
 /**
- * Minimal read of the patient identity (`patient_id`, `accessible_patient_ids`)
- * the `PatientNavbar` already loads via `usePatientMe()`. Subscribes to the same
- * query cache entry without ever fetching it itself (`skipToken`) so core never
- * imports `features/auth`. `skipToken` both disables the fetch and satisfies the
- * v5 "a query needs a queryFn" contract, so no dev warning is logged.
- */
-type PatientIdentityRead = {
-  patient_id: string | null;
-  accessible_patient_ids: string[];
-};
-
-function usePatientIdentity() {
-  return useQuery<PatientIdentityRead>({
-    queryKey: patientPortalQueryKeys.me(),
-    queryFn: skipToken,
-  });
-}
-
-/**
- * The real backend patient id for the patient currently in view, used by the
- * live (non-fixture) hooks. Resolves from the authenticated identity (not the
- * fixture profile store, so the other prototype screens are untouched): the
- * active profile id when it is a real accessible id, otherwise the account
- * holder (`patient_id`) or the first accessible patient. `undefined` while the
- * identity is still loading — callers gate their query with `enabled`.
- */
-function useResolvedPatientId(): string | undefined {
-  const { data: identity } = usePatientIdentity();
-  const activeFixtureId = useActivePatientId();
-
-  const accessible = identity?.accessible_patient_ids ?? [];
-  return accessible.includes(activeFixtureId)
-    ? activeFixtureId
-    : (identity?.patient_id ?? accessible[0]);
-}
-
-/**
  * Live medications for the patient currently in view, scoped by the real
  * backend patient id and gated until that id resolves.
  */
 export function useMedications() {
-  const patientId = useResolvedPatientId();
+  const patientId = useActivePatientId();
 
   return useQuery({
-    queryKey: patientPortalQueryKeys.medications(patientId ?? "none"),
+    queryKey: patientPortalQueryKeys.medications(patientId || "none"),
     queryFn: () => fetchMedications(patientId as string),
     enabled: Boolean(patientId),
   });
@@ -237,10 +186,10 @@ export function useMedications() {
  * view, scoped by the real backend patient id and gated until it resolves.
  */
 export function usePatientHistory() {
-  const patientId = useResolvedPatientId();
+  const patientId = useActivePatientId();
 
   return useQuery({
-    queryKey: patientPortalQueryKeys.history(patientId ?? "none"),
+    queryKey: patientPortalQueryKeys.history(patientId || "none"),
     queryFn: () => fetchObgynHistory(patientId as string),
     enabled: Boolean(patientId),
   });
@@ -253,10 +202,10 @@ export function usePatientHistory() {
  * journey — the home then renders its generic/empty states.
  */
 export function usePatientJourney() {
-  const patientId = useResolvedPatientId();
+  const patientId = useActivePatientId();
 
   return useQuery({
-    queryKey: patientPortalQueryKeys.journey(patientId ?? "none"),
+    queryKey: patientPortalQueryKeys.journey(patientId || "none"),
     queryFn: () => fetchPatientJourney(patientId as string),
     enabled: Boolean(patientId),
   });
@@ -283,12 +232,12 @@ export interface HomeSummary {
  * many of the three rows are non-empty, matching the "N need attention" header.
  */
 export function useHomeSummary(): HomeSummary {
-  // The three queries below are *disabled* (not "loading") until the patient id
-  // resolves from `me()`, so without this the card flashes its zeroed "all
-  // clear" state during the cold-start identity load. `isPending` reads the
-  // shared `me()` status: true while resolving, false once it has data OR errors
-  // (so a failed identity doesn't leave an eternal skeleton).
-  const identity = usePatientIdentity();
+  // The three queries below are *disabled* (not "loading") until the active
+  // patient id resolves from the profiles list, so without this the card flashes
+  // its zeroed "all clear" state during the cold-start identity load.
+  // `isPending` is true while the profiles query is resolving and false once it
+  // has data OR errors (so a failed identity doesn't leave an eternal skeleton).
+  const profiles = usePatientProfiles();
   const meds = useMedications();
   const tests = useInvestigations();
   const visits = useUpcomingVisits();
@@ -307,41 +256,10 @@ export function useHomeSummary(): HomeSummary {
     nextVisit,
     needAttention,
     isLoading:
-      identity.isPending ||
+      profiles.isPending ||
       meds.isLoading ||
       tests.isLoading ||
       visits.isLoading,
   };
 }
 
-export function useLabOrders() {
-  const patientId = useActivePatientId();
-  return useQuery({
-    queryKey: patientPortalQueryKeys.labOrders(patientId),
-    queryFn: () => fetchLabOrders(patientId),
-  });
-}
-
-export function useDocuments() {
-  const patientId = useActivePatientId();
-  return useQuery({
-    queryKey: patientPortalQueryKeys.documents(patientId),
-    queryFn: () => fetchDocuments(patientId),
-  });
-}
-
-export function useAppointments() {
-  const patientId = useActivePatientId();
-  return useQuery({
-    queryKey: patientPortalQueryKeys.appointments(patientId),
-    queryFn: () => fetchAppointments(patientId),
-  });
-}
-
-export function useReminders() {
-  const patientId = useActivePatientId();
-  return useQuery({
-    queryKey: [...patientPortalQueryKeys.home(patientId), "reminders"],
-    queryFn: () => fetchReminders(patientId),
-  });
-}

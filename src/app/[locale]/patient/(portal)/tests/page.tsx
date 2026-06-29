@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 
-import { TestsScreen } from "@/core/patient-portal/pages";
+import { TestsScreen } from "@/features/patient-portal/pages";
 
 type Props = { params: Promise<{ locale: string }> };
 

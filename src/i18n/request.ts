@@ -11,14 +11,16 @@ async function loadBaseMessages(locale: string) {
   }
 }
 
-// The patient-portal module authors its keys unwrapped; they are exposed under
-// the `patientPortal` namespace (matching the module manifest's i18nNamespace).
+// The patient-portal feature authors its keys unwrapped; they are exposed here
+// under the `patientPortal` namespace.
 async function loadPatientPortalMessages(locale: string) {
   switch (locale) {
     case "ar":
-      return (await import("../core/patient-portal/messages/ar.json")).default;
+      return (await import("../features/patient-portal/messages/ar.json"))
+        .default;
     default:
-      return (await import("../core/patient-portal/messages/en.json")).default;
+      return (await import("../features/patient-portal/messages/en.json"))
+        .default;
   }
 }
 

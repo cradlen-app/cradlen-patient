@@ -102,18 +102,51 @@ export async function getPatientResetTokenFromRequest() {
 
 // --- Refresh -------------------------------------------------------------------
 
+/**
+ * A refresh failure, classified so callers can tell a session that is genuinely
+ * over from one that hit a transient hiccup:
+ *  - `terminal`  — the backend rejected the refresh token (401/403). The session
+ *    is dead; clear the cookies and send the patient to sign-in.
+ *  - non-terminal — a network error, 5xx, or malformed body. The refresh token
+ *    is very likely still good (e.g. a backend blip, or a sibling request that
+ *    already rotated it on another serverless instance). Do NOT clear cookies;
+ *    surface a retryable error so the patient keeps their session.
+ */
+class PatientRefreshError extends Error {
+  constructor(
+    readonly terminal: boolean,
+    message: string,
+  ) {
+    super(message);
+    this.name = "PatientRefreshError";
+  }
+}
+
 const inflightRefreshes = new Map<string, Promise<AuthTokens>>();
 
 async function performPatientRefresh(refreshToken: string): Promise<AuthTokens> {
-  const response = await backendFetch("/patient-auth/refresh", {
-    method: "POST",
-    body: JSON.stringify({ refresh_token: refreshToken }),
-  });
+  let response: Response;
+  try {
+    response = await backendFetch("/patient-auth/refresh", {
+      method: "POST",
+      body: JSON.stringify({ refresh_token: refreshToken }),
+    });
+  } catch {
+    // Never reached the backend — transient by definition.
+    throw new PatientRefreshError(false, "Patient token refresh request failed");
+  }
+
+  // Only an explicit auth rejection is terminal. A 5xx (or anything else
+  // without tokens) is treated as transient so a backend blip can't log the
+  // patient out.
+  if (response.status === 401 || response.status === 403) {
+    throw new PatientRefreshError(true, "Patient refresh token rejected");
+  }
+
   const body = await readBackendJson(response);
   const tokens = response.ok ? extractTokens(body) : null;
-
   if (!tokens) {
-    throw new Error("Patient token refresh failed");
+    throw new PatientRefreshError(false, "Patient token refresh returned no tokens");
   }
 
   return tokens;
@@ -138,24 +171,41 @@ function refreshPatientTokens(refreshToken: string) {
 export async function getValidPatientAccessToken(): Promise<{
   accessToken: string | null;
   refreshedTokens: AuthTokens | null;
+  /**
+   * Why no access token was produced: `terminal` (session is over, clear it),
+   * `transient` (retryable — keep the session), or `null` (success, or simply
+   * no session to begin with).
+   */
+  refreshFailure: "terminal" | "transient" | null;
 }> {
   const cookieStore = await cookies();
   const accessToken = cookieStore.get(PATIENT_AUTH_TOKEN_COOKIE)?.value;
   const refreshToken = cookieStore.get(PATIENT_AUTH_REFRESH_TOKEN_COOKIE)?.value;
 
   if (accessToken && !isExpiredJwt(accessToken)) {
-    return { accessToken, refreshedTokens: null };
+    return { accessToken, refreshedTokens: null, refreshFailure: null };
   }
 
   if (!refreshToken) {
-    return { accessToken: null, refreshedTokens: null };
+    return { accessToken: null, refreshedTokens: null, refreshFailure: null };
   }
 
   try {
     const refreshedTokens = await refreshPatientTokens(refreshToken);
-    return { accessToken: refreshedTokens.access_token, refreshedTokens };
-  } catch {
-    return { accessToken: null, refreshedTokens: null };
+    return {
+      accessToken: refreshedTokens.access_token,
+      refreshedTokens,
+      refreshFailure: null,
+    };
+  } catch (err) {
+    // Unknown errors are treated as terminal (fail safe → require re-auth).
+    const terminal =
+      err instanceof PatientRefreshError ? err.terminal : true;
+    return {
+      accessToken: null,
+      refreshedTokens: null,
+      refreshFailure: terminal ? "terminal" : "transient",
+    };
   }
 }
 
@@ -188,8 +238,18 @@ export async function proxyAuthenticatedPatientRequest(
     ? undefined
     : await request.arrayBuffer();
 
-  const { accessToken, refreshedTokens } = await getValidPatientAccessToken();
+  const { accessToken, refreshedTokens, refreshFailure } =
+    await getValidPatientAccessToken();
   if (!accessToken) {
+    // A transient refresh failure (backend blip / concurrent rotation on another
+    // instance) must not end the session — keep the cookies and tell the client
+    // to retry. Only a terminal failure (or no session) clears and 401s.
+    if (refreshFailure === "transient") {
+      return NextResponse.json(
+        { message: "Service temporarily unavailable. Please try again." },
+        { status: 503, headers: { "Retry-After": "1" } },
+      );
+    }
     const res = NextResponse.json(
       { message: "Authentication required" },
       { status: 401 },

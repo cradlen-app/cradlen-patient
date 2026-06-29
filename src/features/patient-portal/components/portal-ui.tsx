@@ -9,12 +9,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import type {
-  AppointmentStatus,
-  Clinic,
-  DocumentStatus,
-  LabOrderStatus,
-} from "../types/patient-portal.types";
+import type { Clinic } from "../types/patient-portal.types";
 
 /** Card with an uppercase section title and optional trailing action. */
 export function SectionCard({
@@ -132,33 +127,6 @@ export function StatusBadge({
       {label}
     </span>
   );
-}
-
-export function labOrderTone(status: LabOrderStatus): Tone {
-  switch (status) {
-    case "result_ready":
-    case "completed":
-      return "green";
-    case "pending_review":
-      return "amber";
-    default:
-      return "gray";
-  }
-}
-
-export function documentTone(status: DocumentStatus): Tone {
-  return status === "reviewed" ? "green" : "amber";
-}
-
-export function appointmentTone(status: AppointmentStatus): Tone {
-  switch (status) {
-    case "upcoming":
-      return "brand";
-    case "cancelled":
-      return "gray";
-    default:
-      return "green";
-  }
 }
 
 export function EmptyState({ message }: { message: string }) {

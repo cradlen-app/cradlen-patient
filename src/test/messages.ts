@@ -8,8 +8,8 @@
  */
 import enBase from "@/messages/en.json";
 import arBase from "@/messages/ar.json";
-import enPortal from "@/core/patient-portal/messages/en.json";
-import arPortal from "@/core/patient-portal/messages/ar.json";
+import enPortal from "@/features/patient-portal/messages/en.json";
+import arPortal from "@/features/patient-portal/messages/ar.json";
 
 export type TestLocale = "en" | "ar";
 

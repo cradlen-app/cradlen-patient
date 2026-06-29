@@ -1,15 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { ReactNode } from "react";
 import { renderHook, waitFor } from "@testing-library/react";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // The portal data fetchers hit the network; stub them so each test controls
-// query *state*, not the payload. Profiles is irrelevant to the home summary
-// (whose id comes from `me()`), so it stays perpetually pending.
+// query *state*, not the payload. The active patient identity now flows through
+// `fetchProfiles` (the profiles list), so it drives both the loading signal and
+// whether the data queries are enabled.
 vi.mock("../data/patient-portal.api", () => ({
   fetchProfiles: vi.fn(),
   fetchMedications: vi.fn(),
@@ -19,6 +16,7 @@ vi.mock("../data/patient-portal.api", () => ({
 
 import { useHomeSummary } from "./usePortalData";
 import { patientPortalQueryKeys } from "../queryKeys";
+import type { PatientProfile } from "../types/patient-portal.types";
 import {
   fetchProfiles,
   fetchMedications,
@@ -26,7 +24,9 @@ import {
   fetchUpcomingVisits,
 } from "../data/patient-portal.api";
 
-const ME = { patient_id: "p1", accessible_patient_ids: ["p1"] };
+const PROFILES: PatientProfile[] = [
+  { id: "p1", kind: "self", fullName: "Self" },
+];
 const pending = () => new Promise<never>(() => {});
 
 function wrapperFor(client: QueryClient) {
@@ -39,16 +39,8 @@ function freshClient() {
   return new QueryClient({ defaultOptions: { queries: { retry: false } } });
 }
 
-/** Render useHomeSummary while a companion observer drives the shared `me()`
- *  cache, mirroring how PatientNavbar's `usePatientMe` populates it. */
-function renderSummary(client: QueryClient, meQueryFn: () => Promise<unknown>) {
-  return renderHook(
-    () => {
-      useQuery({ queryKey: patientPortalQueryKeys.me(), queryFn: meQueryFn });
-      return useHomeSummary();
-    },
-    { wrapper: wrapperFor(client) },
-  );
+function renderSummary(client: QueryClient) {
+  return renderHook(() => useHomeSummary(), { wrapper: wrapperFor(client) });
 }
 
 beforeEach(() => {
@@ -61,38 +53,37 @@ beforeEach(() => {
 
 describe("useHomeSummary loading state", () => {
   it("reports loading while the patient identity is still resolving", () => {
-    // `me()` in flight → the three data queries are disabled (not "loading"),
+    // Profiles in flight → the three data queries are disabled (not "loading"),
     // so the summary must still report loading or the card flashes "all clear".
-    const { result } = renderSummary(freshClient(), pending);
+    const { result } = renderSummary(freshClient());
     expect(result.current.isLoading).toBe(true);
   });
 
   it("reports loading once the id resolves but data is still in flight", async () => {
     const client = freshClient();
-    client.setQueryData(patientPortalQueryKeys.me(), ME);
+    client.setQueryData(patientPortalQueryKeys.profiles(), PROFILES);
     // Data fetchers stay pending (default) → queries enabled and loading.
-    const { result } = renderSummary(client, pending);
+    const { result } = renderSummary(client);
     await waitFor(() => expect(result.current.isLoading).toBe(true));
   });
 
   it("clears loading once identity and all home data have resolved", async () => {
     const client = freshClient();
-    client.setQueryData(patientPortalQueryKeys.me(), ME);
+    client.setQueryData(patientPortalQueryKeys.profiles(), PROFILES);
     vi.mocked(fetchMedications).mockResolvedValue([]);
     const emptyPage = { data: [], meta: { page: 1, limit: 10, total: 0 } };
     vi.mocked(fetchInvestigations).mockResolvedValue(emptyPage);
     vi.mocked(fetchUpcomingVisits).mockResolvedValue(emptyPage);
 
-    const { result } = renderSummary(client, pending);
+    const { result } = renderSummary(client);
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
   it("does not get stuck loading when the identity fetch fails", async () => {
-    // A failed `me()` must not leave an eternal skeleton: `isPending` is false
-    // once the query errors, and the data queries stay disabled.
-    const { result } = renderSummary(freshClient(), () =>
-      Promise.reject(new Error("identity failed")),
-    );
+    // A failed profiles fetch must not leave an eternal skeleton: `isPending` is
+    // false once the query errors, and the data queries stay disabled.
+    vi.mocked(fetchProfiles).mockRejectedValue(new Error("identity failed"));
+    const { result } = renderSummary(freshClient());
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 });

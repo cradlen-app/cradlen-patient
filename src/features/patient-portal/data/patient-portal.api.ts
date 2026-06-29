@@ -1,17 +1,21 @@
 /**
- * Patient portal data access — the single swap point for the real backend.
+ * Patient portal data access — the boundary to the real backend.
  *
- * `fetchMedications`, `fetchVisitHistory`, and `fetchObgynHistory` are wired to
- * live patient-scoped endpoints (`/api/patient-portal/medications`, `…/visits`,
- * `…/obgyn-history`).
- * The remaining functions still resolve from in-memory fixtures until their
- * backends exist; replace each body with a patient-scoped fetch the same way
- * when they do — the return types and all callers stay identical.
- *
- * Uploads mutate a module-local clone of the fixtures so the prototype reflects
- * new documents and flips the related lab order to "pending_review".
+ * Every function here calls a live patient-scoped route handler under
+ * `/api/patient-portal/*` (or `/api/patient-auth/*`) via {@link apiFetch}, which
+ * attaches the HttpOnly patient token server-side. Backend DTOs are mapped to
+ * the portal view models (`map*` helpers) before they reach the hooks.
  */
 import { apiFetch } from "@/infrastructure/http/api";
+import {
+  investigationsResponseSchema,
+  journeyResponseSchema,
+  medicationsResponseSchema,
+  parseApi,
+  profileResponseSchema,
+  upcomingVisitsResponseSchema,
+  visitsResponseSchema,
+} from "./api-schemas";
 import { mapApiMedication } from "../lib/map-medication";
 import { mapApiJourney } from "../lib/map-journey";
 import { mapApiJourneyTimeline } from "../lib/map-journey-timeline";
@@ -40,11 +44,7 @@ import type {
   ApiPortalHistoryResponse,
 } from "./patient-history.api.types";
 import type {
-  Appointment,
-  HealthRecord,
-  LabOrder,
   PatientProfile,
-  PortalDocument,
   PortalJourney,
   PortalJourneyTimelineEntry,
   PortalMedication,
@@ -52,36 +52,8 @@ import type {
   PortalUpcomingVisit,
   PortalVisit,
   PatientProfileDetails,
-  Reminder,
   UpdatePatientProfileInput,
-  UploadDocumentInput,
 } from "../types/patient-portal.types";
-import {
-  APPOINTMENTS,
-  CLINICS,
-  DOCUMENTS,
-  HEALTH_RECORDS,
-  LAB_ORDERS,
-  REMINDERS,
-} from "./fixtures";
-
-/**
- * Resolves on the microtask queue (no artificial latency). Real network delay
- * arrives for free when these bodies are swapped for `apiAuthFetch` calls.
- * Avoiding `setTimeout` also keeps behavior deterministic under hidden tabs,
- * which throttle timers.
- */
-function delay<T>(value: T): Promise<T> {
-  return Promise.resolve(value);
-}
-
-function clone<T>(value: T): T {
-  return structuredClone(value);
-}
-
-/** Mutable in-memory state, seeded from fixtures, so uploads persist per session. */
-const documentsState: Record<string, PortalDocument[]> = clone(DOCUMENTS);
-const labOrdersState: Record<string, LabOrder[]> = clone(LAB_ORDERS);
 
 /** Minimal shape of the `/api/patient-auth/me` payload this module consumes. */
 type PatientMeResponse = {
@@ -119,16 +91,6 @@ export async function fetchProfiles(): Promise<PatientProfile[]> {
   });
 }
 
-export function fetchHealthRecord(patientId: string): Promise<HealthRecord> {
-  const record = HEALTH_RECORDS[patientId] ?? {
-    patientId,
-    visits: [],
-    vitals: [],
-    allergies: [],
-  };
-  return delay(clone(record));
-}
-
 /** One page of visit history. Shape mirrors staff `ApiVisitHistoryResponse`. */
 export type VisitHistoryPage = {
   data: PortalVisit[];
@@ -155,8 +117,13 @@ export async function fetchVisitHistory({
   search.set("page", String(page));
   search.set("limit", String(limit));
 
-  const res = await apiFetch<ApiPatientVisitsResponse>(
+  const raw = await apiFetch(
     `/api/patient-portal/visits?${search.toString()}`,
+  );
+  const res = parseApi<ApiPatientVisitsResponse>(
+    visitsResponseSchema,
+    raw,
+    "visits",
   );
 
   return {
@@ -191,8 +158,13 @@ export async function fetchUpcomingVisits({
   search.set("page", String(page));
   search.set("limit", String(limit));
 
-  const res = await apiFetch<ApiPatientUpcomingVisitsResponse>(
+  const raw = await apiFetch(
     `/api/patient-portal/visits/upcoming?${search.toString()}`,
+  );
+  const res = parseApi<ApiPatientUpcomingVisitsResponse>(
+    upcomingVisitsResponseSchema,
+    raw,
+    "upcoming visits",
   );
 
   return {
@@ -249,8 +221,11 @@ export async function fetchPatientJourney(
   patientId: string,
 ): Promise<PortalJourney | null> {
   const qs = patientId ? `?patient_id=${encodeURIComponent(patientId)}` : "";
-  const res = await apiFetch<ApiPatientJourneyResponse>(
-    `/api/patient-portal/journey${qs}`,
+  const raw = await apiFetch(`/api/patient-portal/journey${qs}`);
+  const res = parseApi<ApiPatientJourneyResponse>(
+    journeyResponseSchema,
+    raw,
+    "journey",
   );
   return res.data ? mapApiJourney(res.data) : null;
 }
@@ -290,8 +265,13 @@ export async function fetchInvestigations({
   if (status) search.set("status", status);
   if (type) search.set("type", type);
 
-  const res = await apiFetch<ApiPatientInvestigationsResponse>(
+  const raw = await apiFetch(
     `/api/patient-portal/investigations?${search.toString()}`,
+  );
+  const res = parseApi<ApiPatientInvestigationsResponse>(
+    investigationsResponseSchema,
+    raw,
+    "investigations",
   );
 
   return {
@@ -364,13 +344,22 @@ function profileQuery(patientId?: string): string {
   return `?${search.toString()}`;
 }
 
+/** Validate a `{ data: profile }` envelope and map it to the view model. */
+function toProfileDetails(raw: unknown): PatientProfileDetails {
+  const res = parseApi<{ data: ApiPatientProfile }>(
+    profileResponseSchema,
+    raw,
+    "profile",
+  );
+  return mapApiProfile(res.data);
+}
+
 export async function fetchPatientProfile(
   patientId?: string,
 ): Promise<PatientProfileDetails> {
-  const res = await apiFetch<{ data: ApiPatientProfile }>(
-    `/api/patient-portal/profile${profileQuery(patientId)}`,
+  return toProfileDetails(
+    await apiFetch(`/api/patient-portal/profile${profileQuery(patientId)}`),
   );
-  return mapApiProfile(res.data);
 }
 
 export async function updatePatientProfile({
@@ -380,9 +369,8 @@ export async function updatePatientProfile({
   patientId?: string;
   input: UpdatePatientProfileInput;
 }): Promise<PatientProfileDetails> {
-  const res = await apiFetch<{ data: ApiPatientProfile }>(
-    `/api/patient-portal/profile${profileQuery(patientId)}`,
-    {
+  return toProfileDetails(
+    await apiFetch(`/api/patient-portal/profile${profileQuery(patientId)}`, {
       method: "PATCH",
       body: JSON.stringify({
         full_name: input.fullName,
@@ -391,9 +379,8 @@ export async function updatePatientProfile({
         address: input.address,
         marital_status: input.maritalStatus,
       }),
-    },
+    }),
   );
-  return mapApiProfile(res.data);
 }
 
 /**
@@ -429,21 +416,22 @@ export async function uploadProfileImage({
     throw new Error("Upload failed");
   }
 
-  const res = await apiFetch<{ data: ApiPatientProfile }>(
-    `/api/patient-portal/profile/image${profileQuery(patientId)}`,
-    { method: "POST", body: JSON.stringify({ key: presign.data.key }) },
+  return toProfileDetails(
+    await apiFetch(`/api/patient-portal/profile/image${profileQuery(patientId)}`, {
+      method: "POST",
+      body: JSON.stringify({ key: presign.data.key }),
+    }),
   );
-  return mapApiProfile(res.data);
 }
 
 export async function removeProfileImage(
   patientId?: string,
 ): Promise<PatientProfileDetails> {
-  const res = await apiFetch<{ data: ApiPatientProfile }>(
-    `/api/patient-portal/profile/image${profileQuery(patientId)}`,
-    { method: "DELETE" },
+  return toProfileDetails(
+    await apiFetch(`/api/patient-portal/profile/image${profileQuery(patientId)}`, {
+      method: "DELETE",
+    }),
   );
-  return mapApiProfile(res.data);
 }
 
 /** Changes the account password. Returns nothing (backend replies 204). */
@@ -572,78 +560,14 @@ export async function fetchMedications(
   patientId: string,
 ): Promise<PortalMedication[]> {
   const qs = patientId ? `?patient_id=${encodeURIComponent(patientId)}` : "";
-  const res = await apiFetch<ApiPatientMedicationsResponse>(
-    `/api/patient-portal/medications${qs}`,
+  const raw = await apiFetch(`/api/patient-portal/medications${qs}`);
+  const res = parseApi<ApiPatientMedicationsResponse>(
+    medicationsResponseSchema,
+    raw,
+    "medications",
   );
   return [
     ...res.data.current.map((m) => mapApiMedication(m, "active")),
     ...res.data.past.map((m) => mapApiMedication(m, "past")),
   ];
-}
-
-export function fetchLabOrders(patientId: string): Promise<LabOrder[]> {
-  return delay(clone(labOrdersState[patientId] ?? []));
-}
-
-export function fetchDocuments(patientId: string): Promise<PortalDocument[]> {
-  return delay(clone(documentsState[patientId] ?? []));
-}
-
-export function fetchAppointments(patientId: string): Promise<Appointment[]> {
-  return delay(clone(APPOINTMENTS[patientId] ?? []));
-}
-
-export function fetchReminders(patientId: string): Promise<Reminder[]> {
-  return delay(clone(REMINDERS[patientId] ?? []));
-}
-
-export function uploadDocument(
-  input: UploadDocumentInput,
-): Promise<PortalDocument> {
-  const clinic =
-    Object.values(CLINICS).find((c) => c.id === input.clinicId) ??
-    CLINICS.maadi;
-
-  const order = input.labOrderId
-    ? (labOrdersState[input.forPatientId] ?? []).find(
-        (o) => o.id === input.labOrderId,
-      )
-    : undefined;
-
-  const doc: PortalDocument = {
-    id: `doc-${Date.now()}`,
-    title: order?.name ?? titleForKind(input.kind),
-    kind: input.kind,
-    files: input.files,
-    clinic,
-    doctorName: input.doctorName,
-    forPatientId: input.forPatientId,
-    visitId: input.visitId ?? order?.visitId,
-    labOrderId: input.labOrderId,
-    uploadedAt: new Date().toISOString().slice(0, 10),
-    status: "pending_review",
-    note: input.note,
-  };
-
-  documentsState[input.forPatientId] = [
-    doc,
-    ...(documentsState[input.forPatientId] ?? []),
-  ];
-
-  if (order) {
-    order.status = "pending_review";
-  }
-
-  return delay(clone(doc));
-}
-
-function titleForKind(kind: UploadDocumentInput["kind"]): string {
-  switch (kind) {
-    case "lab_result":
-      return "Lab result";
-    case "scan":
-      return "Scan";
-    default:
-      return "Document";
-  }
 }

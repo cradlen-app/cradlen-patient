@@ -37,21 +37,6 @@ export interface PatientProfile {
   heightCm?: number;
 }
 
-export interface VitalsPoint {
-  date: string;
-  systolic?: number;
-  diastolic?: number;
-  weightKg?: number;
-  bmi?: number;
-}
-
-export interface Allergy {
-  id: string;
-  substance: string;
-  reaction?: string;
-  severity?: "mild" | "moderate" | "severe";
-}
-
 export type VisitStatus = "completed" | "scheduled" | "cancelled";
 
 /** Appointment type — mirrors the staff `ApiVisitHistoryEntry.appointment_type`. */
@@ -205,50 +190,8 @@ export interface PortalPrescription {
   items: PortalMedication[];
 }
 
-/**
- * A test the doctor ordered during a visit. Drives the "Awaiting your results"
- * list, which is the entry point to the upload flow.
- */
-export type LabOrderStatus =
-  | "awaiting_upload" // doctor ordered it; patient owes a result
-  | "pending_review" // patient uploaded; clinic hasn't reviewed yet
-  | "result_ready" // a result is available to view
-  | "completed";
-
+/** Investigation category, shown as the "Type" label on a test card. */
 export type LabCategory = "lab" | "imaging" | "other";
-
-export interface LabOrder {
-  id: string;
-  name: string;
-  category: LabCategory;
-  orderedDate: string;
-  doctorName: string;
-  clinic: Clinic;
-  /** The visit this order belongs to — uploads attach back to it. */
-  visitId: string;
-  status: LabOrderStatus;
-  /** Present when a result exists (clinic-published or patient-uploaded). */
-  result?: LabResult;
-}
-
-export interface LabResult {
-  id: string;
-  name: string;
-  date: string;
-  /** Display label, e.g. "Normal", "Review with doctor". */
-  summary?: string;
-  /** Mock file reference for view/download. */
-  fileRef?: string;
-}
-
-export type UploadFileType = "pdf" | "image";
-
-export interface UploadFile {
-  id: string;
-  name: string;
-  sizeLabel: string;
-  type: UploadFileType;
-}
 
 /**
  * A test/investigation in the patient-facing "Tests" screen. Read-only view of
@@ -295,58 +238,6 @@ export interface PortalTest {
   results: PortalTestResult[];
   /** Present once a clinician has reviewed the result. */
   review?: PortalTestReview;
-}
-
-export type DocumentStatus = "pending_review" | "reviewed";
-
-export type DocumentKind = "lab_result" | "scan" | "other";
-
-/**
- * A document the patient uploaded back to a clinic/doctor. When linked to a
- * lab order, it closes the loop on that exact investigation.
- */
-export interface PortalDocument {
-  id: string;
-  title: string;
-  kind: DocumentKind;
-  files: UploadFile[];
-  clinic: Clinic;
-  doctorName: string;
-  /** Patient (self or dependent) this document is filed under. */
-  forPatientId: string;
-  /** Visit the upload is attached to. */
-  visitId?: string;
-  /** Lab order the upload fulfills, when started from "Awaiting your results". */
-  labOrderId?: string;
-  uploadedAt: string;
-  status: DocumentStatus;
-  note?: string;
-}
-
-export type AppointmentStatus = "upcoming" | "completed" | "cancelled";
-
-export interface Appointment {
-  id: string;
-  date: string;
-  time?: string;
-  clinic: Clinic;
-  doctorName: string;
-  specialty: string;
-  type?: string;
-  status: AppointmentStatus;
-}
-
-export interface Reminder {
-  id: string;
-  label: string;
-  detail?: string;
-}
-
-/** Where the patient is in their active care path (journey/episode). */
-export interface ActiveJourney {
-  name: string;
-  stage?: string;
-  clinic?: Clinic;
 }
 
 /** Stepper state for one journey stage, mapped from the backend tri-state. */
@@ -432,23 +323,3 @@ export interface PortalJourneyTimelineEntry {
   episodes: PortalJourneyTimelineEpisode[];
 }
 
-/** Aggregated "my health" snapshot for a single patient profile. */
-export interface HealthRecord {
-  patientId: string;
-  visits: PortalVisit[];
-  vitals: VitalsPoint[];
-  allergies: Allergy[];
-  activeJourney?: ActiveJourney;
-}
-
-/** Input to create a patient-uploaded document. */
-export interface UploadDocumentInput {
-  forPatientId: string;
-  labOrderId?: string;
-  visitId?: string;
-  kind: DocumentKind;
-  clinicId: string;
-  doctorName: string;
-  files: UploadFile[];
-  note?: string;
-}

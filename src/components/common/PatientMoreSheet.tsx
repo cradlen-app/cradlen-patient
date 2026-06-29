@@ -22,7 +22,7 @@ import {
   useActivePatientId,
   usePatientProfiles,
   usePatientProfileStore,
-} from "@/core/patient-portal/api";
+} from "@/features/patient-portal/api";
 import { PATIENT_NAV, patientHref } from "./patient-nav";
 import { PatientAvatar } from "./PatientAvatar";
 import LanguageSelect from "./LanguageSelect";
