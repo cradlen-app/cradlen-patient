@@ -3,21 +3,15 @@ import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
 /**
- * Architecture boundary rules — see `CLAUDE.md` § "Architecture: Modular
- * Kernel + Plugin Layout" for the full rationale.
+ * Module boundary rule for the patient-portal feature.
  *
- * Public surface rule: `core/<name>` and `plugins/<name>` may only be
- * imported via their barrel (the path ending at the module name) or via
- * `api`, `manifest`, `index`, or `messages` subpaths. Deep imports into
- * `components/`, `hooks/`, `lib/`, etc. are blocked.
- *
- * Kernel internal rule: `@/kernel/registry` and `@/kernel/host` are
- * implementation; only the kernel itself reaches them. External code
- * imports via the `@/kernel` barrel.
- *
- * Transitional: `src/features/**` (the sunset layer) is allowed to import
- * from anywhere. Likewise `core/<name>` may still depend on
- * `@/features/<feature>` while features wait their turn to migrate.
+ * External code must import it through its public surface — the barrel
+ * (`@/features/patient-portal`), the route-mounted UI (`/pages`), `/api`,
+ * `/manifest`, or `/messages/*` — never reach into `components/`, `hooks/`,
+ * `lib/`, `data/`, `types/`, `store/`, `queryKeys`, or `permissions` directly.
+ * The module's own files are exempt (see the override below). `features/auth`
+ * is intentionally not covered: it has no barrel yet and is consumed by deep
+ * import; add one before extending this rule to it.
  */
 const moduleBoundaryRules = {
   "no-restricted-imports": [
@@ -26,31 +20,17 @@ const moduleBoundaryRules = {
       patterns: [
         {
           group: [
-            "@/core/*/components/**",
-            "@/core/*/hooks/**",
-            "@/core/*/lib/**",
-            "@/core/*/types/**",
-            "@/core/*/data/**",
-            "@/core/*/permissions",
-            "@/core/*/queryKeys",
-            "@/core/*/nav",
+            "@/features/patient-portal/components/**",
+            "@/features/patient-portal/hooks/**",
+            "@/features/patient-portal/lib/**",
+            "@/features/patient-portal/data/**",
+            "@/features/patient-portal/types/**",
+            "@/features/patient-portal/store/**",
+            "@/features/patient-portal/queryKeys",
+            "@/features/patient-portal/permissions",
           ],
           message:
-            "Import only from a core module's public surface: '@/core/<name>', '@/core/<name>/api', '@/core/<name>/manifest', or '@/core/<name>/messages/*'.",
-        },
-        {
-          group: [
-            "@/plugins/*/components/**",
-            "@/plugins/*/hooks/**",
-            "@/plugins/*/lib/**",
-            "@/plugins/*/listeners/**",
-          ],
-          message:
-            "Import only from a plugin's public surface: '@/plugins/<name>', '@/plugins/<name>/api', or '@/plugins/<name>/manifest'.",
-        },
-        {
-          group: ["@/kernel/registry/**", "@/kernel/host/**", "@/kernel/events/**"],
-          message: "Import kernel internals only via the '@/kernel' barrel.",
+            "Import only from the patient-portal public surface: '@/features/patient-portal', '@/features/patient-portal/pages', '@/features/patient-portal/api', '@/features/patient-portal/manifest', or '@/features/patient-portal/messages/*'.",
         },
       ],
     },
@@ -60,25 +40,14 @@ const moduleBoundaryRules = {
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  globalIgnores([
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
   {
-    // Apply the boundary rules to all TS/TSX source files...
     files: ["src/**/*.ts", "src/**/*.tsx"],
     rules: moduleBoundaryRules,
   },
   {
-    // ...except inside a module's own folder, where deep imports are normal,
-    // and inside the kernel itself, which obviously consumes its internals.
-    files: [
-      "src/core/*/**",
-      "src/plugins/*/**",
-      "src/kernel/**",
-    ],
+    // The module consumes its own internals freely.
+    files: ["src/features/patient-portal/**"],
     rules: { "no-restricted-imports": "off" },
   },
 ]);

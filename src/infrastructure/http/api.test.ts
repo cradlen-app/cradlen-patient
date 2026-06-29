@@ -145,6 +145,35 @@ describe("apiFetch — error handling", () => {
   });
 });
 
+describe("apiFetch — transient 503 retry", () => {
+  it("retries an idempotent GET once on 503, then returns the success body", async () => {
+    const fn = vi
+      .fn<(input?: unknown, init?: RequestInit) => Promise<Response>>()
+      .mockResolvedValueOnce(new Response(null, { status: 503 }))
+      .mockResolvedValueOnce(jsonResponse({ ok: true }));
+    vi.stubGlobal("fetch", fn);
+
+    await expect(apiFetch("/api/patient-portal/medications")).resolves.toEqual({
+      ok: true,
+    });
+    expect(fn).toHaveBeenCalledTimes(2);
+  });
+
+  it("does NOT retry a non-idempotent POST on 503 (no double-apply)", async () => {
+    const fn = vi
+      .fn<(input?: unknown, init?: RequestInit) => Promise<Response>>()
+      .mockResolvedValue(
+        jsonResponse({ message: "busy" }, { status: 503 }),
+      );
+    vi.stubGlobal("fetch", fn);
+
+    await expect(
+      apiFetch("/api/patient-portal/x", { method: "POST" }),
+    ).rejects.toMatchObject({ status: 503 });
+    expect(fn).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe("ApiError", () => {
   it("joins array messages into a single message and keeps the list", () => {
     const err = new ApiError(400, ["a", "b"], { raw: true });

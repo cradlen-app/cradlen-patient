@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "@/i18n/navigation";
 import { apiFetch } from "@/infrastructure/http/api";
 import { queryClient } from "@/infrastructure/query/queryClient";
-import { patientPortalQueryKeys } from "@/core/patient-portal/api";
+import { patientPortalQueryKeys } from "@/features/patient-portal/api";
 import type {
   PatientAuthenticatedResponse,
   PatientForgotPasswordCompleteRequest,

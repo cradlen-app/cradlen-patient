@@ -84,6 +84,13 @@ function extractApiErrorMessage(body: unknown, fallback: string) {
   return fallback;
 }
 
+/** A same-origin proxy returns 503 for a transient, retryable condition (e.g. a
+ *  concurrent token rotation), distinct from a 401 that ends the session. */
+const RETRY_STATUS = 503;
+const RETRY_DELAY_MS = 400;
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 // Authenticated patient calls go through same-origin route handlers under
 // `/api/patient-portal/*` and `/api/patient-auth/*`, which attach the HttpOnly
 // patient token server-side. The browser only needs to send its cookies, so a
@@ -95,11 +102,24 @@ export async function apiFetch<T>(
 ): Promise<T> {
   const { headers, ...restOptions } = options ?? {};
   const url = resolveApiUrl(path);
-  const res = await fetch(url, {
-    ...restOptions,
-    credentials: url.startsWith("/api/") ? "include" : restOptions.credentials,
-    headers: { "Content-Type": "application/json", ...headers },
-  });
+  const sameOrigin = url.startsWith("/api/");
+  const method = (restOptions.method ?? "GET").toUpperCase();
+  // Only idempotent same-origin reads auto-retry, so a retried mutation can
+  // never double-apply.
+  const retryable = sameOrigin && (method === "GET" || method === "HEAD");
+
+  const send = () =>
+    fetch(url, {
+      ...restOptions,
+      credentials: sameOrigin ? "include" : restOptions.credentials,
+      headers: { "Content-Type": "application/json", ...headers },
+    });
+
+  let res = await send();
+  if (res.status === RETRY_STATUS && retryable) {
+    await sleep(RETRY_DELAY_MS);
+    res = await send();
+  }
   const body = await parseResponseBody(res);
 
   if (!res.ok) {

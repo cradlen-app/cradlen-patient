@@ -245,13 +245,34 @@ describe("getValidPatientAccessToken", () => {
     expect(fetchMock.mock.calls[0][0]).toContain("/patient-auth/refresh");
   });
 
-  it("returns null when the refresh attempt fails", async () => {
+  it("flags a TERMINAL failure when the backend rejects the refresh token (401)", async () => {
     cookieStore.map.set(PATIENT_AUTH_TOKEN_COOKIE, EXPIRED_ACCESS);
-    cookieStore.map.set(PATIENT_AUTH_REFRESH_TOKEN_COOKIE, "stale-refresh");
+    cookieStore.map.set(PATIENT_AUTH_REFRESH_TOKEN_COOKIE, "rejected-refresh");
     fetchMock.mockResolvedValueOnce(backendJson({ message: "bad" }, 401));
 
     const result = await getValidPatientAccessToken();
     expect(result.accessToken).toBeNull();
+    expect(result.refreshFailure).toBe("terminal");
+  });
+
+  it("flags a TRANSIENT failure when the refresh request errors (network)", async () => {
+    cookieStore.map.set(PATIENT_AUTH_TOKEN_COOKIE, EXPIRED_ACCESS);
+    cookieStore.map.set(PATIENT_AUTH_REFRESH_TOKEN_COOKIE, "net-refresh");
+    fetchMock.mockRejectedValueOnce(new Error("ECONNRESET"));
+
+    const result = await getValidPatientAccessToken();
+    expect(result.accessToken).toBeNull();
+    expect(result.refreshFailure).toBe("transient");
+  });
+
+  it("flags a TRANSIENT failure when the refresh returns 5xx", async () => {
+    cookieStore.map.set(PATIENT_AUTH_TOKEN_COOKIE, EXPIRED_ACCESS);
+    cookieStore.map.set(PATIENT_AUTH_REFRESH_TOKEN_COOKIE, "5xx-refresh");
+    fetchMock.mockResolvedValueOnce(backendJson({ message: "down" }, 503));
+
+    const result = await getValidPatientAccessToken();
+    expect(result.accessToken).toBeNull();
+    expect(result.refreshFailure).toBe("transient");
   });
 });
 
@@ -305,5 +326,31 @@ describe("proxyAuthenticatedPatientRequest", () => {
 
     expect(res.status).toBe(401);
     expect(res.cookies.get(PATIENT_AUTH_TOKEN_COOKIE)?.value).toBe("");
+  });
+
+  it("clears cookies and 401s on a TERMINAL refresh failure", async () => {
+    cookieStore.map.set(PATIENT_AUTH_TOKEN_COOKIE, EXPIRED_ACCESS);
+    cookieStore.map.set(PATIENT_AUTH_REFRESH_TOKEN_COOKIE, "rejected-refresh");
+    fetchMock.mockResolvedValueOnce(backendJson({ message: "bad" }, 401));
+
+    const res = await proxyAuthenticatedPatientRequest(portalRequest(), "/patient-portal/journey");
+
+    expect(res.status).toBe(401);
+    expect(res.cookies.get(PATIENT_AUTH_TOKEN_COOKIE)?.value).toBe("");
+  });
+
+  it("returns 503 and KEEPS cookies on a TRANSIENT refresh failure", async () => {
+    cookieStore.map.set(PATIENT_AUTH_TOKEN_COOKIE, EXPIRED_ACCESS);
+    cookieStore.map.set(PATIENT_AUTH_REFRESH_TOKEN_COOKIE, "blip-refresh");
+    // Refresh request errors → transient → session must survive.
+    fetchMock.mockRejectedValueOnce(new Error("ECONNRESET"));
+
+    const res = await proxyAuthenticatedPatientRequest(portalRequest(), "/patient-portal/journey");
+
+    expect(res.status).toBe(503);
+    expect(res.headers.get("Retry-After")).toBe("1");
+    // No Set-Cookie clearing the session.
+    expect(res.cookies.get(PATIENT_AUTH_TOKEN_COOKIE)?.value).toBeFalsy();
+    expect(res.cookies.get(PATIENT_AUTH_TOKEN_COOKIE)?.maxAge).toBeUndefined();
   });
 });

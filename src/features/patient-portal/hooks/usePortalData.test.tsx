@@ -14,24 +14,21 @@ vi.mock("../data/patient-portal.api", () => ({
   fetchMedications: mocks.fetchMedications,
 }));
 
-// Control the fixture-profile id that feeds useResolvedPatientId.
+// The single active-patient resolver — every live hook reads it. The
+// self/dependent/fallback resolution it performs is covered by
+// usePatientProfiles.test.tsx; here we only assert the gating contract.
 vi.mock("./usePatientProfiles", () => ({
   useActivePatientId: () => mocks.activeId,
+  usePatientProfiles: () => ({ isPending: false }),
 }));
 
 import { useMedications } from "./usePortalData";
 
-const ME_KEY = ["patient-portal", "me"];
-
-type Identity = { patient_id: string | null; accessible_patient_ids: string[] };
-
-function setup(opts: { identity?: Identity; activeId?: string } = {}) {
+function setup(opts: { activeId?: string } = {}) {
   mocks.activeId = opts.activeId ?? "";
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false } },
   });
-  if (opts.identity) client.setQueryData(ME_KEY, opts.identity);
-
   const wrapper = ({ children }: { children: ReactNode }) => (
     <QueryClientProvider client={client}>{children}</QueryClientProvider>
   );
@@ -47,42 +44,26 @@ afterEach(() => {
   vi.clearAllMocks();
 });
 
-describe("useMedications (identity resolution + gating)", () => {
+describe("useMedications (gating on the active patient id)", () => {
   it("stays idle and does not fetch until a patient id resolves", async () => {
-    const { result } = setup({ identity: undefined });
-    // No identity in the cache and no fixture id → query is disabled.
+    const { result } = setup({ activeId: "" });
+    // Empty id (identity still loading) → query is disabled.
     expect(result.current.fetchStatus).toBe("idle");
     await new Promise((r) => setTimeout(r, 10));
     expect(mocks.fetchMedications).not.toHaveBeenCalled();
   });
 
-  it("resolves the account holder when no accessible fixture id is active", async () => {
-    setup({
-      identity: { patient_id: "acct", accessible_patient_ids: ["acct"] },
-      activeId: "",
-    });
+  it("fetches for the active patient once an id resolves", async () => {
+    setup({ activeId: "acct" });
     await waitFor(() =>
       expect(mocks.fetchMedications).toHaveBeenCalledWith("acct"),
     );
   });
 
-  it("prefers the active fixture id when it is an accessible patient", async () => {
-    setup({
-      identity: { patient_id: "acct", accessible_patient_ids: ["acct", "dep"] },
-      activeId: "dep",
-    });
+  it("scopes the fetch to the active dependent profile", async () => {
+    setup({ activeId: "dep" });
     await waitFor(() =>
       expect(mocks.fetchMedications).toHaveBeenCalledWith("dep"),
-    );
-  });
-
-  it("falls back to the first accessible id when patient_id is null", async () => {
-    setup({
-      identity: { patient_id: null, accessible_patient_ids: ["first", "second"] },
-      activeId: "",
-    });
-    await waitFor(() =>
-      expect(mocks.fetchMedications).toHaveBeenCalledWith("first"),
     );
   });
 });

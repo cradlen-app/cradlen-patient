@@ -7,19 +7,9 @@
  */
 
 export type {
-  Appointment,
-  AppointmentStatus,
-  Allergy,
   Clinic,
-  DocumentKind,
-  DocumentStatus,
-  HealthRecord,
   LabCategory,
-  LabOrder,
-  LabOrderStatus,
-  LabResult,
   PatientProfile,
-  PortalDocument,
   PortalJourney,
   PortalJourneyStage,
   PortalMedication,
@@ -29,10 +19,6 @@ export type {
   PortalTestStatus,
   PortalVisit,
   JourneyStageStatus,
-  Reminder,
-  UploadDocumentInput,
-  UploadFile,
-  VitalsPoint,
 } from "./types/patient-portal.types";
 
 export {
@@ -41,26 +27,17 @@ export {
   useActiveProfile,
 } from "./hooks/usePatientProfiles";
 export {
-  useHealthRecord,
   useMedications,
   usePatientHistory,
   usePatientJourney,
   useHomeSummary,
   useInvestigations,
-  useLabOrders,
-  useDocuments,
-  useAppointments,
-  useReminders,
 } from "./hooks/usePortalData";
 export type { HomeSummary } from "./hooks/usePortalData";
-export { useUploadDocument } from "./hooks/useUploadDocument";
 
 export {
   usePatientProfileStore,
   DEFAULT_PROFILE_ID,
 } from "./store/patientProfileStore";
 
-export {
-  patientPortalQueryKeys,
-  PATIENT_PORTAL_QUERY_KEY_ROOT,
-} from "./queryKeys";
+export { patientPortalQueryKeys } from "./queryKeys";
