@@ -29,6 +29,12 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      # `next-env.d.ts` (which pulls in next/image-types for `*.png` imports) and
+      # the generated route types are git-ignored, so a standalone `tsc` run can't
+      # see them. `next typegen` regenerates them without a full build.
+      - name: Generate Next types
+        run: npx next typegen
+
       - name: Typecheck
         run: npx tsc --noEmit --pretty false
 
