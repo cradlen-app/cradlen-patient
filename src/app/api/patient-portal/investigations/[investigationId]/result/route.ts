@@ -12,6 +12,6 @@ export async function POST(
   const { investigationId } = await params;
   return proxyAuthenticatedPatientRequest(
     request,
-    `/patient-portal/investigations/${investigationId}/result`,
+    `/patient-portal/investigations/${encodeURIComponent(investigationId)}/result`,
   );
 }

@@ -9,6 +9,6 @@ export async function PATCH(
   const { id } = await params;
   return proxyAuthenticatedPatientRequest(
     request,
-    `/patient-portal/notifications/${id}/read`,
+    `/patient-portal/notifications/${encodeURIComponent(id)}/read`,
   );
 }

@@ -18,6 +18,20 @@ type Row = {
   count: number;
 };
 
+/** Skeleton row that preserves the TodayRow shape while counts load. */
+function TodayRowSkeleton() {
+  return (
+    <div className="flex items-center gap-3 rounded-xl bg-gray-50 px-3 py-3">
+      <span className="size-9 animate-pulse rounded-lg bg-gray-200" />
+      <span className="min-w-0 flex-1 space-y-1.5">
+        <span className="block h-3.5 w-24 animate-pulse rounded bg-gray-200" />
+        <span className="block h-3 w-32 animate-pulse rounded bg-gray-200" />
+      </span>
+      <span className="h-5 w-4 animate-pulse rounded bg-gray-200" />
+    </div>
+  );
+}
+
 function TodayRow({ row }: { row: Row }) {
   const { icon: Icon } = row;
   const attention = row.count > 0;
@@ -93,17 +107,22 @@ export function TodayCard() {
       <HomeCardHeader
         title={t("home.todayTitle")}
         action={
-          <span className="text-xs font-medium text-amber-600">
-            {summary.needAttention > 0
-              ? t("home.todayNeedAttention", { count: summary.needAttention })
-              : t("home.todayAllClear")}
-          </span>
+          // Suppress the "all clear / need attention" tally until the counts
+          // have loaded — otherwise it briefly (and misleadingly) reads "all
+          // clear" while the three queries are still in flight.
+          summary.isLoading ? undefined : (
+            <span className="text-xs font-medium text-amber-600">
+              {summary.needAttention > 0
+                ? t("home.todayNeedAttention", { count: summary.needAttention })
+                : t("home.todayAllClear")}
+            </span>
+          )
         }
       />
       <div className="space-y-2.5">
-        {rows.map((row) => (
-          <TodayRow key={row.href} row={row} />
-        ))}
+        {summary.isLoading
+          ? [0, 1, 2].map((i) => <TodayRowSkeleton key={i} />)
+          : rows.map((row) => <TodayRow key={row.href} row={row} />)}
       </div>
     </HomeCard>
   );
