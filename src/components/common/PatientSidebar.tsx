@@ -33,7 +33,7 @@ export function PatientSidebar() {
         type="button"
         onClick={() => setCollapsed((c) => !c)}
         className={cn(
-          "text-gray-400 hover:text-brand-primary transition-colors shrink-0 rounded-md p-0.5 mr-2 mt-2",
+          "text-gray-400 hover:text-brand-primary transition-colors shrink-0 rounded-md p-0.5 me-2 mt-2",
           collapsed ? "mx-auto" : "ms-auto",
         )}
         aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}

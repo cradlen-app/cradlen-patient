@@ -51,7 +51,7 @@ export function TimelineItem({
       <div className="relative flex w-20 flex-none items-center justify-center sm:w-24">
         {!isLast && (
           <span
-            className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gray-200"
+            className="absolute inset-y-0 start-1/2 w-px -translate-x-1/2 bg-gray-200"
             aria-hidden="true"
           />
         )}
@@ -182,7 +182,7 @@ export function TimelineSkeletonItem({ isLast }: { isLast: boolean }) {
       <div className="relative flex w-20 flex-none items-center justify-center sm:w-24">
         {!isLast && (
           <span
-            className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gray-200"
+            className="absolute inset-y-0 start-1/2 w-px -translate-x-1/2 bg-gray-200"
             aria-hidden="true"
           />
         )}
