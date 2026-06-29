@@ -85,12 +85,14 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 export function VisitCard({ visit }: { visit: PortalVisit }) {
   const t = useTranslations("patientPortal");
   const priority = visit.priority ?? "normal";
+  // Guard the dynamic key: an unrecognized backend visit type falls back to the
+  // generic "Visit" label instead of leaking the raw i18n key into the UI.
+  const typeKey = `record.typeLabel.${visit.type ?? "VISIT"}`;
+  const typeLabel = t.has(typeKey) ? t(typeKey) : t("record.typeLabel.VISIT");
   return (
     <article className="rounded-xl border border-gray-100 p-4">
       <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-        <span className="text-xs font-medium text-gray-700">
-          {t(`record.typeLabel.${visit.type ?? "VISIT"}`)}
-        </span>
+        <span className="text-xs font-medium text-gray-700">{typeLabel}</span>
         <StatusPill priority={priority} />
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs text-gray-500">
