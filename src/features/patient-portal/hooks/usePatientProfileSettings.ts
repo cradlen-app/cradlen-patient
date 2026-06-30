@@ -8,11 +8,15 @@ import {
   fetchSecurityQuestion,
   removeProfileImage,
   setSecurityQuestion,
+  updateNationalId,
   updatePatientProfile,
   uploadProfileImage,
 } from "../data/patient-portal.api";
 import { patientPortalQueryKeys } from "../queryKeys";
-import type { UpdatePatientProfileInput } from "../types/patient-portal.types";
+import type {
+  UpdateNationalIdInput,
+  UpdatePatientProfileInput,
+} from "../types/patient-portal.types";
 import { useActivePatientId } from "./usePatientProfiles";
 
 /**
@@ -49,6 +53,22 @@ export function useUpdatePatientProfile() {
   return useMutation({
     mutationFn: (input: UpdatePatientProfileInput) =>
       updatePatientProfile({ patientId: patientId || undefined, input }),
+    onSuccess: invalidate,
+  });
+}
+
+/**
+ * Changes the active patient's national ID (self or dependent). National ID is
+ * the login credential, so the mutation carries the account's current password
+ * for server-side re-verification. On success invalidates the profile so the
+ * read-only field reflects the new value.
+ */
+export function useUpdateNationalId() {
+  const patientId = useActivePatientId();
+  const invalidate = useInvalidateProfile();
+  return useMutation({
+    mutationFn: (input: UpdateNationalIdInput) =>
+      updateNationalId({ patientId: patientId || undefined, input }),
     onSuccess: invalidate,
   });
 }

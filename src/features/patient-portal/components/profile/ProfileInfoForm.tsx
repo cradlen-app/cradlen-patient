@@ -21,6 +21,7 @@ import type {
   PatientProfileDetails,
 } from "../../types/patient-portal.types";
 import { SectionCard } from "../portal-ui";
+import { NationalIdField } from "./NationalIdField";
 
 const MARITAL_STATUSES: readonly MaritalStatus[] = [
   "SINGLE",
@@ -200,19 +201,6 @@ export function ProfileInfoForm({
           />
         </Field>
 
-        <Field label={t("profile.nationalId")}>
-          <input
-            type="text"
-            value={profile.nationalId}
-            disabled
-            readOnly
-            className={cn(inputClass, "cursor-not-allowed bg-gray-50 text-gray-500")}
-          />
-          <p className="mt-1 text-[11px] text-gray-400">
-            {t("profile.nationalIdReadonly")}
-          </p>
-        </Field>
-
         <button
           type="submit"
           disabled={update.isPending || !isDirty}
@@ -221,6 +209,12 @@ export function ProfileInfoForm({
           {update.isPending ? t("profile.saving") : t("profile.save")}
         </button>
       </form>
+
+      {/* National ID lives outside the demographics form: it's the login
+          credential, so it has its own password-guarded edit flow. */}
+      <div className="mt-4 border-t border-gray-100 pt-4">
+        <NationalIdField profile={profile} />
+      </div>
     </SectionCard>
   );
 }

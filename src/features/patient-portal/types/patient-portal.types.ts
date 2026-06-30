@@ -122,6 +122,15 @@ export interface UpdatePatientProfileInput {
   maritalStatus?: MaritalStatus;
 }
 
+/**
+ * National-ID change body. National ID is the login credential, so the change
+ * is guarded by the account's current password (re-verified server-side).
+ */
+export interface UpdateNationalIdInput {
+  nationalId: string;
+  currentPassword: string;
+}
+
 export type MedicationStatus = "active" | "past";
 
 /** Dosage form — drives the card icon and the per-dose unit label. */
