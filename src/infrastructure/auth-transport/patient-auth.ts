@@ -17,6 +17,7 @@ import {
   readBackendJson,
   sanitizeBackendError,
 } from "./backend";
+import { reportServerError } from "@/infrastructure/monitoring/report";
 
 const AUTH_COOKIE_OPTIONS = {
   httpOnly: true,
@@ -275,6 +276,11 @@ export async function proxyAuthenticatedPatientRequest(
         backendResponse.status,
         backendPath,
       );
+      // Query string can carry patient_id — report only the path + status.
+      reportServerError(
+        new Error(`patient-portal backend ${backendResponse.status}`),
+        { status: backendResponse.status, path: backendPath.split("?")[0] },
+      );
     }
     res = NextResponse.json(
       backendResponse.ok
@@ -295,6 +301,10 @@ function passthroughError(body: unknown, response: Response) {
   if (response.status >= 500) {
     // Keep the full backend error server-side; never forward it to the browser.
     console.error("[patient-auth] backend error", response.status, body);
+    // Report status only — the body may carry PII, so it stays server-log-only.
+    reportServerError(new Error(`patient-auth backend ${response.status}`), {
+      status: response.status,
+    });
   }
   return NextResponse.json(sanitizeBackendError(body, response.status), {
     status: response.status,
