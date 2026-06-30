@@ -15,6 +15,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 
 import { cn } from "@/common/utils/utils";
+import { BUILD_INFO, shortCommit } from "@/infrastructure/config/build-info";
 import type { Locale } from "@/i18n/routing";
 import { Link, usePathname } from "@/i18n/navigation";
 import { usePatientLogout } from "@/features/auth/hooks/usePatientAuth";
@@ -43,6 +44,7 @@ export function PatientMoreSheet({
   const t = useTranslations("patientPortal");
   const tRoot = useTranslations();
   const tFooter = useTranslations("auth.signUp");
+  const tu = useTranslations("appUpdate");
   const locale = useLocale();
   const pathname = usePathname();
   const { data: profiles } = usePatientProfiles();
@@ -233,10 +235,20 @@ export function PatientMoreSheet({
           </button>
         </div>
 
-        {/* Copyright */}
-        <p className="border-t border-gray-100 px-5 py-4 text-center text-xs text-gray-400">
-          © {tFooter("copyright")}
-        </p>
+        {/* Copyright + build version */}
+        <div className="border-t border-gray-100 px-5 py-4 text-center text-xs text-gray-400">
+          <p>© {tFooter("copyright")}</p>
+          <p
+            className="mt-1"
+            title={
+              shortCommit
+                ? `${tu("versionLabel")} v${BUILD_INFO.version} · ${shortCommit}`
+                : `${tu("versionLabel")} v${BUILD_INFO.version}`
+            }
+          >
+            {tu("versionLabel")} v{BUILD_INFO.version}
+          </p>
+        </div>
       </div>
     </div>
   );
