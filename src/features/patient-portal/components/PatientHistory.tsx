@@ -24,7 +24,7 @@ export function PatientHistory() {
 
   if (isLoading) {
     return (
-      <section className="h-full overflow-y-auto rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
         <div className="space-y-2">
           <SkeletonPanel />
           <SkeletonPanel />
@@ -36,14 +36,14 @@ export function PatientHistory() {
 
   if (!groups || groups.length === 0) {
     return (
-      <section className="flex h-full items-center justify-center rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+      <section className="flex min-h-40 items-center justify-center rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
         <EmptyState message={t("record.noHistory")} />
       </section>
     );
   }
 
   return (
-    <section className="h-full space-y-3 overflow-y-auto rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+    <section className="space-y-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
       {groups.map((group) => (
         <HistoryGroup
           key={group.code}
