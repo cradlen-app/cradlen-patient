@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/common/utils/utils";
-import { BUILD_INFO, shortCommit } from "@/infrastructure/config/build-info";
 import { ageFromDob } from "../lib/format";
 import {
   useActivePatientId,
@@ -19,7 +18,6 @@ import { SecurityQuestionForm } from "./profile/SecurityQuestionForm";
 
 export function ProfileScreen() {
   const t = useTranslations("patientPortal");
-  const tu = useTranslations("appUpdate");
   const { data: profiles } = usePatientProfiles();
   const { data: profile, isLoading } = usePatientProfileDetails();
   const activeId = useActivePatientId();
@@ -87,17 +85,6 @@ export function ProfileScreen() {
             </ul>
           )}
         </SectionCard>
-
-        <p
-          className="pb-2 text-center text-xs text-gray-400"
-          title={
-            shortCommit
-              ? `${tu("versionLabel")} v${BUILD_INFO.version} · ${shortCommit}`
-              : `${tu("versionLabel")} v${BUILD_INFO.version}`
-          }
-        >
-          {tu("versionLabel")} v{BUILD_INFO.version}
-        </p>
       </div>
     </div>
   );
