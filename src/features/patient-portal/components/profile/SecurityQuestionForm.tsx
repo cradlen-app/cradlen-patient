@@ -114,7 +114,11 @@ export function SecurityQuestionForm() {
         </span>
       </p>
 
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <form
+        onSubmit={onSubmit}
+        autoComplete="off"
+        className="flex flex-col gap-4"
+      >
         <Field
           label={t("profile.securityQuestionLabel")}
           error={errors.securityQuestion?.message}
@@ -154,6 +158,10 @@ export function SecurityQuestionForm() {
           <input
             type="text"
             autoComplete="off"
+            data-1p-ignore
+            data-lpignore="true"
+            data-bwignore
+            data-form-type="other"
             placeholder={t("profile.securityAnswerPlaceholder")}
             {...register("securityAnswer")}
             className={cn(inputClass, errors.securityAnswer && "border-red-400")}
@@ -166,7 +174,11 @@ export function SecurityQuestionForm() {
         >
           <input
             type="password"
-            autoComplete="current-password"
+            autoComplete="off"
+            data-1p-ignore
+            data-lpignore="true"
+            data-bwignore
+            data-form-type="other"
             {...register("currentPassword")}
             className={cn(
               inputClass,
