@@ -186,6 +186,15 @@
     min-height: 100vh !important;
     box-sizing: border-box !important;
   }
+
+  /* Screen locks the shell to the viewport (body is h-full/overflow-hidden) so
+     only the content area scrolls. For print, let the document flow naturally
+     across pages instead of clipping to one viewport. */
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+  }
 }
 
 /* Accordion (shadcn/ui) — expand/collapse animation driven by Radix's

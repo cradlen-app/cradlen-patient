@@ -72,14 +72,22 @@ export function ChangePasswordForm() {
 
   return (
     <SectionCard title={t("profile.accountSecurity")}>
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <form
+        onSubmit={onSubmit}
+        autoComplete="off"
+        className="flex flex-col gap-4"
+      >
         <Field
           label={t("profile.currentPassword")}
           error={errors.currentPassword?.message}
         >
           <input
             type="password"
-            autoComplete="current-password"
+            autoComplete="off"
+            data-1p-ignore
+            data-lpignore="true"
+            data-bwignore
+            data-form-type="other"
             {...register("currentPassword")}
             className={cn(inputClass, errors.currentPassword && "border-red-400")}
           />

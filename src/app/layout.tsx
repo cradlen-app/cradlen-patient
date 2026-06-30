@@ -37,7 +37,7 @@ export default async function RootLayout({
       dir={dir}
       className={`${poppins.variable} ${cairo.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="h-full overflow-hidden flex flex-col" suppressHydrationWarning>
         <div id="app-shell" className="contents">
           {children}
         </div>
