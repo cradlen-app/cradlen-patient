@@ -14,11 +14,9 @@ export function RecordScreen() {
   const t = useTranslations("patientPortal");
 
   return (
-    <div className="flex h-full w-full flex-col gap-4">
+    <div className="flex w-full flex-col gap-4">
       <ScreenHeader title={t("record.title")} />
-      <div className="min-h-0 flex-1">
-        <PatientHistory />
-      </div>
+      <PatientHistory />
     </div>
   );
 }
