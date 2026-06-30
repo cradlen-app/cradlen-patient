@@ -3,6 +3,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
+import * as Sentry from "@sentry/nextjs";
 import logoIcon from "@/public/Logo-icon.png";
 import "@/styles/globals.css";
 
@@ -14,7 +15,7 @@ export default function GlobalError({
   unstable_retry: () => void;
 }) {
   useEffect(() => {
-    console.error(error);
+    Sentry.captureException(error);
   }, [error]);
 
   return (

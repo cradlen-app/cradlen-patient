@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
 import pkg from "./package.json";
 
@@ -55,4 +56,14 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+// Source-map upload runs only when SENTRY_AUTH_TOKEN is present (CI/Vercel), so
+// local and token-less builds are not slowed or failed by the Sentry plugin.
+// `org`/`project` target the SaaS project; the runtime DSN comes from env.
+export default withSentryConfig(withNextIntl(nextConfig), {
+  org: "cradlen",
+  project: "cradlen-patient",
+  silent: !process.env.CI,
+  telemetry: false,
+  widenClientFileUpload: true,
+  sourcemaps: { disable: !process.env.SENTRY_AUTH_TOKEN },
+});
