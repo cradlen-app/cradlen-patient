@@ -1,4 +1,10 @@
 {
+  "appUpdate": {
+    "title": "A new version is available",
+    "description": "Refresh to get the latest update.",
+    "refresh": "Refresh",
+    "versionLabel": "Version"
+  },
   "userGuide": {
     "title": "User Guide",
     "navLabel": "User Guide",
