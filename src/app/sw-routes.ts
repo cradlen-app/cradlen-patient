@@ -3,5 +3,5 @@
 // URL pathname (RegExpRoute matches the full href, which is why an anchored
 // regex must be applied to the pathname here instead).
 export function isPatientApiPath(pathname: string): boolean {
-  return /^\/api\/(patient-portal|patient-auth)\//.test(pathname);
+  return /^\/api\/(patient-portal|patient-auth)(\/|$)/.test(pathname);
 }
