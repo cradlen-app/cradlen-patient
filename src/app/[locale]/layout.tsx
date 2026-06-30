@@ -3,6 +3,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import LocaleDocumentSync from "@/i18n/LocaleDocumentSync";
 import { routing, type Locale } from "@/i18n/routing";
 import { Providers } from "@/components/Providers";
+import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 
 type Props = {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider messages={messages}>
       <Providers>
         <LocaleDocumentSync locale={currentLocale} />
+        <ServiceWorkerRegister />
         {children}
       </Providers>
     </NextIntlClientProvider>
