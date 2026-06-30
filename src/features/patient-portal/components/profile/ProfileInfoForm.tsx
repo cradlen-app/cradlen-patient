@@ -21,6 +21,7 @@ import type {
   PatientProfileDetails,
 } from "../../types/patient-portal.types";
 import { SectionCard } from "../portal-ui";
+import { NationalIdField } from "./NationalIdField";
 
 const MARITAL_STATUSES: readonly MaritalStatus[] = [
   "SINGLE",
@@ -200,19 +201,6 @@ export function ProfileInfoForm({
           />
         </Field>
 
-        <Field label={t("profile.nationalId")}>
-          <input
-            type="text"
-            value={profile.nationalId}
-            disabled
-            readOnly
-            className={cn(inputClass, "cursor-not-allowed bg-gray-50 text-gray-500")}
-          />
-          <p className="mt-1 text-[11px] text-gray-400">
-            {t("profile.nationalIdReadonly")}
-          </p>
-        </Field>
-
         <button
           type="submit"
           disabled={update.isPending || !isDirty}
@@ -221,6 +209,12 @@ export function ProfileInfoForm({
           {update.isPending ? t("profile.saving") : t("profile.save")}
         </button>
       </form>
+
+      {/* National ID lives outside the demographics form: it's the login
+          credential, so it has its own password-guarded edit flow. */}
+      <div className="mt-4 border-t border-gray-100 pt-4">
+        <NationalIdField profile={profile} />
+      </div>
     </SectionCard>
   );
 }
@@ -236,9 +230,17 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm text-brand-black">{label}</label>
-      {children}
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {/* Wrapping the control implicitly associates it with the label (the
+          inputs carry no id), so the field is named for assistive tech. */}
+      <label className="flex flex-col gap-1.5 text-sm text-brand-black">
+        {label}
+        {children}
+      </label>
+      {error && (
+        <p role="alert" className="text-xs text-red-500">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

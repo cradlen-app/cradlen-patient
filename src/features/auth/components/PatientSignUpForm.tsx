@@ -113,7 +113,11 @@ export function PatientSignUpForm() {
     hasError ? "border-red-400 focus:border-red-400 focus:ring-red-400/20" : "";
 
   const fieldError = (msg?: string) =>
-    msg ? <p className="mt-1 text-xs text-red-500">{msg}</p> : null;
+    msg ? (
+      <p role="alert" className="mt-1 text-xs text-red-500">
+        {msg}
+      </p>
+    ) : null;
 
   const handleNext = async () => {
     setStepError(null);
@@ -186,6 +190,7 @@ export function PatientSignUpForm() {
                 inputMode="numeric"
                 autoComplete="off"
                 placeholder={t("nationalIdPlaceholder")}
+                aria-invalid={errors.nationalId ? true : undefined}
                 {...form.register("nationalId")}
                 className={cn(inputClass, errorInputClass(!!errors.nationalId))}
               />
@@ -212,6 +217,7 @@ export function PatientSignUpForm() {
                 id="dateOfBirth"
                 type="date"
                 autoComplete="bday"
+                aria-invalid={errors.dateOfBirth ? true : undefined}
                 {...form.register("dateOfBirth")}
                 className={cn(inputClass, errorInputClass(!!errors.dateOfBirth))}
               />
@@ -269,6 +275,7 @@ export function PatientSignUpForm() {
                 type="text"
                 autoComplete="off"
                 placeholder={t("securityAnswerPlaceholder")}
+                aria-invalid={errors.securityAnswer ? true : undefined}
                 {...form.register("securityAnswer")}
                 className={cn(
                   inputClass,
