@@ -3,7 +3,7 @@ export const dynamic = "force-static";
 export default function OfflinePage() {
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center gap-3 p-6 text-center">
-      <h1 className="text-xl font-semibold">You're offline</h1>
+      <h1 className="text-xl font-semibold">You&rsquo;re offline</h1>
       <p className="text-sm text-gray-600">
         Cradlen needs a connection to load your health information. Reconnect and try again.
       </p>
