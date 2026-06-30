@@ -1,7 +1,8 @@
 /// <reference lib="webworker" />
 import { defaultCache } from "@serwist/next/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { NetworkOnly, RegExpRoute, Serwist } from "serwist";
+import { NetworkOnly, Serwist } from "serwist";
+import { isPatientApiPath } from "./sw-routes";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -16,7 +17,16 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  runtimeCaching: [
+    // Hard privacy boundary: authenticated patient API responses are NEVER
+    // cached. Registered FIRST so it wins over defaultCache's "/api/" NetworkFirst
+    // (route matching is first-match-wins by registration order).
+    {
+      matcher: ({ url, sameOrigin }) => sameOrigin && isPatientApiPath(url.pathname),
+      handler: new NetworkOnly(),
+    },
+    ...defaultCache,
+  ],
   fallbacks: {
     entries: [
       {
@@ -28,11 +38,5 @@ const serwist = new Serwist({
     ],
   },
 });
-
-// Hard privacy boundary: authenticated patient API responses are NEVER cached.
-// Registered before `addEventListeners` so it wins over any default route.
-serwist.registerRoute(
-  new RegExpRoute(/^\/api\/(patient-portal|patient-auth)\//, new NetworkOnly()),
-);
 
 serwist.addEventListeners();
