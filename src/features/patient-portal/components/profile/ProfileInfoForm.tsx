@@ -236,9 +236,17 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm text-brand-black">{label}</label>
-      {children}
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {/* Wrapping the control implicitly associates it with the label (the
+          inputs carry no id), so the field is named for assistive tech. */}
+      <label className="flex flex-col gap-1.5 text-sm text-brand-black">
+        {label}
+        {children}
+      </label>
+      {error && (
+        <p role="alert" className="text-xs text-red-500">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
