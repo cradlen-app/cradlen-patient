@@ -6,12 +6,17 @@ import type { PatientProfileDetails } from "../../types/patient-portal.types";
 
 const mocks = vi.hoisted(() => ({
   updateMutate: vi.fn(),
+  updateNationalIdMutate: vi.fn(),
   toastSuccess: vi.fn(),
   toastError: vi.fn(),
 }));
 
 vi.mock("../../hooks/usePatientProfileSettings", () => ({
   useUpdatePatientProfile: () => ({ mutateAsync: mocks.updateMutate, isPending: false }),
+  useUpdateNationalId: () => ({
+    mutateAsync: mocks.updateNationalIdMutate,
+    isPending: false,
+  }),
 }));
 
 vi.mock("sonner", () => ({
