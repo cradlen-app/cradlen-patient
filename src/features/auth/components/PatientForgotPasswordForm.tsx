@@ -31,7 +31,11 @@ const errorInputClass = (hasError: boolean) =>
   hasError ? "border-red-400 focus:border-red-400 focus:ring-red-400/20" : "";
 
 const fieldError = (msg?: string) =>
-  msg ? <p className="mt-1 text-xs text-red-500">{msg}</p> : null;
+  msg ? (
+    <p role="alert" className="mt-1 text-xs text-red-500">
+      {msg}
+    </p>
+  ) : null;
 
 export function PatientForgotPasswordForm() {
   const t = useTranslations("auth.patientForgotPassword");
@@ -128,6 +132,7 @@ export function PatientForgotPasswordForm() {
             type="text"
             autoComplete="off"
             placeholder={t("securityAnswerPlaceholder")}
+            aria-invalid={completeErrors.securityAnswer ? true : undefined}
             {...completeForm.register("securityAnswer")}
             className={cn(
               inputClass,
@@ -164,7 +169,9 @@ export function PatientForgotPasswordForm() {
         />
 
         {stepError && (
-          <p className="text-sm text-red-500 text-center">{stepError}</p>
+          <p role="alert" className="text-sm text-red-500 text-center">
+            {stepError}
+          </p>
         )}
 
         <button
@@ -192,6 +199,7 @@ export function PatientForgotPasswordForm() {
           inputMode="numeric"
           autoComplete="off"
           placeholder={t("nationalIdPlaceholder")}
+          aria-invalid={startErrors.nationalId ? true : undefined}
           {...startForm.register("nationalId")}
           className={cn(inputClass, errorInputClass(!!startErrors.nationalId))}
         />
@@ -218,6 +226,7 @@ export function PatientForgotPasswordForm() {
           id="dateOfBirth"
           type="date"
           autoComplete="bday"
+          aria-invalid={startErrors.dateOfBirth ? true : undefined}
           {...startForm.register("dateOfBirth")}
           className={cn(inputClass, errorInputClass(!!startErrors.dateOfBirth))}
         />

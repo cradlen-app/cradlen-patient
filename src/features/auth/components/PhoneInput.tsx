@@ -32,10 +32,16 @@ export function PhoneInput({
         type="tel"
         autoComplete="tel"
         placeholder={placeholder}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
         {...registration}
         className={cn(inputClassName, error ? errorInputClassName : "")}
       />
-      {error ? <p className="mt-1 text-xs text-red-500">{error}</p> : null}
+      {error ? (
+        <p id={`${id}-error`} role="alert" className="mt-1 text-xs text-red-500">
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }

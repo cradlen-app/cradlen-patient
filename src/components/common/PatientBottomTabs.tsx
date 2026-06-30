@@ -36,6 +36,7 @@ export function PatientBottomTabs() {
             <Link
               key={item.path}
               href={href as Parameters<typeof Link>[0]["href"]}
+              aria-current={active ? "page" : undefined}
               className={cn(
                 "flex flex-1 flex-col items-center gap-0.5 rounded-lg py-1 text-[10px] font-medium transition-colors",
                 active ? "text-brand-primary" : "text-gray-400",

@@ -71,11 +71,15 @@ export function PatientSignInForm() {
           type="text"
           inputMode="numeric"
           autoComplete="off"
+          aria-invalid={errors.nationalId ? true : undefined}
+          aria-describedby={errors.nationalId ? "nationalId-error" : undefined}
           {...register("nationalId")}
           className={cn(inputClass, errors.nationalId && "border-red-400")}
         />
         {errors.nationalId && (
-          <p className="text-xs text-red-500">{errors.nationalId.message}</p>
+          <p id="nationalId-error" role="alert" className="text-xs text-red-500">
+            {errors.nationalId.message}
+          </p>
         )}
       </div>
 
@@ -88,6 +92,7 @@ export function PatientSignInForm() {
           <button
             type="button"
             onClick={() => setShowPassword((p) => !p)}
+            aria-pressed={showPassword}
             className="flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 transition-colors"
           >
             {showPassword ? (
@@ -102,11 +107,15 @@ export function PatientSignInForm() {
           id="password"
           type={showPassword ? "text" : "password"}
           autoComplete="current-password"
+          aria-invalid={errors.password ? true : undefined}
+          aria-describedby={errors.password ? "password-error" : undefined}
           {...register("password")}
           className={cn(inputClass, errors.password && "border-red-400")}
         />
         {errors.password && (
-          <p className="text-xs text-red-500">{errors.password.message}</p>
+          <p id="password-error" role="alert" className="text-xs text-red-500">
+            {errors.password.message}
+          </p>
         )}
         <Link
           href="/patient/forgot-password"
@@ -118,7 +127,9 @@ export function PatientSignInForm() {
 
       {/* API error */}
       {apiError && (
-        <p className="text-sm text-red-500 text-center">{apiError}</p>
+        <p role="alert" className="text-sm text-red-500 text-center">
+          {apiError}
+        </p>
       )}
 
       {/* Submit */}
