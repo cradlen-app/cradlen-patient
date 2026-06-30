@@ -28,10 +28,10 @@ export function ProfileScreen() {
   const dependents = profiles?.filter((p) => p.kind === "dependent") ?? [];
 
   return (
-    <div className="flex h-full w-full flex-col gap-4">
+    <div className="flex w-full flex-col gap-4">
       <ScreenHeader title={t("profile.title")} />
 
-      <div className="min-h-0 flex-1 space-y-4 overflow-y-auto">
+      <div className="space-y-4">
         {isLoading || !profile ? (
           <EmptyState message={t("common.loading")} />
         ) : (
