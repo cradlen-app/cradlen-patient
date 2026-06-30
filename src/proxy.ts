@@ -20,6 +20,34 @@ const intlMiddleware = createMiddleware(routing);
  * (Tailwind v4 + Next emit inline styles; CSP nonces don't cover style attributes).
  * Violations report to `/api/csp-report` via `report-to`/`report-uri`.
  */
+
+/**
+ * `connect-src` allowlist — the hosts the browser legitimately reaches via
+ * fetch/XHR/WebSocket/beacon. Replaces a blanket `https:` (which let an injected
+ * script exfiltrate to ANY https origin) with the exact set:
+ *  - `'self'` — the same-origin `/api/*` proxy, Next HMR in dev, and the
+ *    same-origin Vercel Analytics / Speed Insights beacons (`/_vercel/*`).
+ *  - R2 — presigned PUT uploads go straight to the R2 S3 endpoint
+ *    (`<account>.r2.cloudflarestorage.com`) for avatars and investigation results.
+ *  - Sentry — error events post to the DSN's ingest host. Derived exactly from
+ *    `NEXT_PUBLIC_SENTRY_DSN` so the region never has to be guessed, and omitted
+ *    entirely when no DSN is configured.
+ * NOTE: `img-src` deliberately keeps `https:` — presigned R2 GET URLs for avatars
+ * and result files are loaded as images and their host can vary.
+ */
+function connectSrc(): string {
+  const sources = ["'self'", "https://*.r2.cloudflarestorage.com"];
+  const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
+  if (dsn) {
+    try {
+      sources.push(`https://${new URL(dsn).host}`);
+    } catch {
+      // Malformed DSN → omit the host; never throw from CSP assembly.
+    }
+  }
+  return `connect-src ${sources.join(" ")}`;
+}
+
 function buildCsp(nonce: string) {
   return [
     "default-src 'self'",
@@ -31,7 +59,7 @@ function buildCsp(nonce: string) {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self' https://fonts.gstatic.com data:",
-    "connect-src 'self' https:",
+    connectSrc(),
     "report-uri /api/csp-report",
     "report-to csp",
   ].join("; ");
