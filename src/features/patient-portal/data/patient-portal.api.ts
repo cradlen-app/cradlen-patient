@@ -52,6 +52,7 @@ import type {
   PortalUpcomingVisit,
   PortalVisit,
   PatientProfileDetails,
+  UpdateNationalIdInput,
   UpdatePatientProfileInput,
 } from "../types/patient-portal.types";
 
@@ -380,6 +381,32 @@ export async function updatePatientProfile({
         marital_status: input.maritalStatus,
       }),
     }),
+  );
+}
+
+/**
+ * Changes the active patient's national ID. Requires the account's current
+ * password (re-verified server-side). The backend returns the updated profile
+ * (`{ data }`-wrapped); a duplicate national ID surfaces as an `ApiError` 409.
+ */
+export async function updateNationalId({
+  patientId,
+  input,
+}: {
+  patientId?: string;
+  input: UpdateNationalIdInput;
+}): Promise<PatientProfileDetails> {
+  return toProfileDetails(
+    await apiFetch(
+      `/api/patient-portal/profile/national-id${profileQuery(patientId)}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          national_id: input.nationalId,
+          current_password: input.currentPassword,
+        }),
+      },
+    ),
   );
 }
 
