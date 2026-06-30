@@ -13,7 +13,7 @@ import Footer from "../common/Footer";
  */
 export function PatientDashboardLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col h-full bg-gray-50">
       <PatientNavbar />
       <div className="flex flex-1 overflow-hidden lg:pb-3">
         <PatientSidebar />
