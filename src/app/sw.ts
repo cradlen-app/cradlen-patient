@@ -48,3 +48,61 @@ const serwist = new Serwist({
 });
 
 serwist.addEventListeners();
+
+// --- Web Push --------------------------------------------------------------
+// Payload is produced by the backend PatientPushService.sendToPatient(...).
+// Carries only what the in-app feed already shows (title/body/navigate_to) —
+// never raw PHI. The pure mapper is unit-tested in features/push/lib.
+import { buildNotificationOptions, type PushPayload } from "@/features/push/lib/pushPayload";
+
+self.addEventListener("push", (event) => {
+  if (!event.data) return;
+
+  let payload: PushPayload;
+  try {
+    payload = event.data.json() as PushPayload;
+  } catch {
+    payload = { title: "Cradlen", body: event.data.text() };
+  }
+
+  event.waitUntil(
+    (async () => {
+      const { title, options } = buildNotificationOptions(payload);
+      await self.registration.showNotification(title, options);
+
+      // Keep an open tab's in-app feed/badge fresh without a poll.
+      const clients = await self.clients.matchAll({
+        type: "window",
+        includeUncontrolled: true,
+      });
+      for (const client of clients) {
+        client.postMessage({ type: "cradlen:notification" });
+      }
+    })(),
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const target =
+    (event.notification.data?.navigate_to as string | null | undefined) || "/";
+  const targetUrl = new URL(target, self.registration.scope);
+
+  event.waitUntil(
+    (async () => {
+      const clients = await self.clients.matchAll({
+        type: "window",
+        includeUncontrolled: true,
+      });
+      // If a tab is already on the deep link, just focus it — never navigate a
+      // tab the user may be mid-task in (e.g. document upload), discarding input.
+      for (const client of clients) {
+        if (new URL(client.url).pathname === targetUrl.pathname) {
+          await client.focus();
+          return;
+        }
+      }
+      await self.clients.openWindow(targetUrl.href);
+    })(),
+  );
+});
