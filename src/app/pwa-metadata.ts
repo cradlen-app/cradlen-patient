@@ -2,11 +2,11 @@ import type { Metadata, Viewport } from "next";
 
 export const pwaMetadata: Metadata = {
   manifest: "/manifest.webmanifest",
-  applicationName: "Cradlen",
+  applicationName: "Cradlen Patient",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Cradlen",
+    title: "Cradlen Patient",
   },
   icons: {
     icon: [

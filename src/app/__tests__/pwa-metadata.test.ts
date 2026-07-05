@@ -11,7 +11,7 @@ describe("pwa metadata", () => {
   it("marks the app as apple web app capable", () => {
     const awa = pwaMetadata.appleWebApp as { capable?: boolean; title?: string };
     expect(awa.capable).toBe(true);
-    expect(awa.title).toBe("Cradlen");
+    expect(awa.title).toBe("Cradlen Patient");
   });
 
   it("sets a theme color in the viewport", () => {
