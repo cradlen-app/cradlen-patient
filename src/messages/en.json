@@ -5,6 +5,27 @@
     "refresh": "Refresh",
     "versionLabel": "Version"
   },
+  "pwa": {
+    "install": {
+      "title": "Install Cradlen",
+      "body": "Add Cradlen to your home screen for quick, app-like access.",
+      "action": "Install",
+      "dismiss": "Not now"
+    },
+    "ios": {
+      "title": "Add Cradlen to your Home Screen",
+      "step1": "Tap the Share button in the toolbar.",
+      "step2": "Choose \"Add to Home Screen\".",
+      "step3": "Tap \"Add\" to finish.",
+      "close": "Close"
+    },
+    "offline": {
+      "message": "You're offline"
+    },
+    "online": {
+      "message": "Back online"
+    }
+  },
   "userGuide": {
     "title": "User Guide",
     "navLabel": "User Guide",
