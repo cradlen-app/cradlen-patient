@@ -41,6 +41,11 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   // Use the commit SHA as the build id so it lines up with `/api/version`.
   generateBuildId: async () => buildId,
+  // The Serwist Turbopack route (`src/app/sw.js/route.ts`) bundles the service
+  // worker with `esbuild` at request/prerender time. Keep esbuild external so it
+  // is loaded from node_modules at runtime instead of being bundled by Turbopack
+  // (mirrors `@serwist/turbopack`'s `withSerwist`).
+  serverExternalPackages: ["esbuild", "esbuild-wasm"],
   // Build metadata exposed to the browser (read via `@/infrastructure/config/
   // build-info`). Vercel runs `npm run build`, so `npm_package_version` is the
   // version release-please writes into package.json.

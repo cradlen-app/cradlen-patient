@@ -306,6 +306,17 @@
     "updateSecurityQuestion": "تحديث سؤال الأمان",
     "securityQuestionSaved": "تم حفظ سؤال الأمان"
   },
+  "pushNotifications": {
+    "title": "الإشعارات",
+    "description": "احصل على إشعارات بالوصفات الجديدة ونتائج الفحوصات.",
+    "on": "مُفعّل",
+    "off": "مُعطّل",
+    "enabling": "جارٍ التفعيل…",
+    "disabling": "جارٍ الإيقاف…",
+    "deniedNote": "الإشعارات محظورة. فعّلها من إعدادات المتصفح.",
+    "iosInstallHint": "ثبّت كرادلن على شاشتك الرئيسية لتفعيل الإشعارات.",
+    "iosInstallAction": "أرِني الطريقة"
+  },
   "upload": {
     "title": "رفع إلى طبيبك",
     "step1": "اختر الطلب",
