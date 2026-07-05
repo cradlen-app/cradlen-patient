@@ -306,6 +306,17 @@
     "updateSecurityQuestion": "Update security question",
     "securityQuestionSaved": "Security question saved"
   },
+  "pushNotifications": {
+    "title": "Notifications",
+    "description": "Get notified about new prescriptions and test results.",
+    "on": "On",
+    "off": "Off",
+    "enabling": "Enabling…",
+    "disabling": "Disabling…",
+    "deniedNote": "Notifications are blocked. Enable them in your browser settings.",
+    "iosInstallHint": "Install Cradlen to your Home Screen to turn on notifications.",
+    "iosInstallAction": "Show me how"
+  },
   "upload": {
     "title": "Upload to your doctor",
     "step1": "Pick the order",

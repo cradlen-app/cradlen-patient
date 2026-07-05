@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import { queryClient } from "@/infrastructure/query/queryClient";
 import { InstallBanner } from "@/features/pwa/components/InstallBanner";
 import { OfflineBar } from "@/features/pwa/components/OfflineBar";
+import { PushNotificationProvider } from "@/features/push/components/PushNotificationProvider";
 import { UpdateBanner } from "./common/UpdateBanner";
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -15,6 +16,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <UpdateBanner />
       <OfflineBar />
       <InstallBanner />
+      <PushNotificationProvider />
     </QueryClientProvider>
   );
 }
