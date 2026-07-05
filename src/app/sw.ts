@@ -54,6 +54,10 @@ serwist.addEventListeners();
 // Carries only what the in-app feed already shows (title/body/navigate_to) —
 // never raw PHI. The pure mapper is unit-tested in features/push/lib.
 import { buildNotificationOptions, type PushPayload } from "@/features/push/lib/pushPayload";
+import {
+  localeFromClientUrls,
+  resolvePatientDeepLink,
+} from "@/features/push/lib/deepLink";
 
 self.addEventListener("push", (event) => {
   if (!event.data) return;
@@ -84,9 +88,10 @@ self.addEventListener("push", (event) => {
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const target =
-    (event.notification.data?.navigate_to as string | null | undefined) || "/";
-  const targetUrl = new URL(target, self.registration.scope);
+  const navigateTo = event.notification.data?.navigate_to as
+    | string
+    | null
+    | undefined;
 
   event.waitUntil(
     (async () => {
@@ -94,6 +99,16 @@ self.addEventListener("notificationclick", (event) => {
         type: "window",
         includeUncontrolled: true,
       });
+      // The backend sends a bare portal path (e.g. "/tests"); resolve it to the
+      // real locale-prefixed route the app actually serves ("/<locale>/patient/…"),
+      // mirroring how the in-app feed uses patientHref + the locale-aware router.
+      // Locale is taken from an open tab so the click stays in the user's language.
+      const locale = localeFromClientUrls(clients.map((c) => c.url));
+      const targetUrl = new URL(
+        resolvePatientDeepLink(navigateTo, locale),
+        self.registration.scope,
+      );
+
       // If a tab is already on the deep link, just focus it — never navigate a
       // tab the user may be mid-task in (e.g. document upload), discarding input.
       for (const client of clients) {
