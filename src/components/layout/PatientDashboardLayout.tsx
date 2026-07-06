@@ -17,8 +17,14 @@ export function PatientDashboardLayout({ children }: { children: ReactNode }) {
       <PatientNavbar />
       <div className="flex flex-1 overflow-hidden lg:pb-3">
         <PatientSidebar />
-        <main className="min-w-0 flex-1 overflow-y-auto px-4 pt-4 pb-32 lg:pb-6">
-          {children}
+        {/*
+          Padding lives on an inner in-flow wrapper, NOT on `main` itself.
+          A scroll container's own `padding-bottom` is dropped from the
+          scrollable region once content overflows, so the last child would sit
+          flush against the bottom edge and hide under the fixed bottom tab bar.
+        */}
+        <main className="min-w-0 flex-1 overflow-y-auto">
+          <div className="px-4 pt-4 pb-32 lg:pb-6">{children}</div>
         </main>
       </div>
       <PatientBottomTabs />
