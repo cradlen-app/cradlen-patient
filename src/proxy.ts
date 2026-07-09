@@ -33,7 +33,9 @@ const intlMiddleware = createMiddleware(routing);
  *    `NEXT_PUBLIC_SENTRY_DSN` so the region never has to be guessed, and omitted
  *    entirely when no DSN is configured.
  * NOTE: `img-src` deliberately keeps `https:` — presigned R2 GET URLs for avatars
- * and result files are loaded as images and their host can vary.
+ * and result files are loaded as images and their host can vary. `blob:` is
+ * included so local object-URL previews of pending uploads (files the page
+ * itself created via `URL.createObjectURL`) can render before upload.
  */
 function connectSrc(): string {
   const sources = ["'self'", "https://*.r2.cloudflarestorage.com"];
@@ -59,7 +61,7 @@ function buildCsp(nonce: string) {
     "worker-src 'self'",
     "manifest-src 'self'",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https:",
+    "img-src 'self' data: https: blob:",
     "font-src 'self' https://fonts.gstatic.com data:",
     connectSrc(),
     "report-uri /api/csp-report",
